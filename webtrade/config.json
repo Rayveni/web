@@ -5,5 +5,5 @@
 	"port": 27017,
 	"user": "",
 	"user_pswd": "",
-	"mongo_data":"F:\mongo\data"
+	"mongo_data": "F:\\mongo\\data"
 }
