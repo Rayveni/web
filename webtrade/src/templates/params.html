@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% block content %}
+<div id="content-wrapper" class="d-flex flex-column">
+	<!-- Main Content -->
+	<div id="content">
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Parameters</h6>
+				</div>
+				
+				<div class="card-body">
+					<input type="text" id="search_input" onkeyup="table_search_filter('search_input','params_table')" placeholder="Search for names.." title="Type in a name">
+					
+					<table id="params_table">
+						<tr class="header">
+							<th>Param</th>
+							<th>Value</th>
+						</tr>
+						{% for key, value in data.params.items() %}
+							<tr>
+							<td>{{key}}</td>
+							<td><input type="text" name="company" form="my_form" /></td>							
+							</tr>							
+						{% endfor %}					
+					</table>	
+				<!-- End card-body -->	
+				</div>
+			<!-- End card-->	
+			</div>
+		<!-- End c-->		
+		</div>
+	<!-- End of Main Content -->
+	</div>
+</div>
+{% endblock %}

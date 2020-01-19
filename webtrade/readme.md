@@ -5,3 +5,8 @@
 2. mongod --dbpath /srv/mongodb/data  
 ## run.ipynb - запуск приложения
 ## src - приложение
+## src - приложение
+## external_sources
+Обработчики внешних источников данных
+## mongo_driver
+Драйвер для работы с Mongo
