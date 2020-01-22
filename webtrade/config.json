@@ -1,9 +1,1 @@
-{
-	"driver": "mongo",
-	"db_name": "trade",
-	"host": "localhost",
-	"port": 27017,
-	"user": "",
-	"user_pswd": "",
-	"mongo_data": "F:\\mongo\\data"
-}
+{"driver": null, "db_name": null, "host": null, "port": 1, "user": null, "user_pswd": null, "mongo_data": null}

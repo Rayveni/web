@@ -1,8 +1,6 @@
 {% extends "_base.html" %}
 {% block content %}
-<div id="content-wrapper" class="d-flex flex-column">
-	<!-- Main Content -->
-	<div id="content">
+
 		<div class="col-lg-12">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
@@ -10,7 +8,13 @@
 				</div>
 				
 				<div class="card-body">
-					<input type="text" id="search_input" onkeyup="table_search_filter('search_input','params_table')" placeholder="Search for names.." title="Type in a name">
+
+				  <form action="{{ url_for('admin_bp.upload_mongo_form') }}" method="post">
+					<div class="form-group col-md-12">	
+						<button id="submit_mongo_params" type="submit"  name="submit_button" value="update_config" class="btn save_btn"><i class="far fa-save fa-lg"></i></button>
+						<input type="text" id="params_search_input" onkeyup="table_search_filter('params_search_input','params_table')" 
+						class="fa" placeholder="&#xf002 Search for params.." title="Type in a name">
+					</div>
 					
 					<table id="params_table">
 						<tr class="header">
@@ -20,17 +24,16 @@
 						{% for key, value in data.params.items() %}
 							<tr>
 							<td>{{key}}</td>
-							<td><input type="text" name="company" form="my_form" /></td>							
+							<td><input type="text" class="form-control" id="input_id_{{key}}" value ="{{ value.value }}" name="input_name_{{key}}" maxlength="{{value.len}}" /></td>							
 							</tr>							
 						{% endfor %}					
 					</table>	
+			      </form>
 				<!-- End card-body -->	
 				</div>
 			<!-- End card-->	
 			</div>
 		<!-- End c-->		
 		</div>
-	<!-- End of Main Content -->
-	</div>
-</div>
+
 {% endblock %}
