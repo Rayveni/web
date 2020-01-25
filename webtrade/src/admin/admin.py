@@ -41,30 +41,16 @@ def _tables():
     return render_template('tables.html',data=data)
 	
 
-	
-@admin_bp.route("/upload_mongo_form",methods=["POST"])#,methods=["POST"]
+@admin_bp.route("/upload_mongo_form",methods=["POST"])
 def upload_mongo_form():
     form_data=request.form.to_dict(flat=False) 
-    flash_complex_result([True,'dddddd'],[False,'2222'],'Constants updated')
-    return redirect(url_for('admin_bp._database'))
-    print(form_data)
-    return 11
     submit_case=form_data['submit_button'][0]
-    print(submit_case,form_data)	
-    if submit_case=='mongo_config':
-        err,res=update_config(config_path,form_data)
+
+    if submit_case=='update_config':
+        err,res=cf_m.update_config('input_name_',form_data,params)
         flash_complex_result(err,res,'Config updated')
-  
-    elif submit_case=='drop_db':
-        err,res=drop_db()
-        flash_complex_result(err,res,'Mongo Database dropped')
-    elif submit_case=='rebuild_indexes':
-        flash('rebuild_indexes updated','info')  #success info error  заглушка
-    elif submit_case=='Save changes':
-        err,res=update_constants(form_data)	
-        flash_complex_result(err,res,'Constants updated')  #success info error  заглушка		
          
-    return redirect(url_for('admin_bp.index'))#render_template('admin.html',data=res[1])#
+    return redirect(url_for('admin_bp._params'))
 	
 
 	

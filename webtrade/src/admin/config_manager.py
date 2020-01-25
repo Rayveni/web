@@ -26,14 +26,26 @@ class config_manager:
         return {key:none_replace(value) for key,value	in data.items()}
 
     @exception
-    def update_config(self,form_data,config)->tuple:
-        err,data=read_config(conf_path)
+    def update_config(self,prefix:str,form_data:dict,config:dict)->tuple:
+        data={}
+        for key,value in config.items():
+            _value,len_match=self._format_convert(form_data[prefix+key][0],value['type'],value['len'])
+            if len_match:
+                data[key]=_value
+            else:
+                return (False,f'Length {key}={_value} shoud be less then {value["len"]} ')
 
-
-        for param in config_fields:
-            data[param]=form_data[f'mongo_{param}'][0]
-
-        with open(conf_path, 'w') as outfile:  
+        with open(self.config_path, 'w') as outfile:  
             dump(data, outfile)
 
         return (True,data)
+
+    def _format_convert(self,t,_format:str,_len:int)->tuple:
+        _s=str(t)
+        _n=len(_s)<=_len
+        if _format=='str':
+            return _s,_n
+        elif _format=='int':
+            return int(t),_n
+        else:
+            pass
