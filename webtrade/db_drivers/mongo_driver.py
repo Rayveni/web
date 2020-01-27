@@ -16,8 +16,10 @@ class MongoDriver:
 
     def drop_db(self):
         self.__client.drop_database(self.db.name)
-        #self.__add_indexes()
-
+        return True,
+    def dbstats(self)->dict:
+        return self.db.command("dbstats")
+		
     def all_tables(self)->list:
         return [collection for collection in self.db.collection_names()]
  
