@@ -1,6 +1,11 @@
 
 --main_color_black:#2f4050;
 
+.card{
+
+    max-width: 100%
+}
+
 .fa-save {
 	color: var(--main_color_black);
 }
@@ -41,5 +46,7 @@
 background: none;
 }
 
+
+.show {display: block;}
 
 

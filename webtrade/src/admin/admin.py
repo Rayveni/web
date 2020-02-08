@@ -1,4 +1,6 @@
 from flask import render_template,request,redirect,url_for
+from datetime import datetime
+from json import dumps
 from . import admin_bp
 
 from .config_manager import config_manager
@@ -20,11 +22,12 @@ params={"driver":{"type":'str','len':32,'default':None},
 
 cf_m=config_manager(params,config_path)
 err,config=cf_m.read_config()
-  
+
 @exception
 def __db_stats():
     mm=mongo_manager(config)
     return mm.dbstats()	 
+
 @exception	
 def __drop_db():
     mm=mongo_manager(config)
@@ -38,7 +41,7 @@ def _params():
         pass#flash_complex_result(err,res,'Mongo Database dropped')
 
     data['params']={key:{**value,'value':file_config[key]} for key,value in params.items()}
-    data['optional_js_bottom']=['table_search_filter']
+    data['optional_js_bottom']=['js/table_search_filter']
     return render_template('params.html',data=data)
 	
 @admin_bp.route("/admin/database")
@@ -52,9 +55,30 @@ def _database():
         data['db_stats']=db_stats     
     return render_template('database.html',data=data)
 	
+
+
+@exception
+def __get_table(table_name,result='matrix'):
+    mm=mongo_manager(config)
+    return mm.get_table(table_name,result)
+
+@exception
+def __all_tables():
+    mm=mongo_manager(config)
+    return mm.all_tables()
+
 @admin_bp.route("/admin/tables")
 def _tables():
     data={'title':'admin|tables'}
+    err,all_tables=__all_tables()
+    if not err[0]:
+        flash_complex_result(err,table_data)
+        all_tables_list=None
+    else:
+        all_tables_list=all_tables
+    data['optional_js_bottom']=['js/drop_down_filter','js/admin','vendor/handsontable/handsontable.full.min','js/ajax_get_data'] 
+    data['optional_css_top']=['handsontable.full.min']
+    data['db_drop_down_filter']={'placeholder':'Select database table','id':1,'filter_vals':all_tables_list,'onclick':"process_htable(this,'dropdown_id_1')"}
     return render_template('tables.html',data=data)
 	
 
@@ -75,4 +99,20 @@ def upload_mongo_form():
         err,res=__drop_db()
         flash_complex_result(err,res,'database dropped')
         return redirect(url_for('admin_bp._database'))
+
+
+def __convert_to_front(arr):
+    if len (arr)>0:
+        last_row=arr[-1]
+        datetime_cols=[i for i in range(len(last_row)) if isinstance(last_row[i], datetime)]
+
+        for i in range(1, len(arr)):
+            for col in datetime_cols:   
+                arr[i][col]=arr[i][col].strftime("%Y-%m-%d %H:%M:%S")
+    return arr
+
+@admin_bp.route('/query_data', methods=['GET', 'POST'])
+def query_data():
+    err,data_request=__get_table(request.args.get('table'))
+    return dumps(__convert_to_front(data_request),ensure_ascii=False)
 

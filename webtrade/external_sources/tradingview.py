@@ -51,14 +51,17 @@ class tradingview:
 
         res=[]       
         table_body = doc.xpath('//tbody[@class="tv-data-table__tbody"]')[0]
-        _urls=[row.xpath('.//@href')[0] for row in table_body.getchildren()]
+        
+        extract_r=lambda _row:list(map(lambda f:self.__transform_str(f.text_content()),[_row[0],_row[-2]]))
+       
+        _urls={row.xpath('.//@href')[0]:extract_r(row) for row in table_body.getchildren()}
         _worker=lambda url:self.parse_sector(url,s)
         
         n_tries=3
         n_threads=8
         final_res=[]
         while n_tries>0:
-            true_res,false_res=thread_pool(_worker,_urls,n_threads)
+            true_res,false_res=thread_pool(_worker,list(_urls.keys()),n_threads)
             final_res=final_res+true_res
             if len(false_res)==0:
                 break
@@ -69,20 +72,4 @@ class tradingview:
         if len(false_res)>0:
             return (False,)
         else:
-            return [el for el in final_res]
-        for row  in table_body.getchildren():
-
-            securities=self.parse_sector(row.xpath('.//@href')[0],s)
-            res.append([securities,list(map(lambda f:self.transform_str(f.text_content()),[row[0],row[-2]]))])
-            time.sleep(1) 
-            
-        return res
-		
-    def __rus_security_sector(self):
-        arr=self.__rus_security_sector()
-        res=[]
-        for row in arr:
-            for sub_row in row[0]:
-                res.append([*sub_row,*row[1]])
-        columns=['ticker','sec_name','action','industry','sector']
-        return DataFrame(res,columns=columns)
+            return (True,[[el[1],_urls[el[0]]] for el in final_res])

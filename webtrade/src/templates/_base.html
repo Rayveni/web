@@ -12,7 +12,13 @@
 				<link href="/static/css/template.css" rel="stylesheet">
 				<link href="/static/css/mycss.css" rel="stylesheet">
 				<link rel="shortcut icon" href="{{ url_for('static', filename='favicon-16x16.png') }}">
-				
+
+				<!-- Custom styles generated-->
+				{% if data.optional_css_top is defined %}
+					 {% for _lib in data.optional_css_top %}
+					   <link href="/static/css/{{_lib}}.css" rel="stylesheet">
+					 {% endfor %}
+				{% endif %}	
 	</head>
 
 <body id="page-top">
@@ -47,6 +53,13 @@
 						</div>
 					</li>
 					
+
+					<li class="nav-item">
+							<a class="nav-link" href="/upload_jobs"><i class="fas fa-upload"></i>
+								<span>Uploads</span>
+							</a>
+					</li>	
+
 					<li class="nav-item">
 						<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin_nav" aria-expanded="true" aria-controls="collapseTwo">
 							<i class="fas fa-fw fa-cog"></i>
@@ -97,12 +110,16 @@
 				<script src="/static/vendor/bootstrsap4/bootstrap.min.js"></script>
 				<!-- Custom scripts for all pages-->
 				<script src="/static/js/template.js"></script>
+
 				<!-- Custom scripts generated-->
 				{% if data.optional_js_bottom is defined %}
 					 {% for _lib in data.optional_js_bottom %}
-					   <script src="/static/js/{{_lib}}.js"></script>
+					   <script src="/static/{{_lib}}.js"></script>
 					 {% endfor %}
 				{% endif %}
+
+
+
 
 </body>
 </html>
