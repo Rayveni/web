@@ -3,24 +3,17 @@ from datetime import datetime
 from json import dumps
 from . import admin_bp
 
-from .config_manager import config_manager
-from ..commons import flash_complex_result,exception
+#from .config_manager import config_manager
+from ..commons import flash_complex_result,exception,config_manager
 
 from sys import path
 path.append("...")
 from db_drivers import mongo_manager
 
-config_path='config.json'
-params={"driver":{"type":'str','len':32,'default':None},
-        "db_name": {"type":'str','len':32,'default':None},
-        "host": {"type":'str','len':32,'default':None},
-        "port": {"type":'int','len':10,'default':None},
-        "user": {"type":'str','len':32,'default':None},
-        "user_pswd": {"type":'str','len':32,'default':None},
-        "mongo_data": {"type":'str','len':64,'default':None}
-       }
 
-cf_m=config_manager(params,config_path)
+
+
+cf_m=config_manager()
 err,config=cf_m.read_config()
 
 @exception
@@ -40,7 +33,7 @@ def _params():
     if not err[0]:
         pass#flash_complex_result(err,res,'Mongo Database dropped')
 
-    data['params']={key:{**value,'value':file_config[key]} for key,value in params.items()}
+    data['params']={key:{**value,'value':file_config[key]} for key,value in cf_m.params.items()}
     data['optional_js_bottom']=['js/table_search_filter']
     return render_template('params.html',data=data)
 	
@@ -90,7 +83,7 @@ def upload_mongo_form():
     submit_case=form_data['submit_button'][0]
 
     if submit_case=='update_config':
-        err,res=cf_m.update_config('input_name_',form_data,params)
+        err,res=cf_m.update_config('input_name_',form_data)
         err2,config=cf_m.read_config()	
         flash_complex_result(err,res,'Config updated')         
         return redirect(url_for('admin_bp._params'))

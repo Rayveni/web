@@ -1,7 +1,7 @@
 from sys import path
 path.append("...")
 
-from db_drivers import mongo_manager
+#from db_drivers import mongo_manager
 from attributes import smartlabbondsusd,smartlabbondsrur
 from external_sources import smartlab
 from .upload_info import update_upload_table_info
@@ -107,7 +107,7 @@ def transform_usd_bonds(columns:list,data:list,bond_group:str)->list:
                                     bond_date=row[bond_date_id]))
     return res        
 
-def job_sl_bonds(db_config:dict)->tuple:
+def job_sl_bonds(db_manager)->tuple:
     sm=smartlab()
     res=sm.bonds_info()
     insert_rur_data=[]
@@ -122,11 +122,11 @@ def job_sl_bonds(db_config:dict)->tuple:
                 _columns=[el if el!='!' else 'Тип ОФЗ' for el in _columns]
             _columns=[el if el!='Объем, млн руб' else 'Объем,млн руб' for el in _columns]    
             insert_rur_data+=transform_rur_bonds(_columns,value[1],key)        
-    _db_m= mongo_manager(db_config) 
 
-    res=_db_m.insert_into_table_from_attr('smartlabbondsrus',insert_rur_data,bulk=True,rewrite=True)
-    res2=update_upload_table_info(_db_m,'smartlabbondsrus',res[1])
-    res3=_db_m.insert_into_table_from_attr('smartlabbondsusd',insert_usd_data,bulk=True,rewrite=True)
-    res4=update_upload_table_info(_db_m,'smartlabbondsusd',res3[1])
+
+    res=db_manager.insert_into_table_from_attr('smartlabbondsrus',insert_rur_data,bulk=True,rewrite=True)
+    res2=update_upload_table_info(db_manager,'smartlabbondsrus',res[1])
+    res3=db_manager.insert_into_table_from_attr('smartlabbondsusd',insert_usd_data,bulk=True,rewrite=True)
+    res4=update_upload_table_info(db_manager,'smartlabbondsusd',res3[1])
  
     return res,res2

@@ -1,15 +1,22 @@
 from json import load,dump
 from os import path
-from ..commons import exception
+from .exception_func import exception
 
 
 class config_manager:
     __slots__='params','config_path'
-    def __init__(self,params:dict,config_path:str):
-        self.params=params
-        self.config_path=config_path
+    def __init__(self):
+        self.params={"driver":{"type":'str','len':32,'default':None},
+                     "db_name": {"type":'str','len':32,'default':None},
+                     "host": {"type":'str','len':32,'default':None},
+                     "port": {"type":'int','len':10,'default':None},
+                     "user": {"type":'str','len':32,'default':None},
+                     "user_pswd": {"type":'str','len':32,'default':None},
+                     "mongo_data": {"type":'str','len':64,'default':None}
+                    }
+        self.config_path='config.json'
         
-        if not path.exists(config_path):
+        if not path.exists(self.config_path):
             self._create_config()            
         
     def _create_config(self)->bool:
@@ -26,9 +33,9 @@ class config_manager:
         return {key:none_replace(value) for key,value	in data.items()}
 
     @exception
-    def update_config(self,prefix:str,form_data:dict,config:dict)->tuple:
+    def update_config(self,prefix:str,form_data:dict)->tuple:
         data={}
-        for key,value in config.items():
+        for key,value in self.params.items():
             _value,len_match=self._format_convert(form_data[prefix+key][0],value['type'],value['len'])
             if len_match:
                 data[key]=_value

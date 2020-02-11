@@ -44,6 +44,7 @@ class tradingview:
             
     
     def rus_security_sector(self)->tuple:
+	
         s=self.__init_session()
         
         page=s.get(self.url+self.sources['rus_sectorandindustry'])   
@@ -58,18 +59,30 @@ class tradingview:
         _worker=lambda url:self.parse_sector(url,s)
         
         n_tries=3
-        n_threads=8
-        final_res=[]
-        while n_tries>0:
-            true_res,false_res=thread_pool(_worker,list(_urls.keys()),n_threads)
-            final_res=final_res+true_res
-            if len(false_res)==0:
+        n_threads=1
+        final_res,true_results,false_results=[],[],[]
+       
+        while n_tries>0:		
+            for el in _urls.keys():
+                #print(el)
+                _worker_res=_worker(el)
+                if _worker_res[0]:
+                    true_results.append([_worker_res[1],_worker_res[2]])
+                else:
+                    false_results.append(el[0])
+                
+              
+            #true_res,false_res=thread_pool(_worker,list(_urls.keys()),n_threads)
+        
+            final_res=final_res+true_results
+            if len(false_results)==0:
                 break
-            _urls=false_res
-            print(n_tries)
+            _urls=false_results
+            #print(n_tries)
             n_threads=n_threads/2
             n_tries-=1
-        if len(false_res)>0:
+				
+        if len(false_results)>0:
             return (False,)
         else:
             return (True,[[el[1],_urls[el[0]]] for el in final_res])

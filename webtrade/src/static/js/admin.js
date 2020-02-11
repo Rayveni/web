@@ -11,6 +11,7 @@ manualColumnResize: true,
  // manualRowResize: true,
  //manualRowMove: true,
   manualColumnMove: true,
+ // stretchH: "all",
 		licenseKey: 'non-commercial-and-evaluation'
 	}
 

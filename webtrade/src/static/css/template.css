@@ -47,7 +47,7 @@ input{
 
 .dropdown_input {
   box-sizing: border-box;
-  background-image: url('searchicon.png');
+
   background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
@@ -93,18 +93,12 @@ td,th {
 }
 
 
-.ht_master th td {
-  border: 0.1rem solid var(--table_borders_color);
-  padding: 0.1rem;
-}
+
 tr:nth-child(even){background-color: var(--table_hover_color);}
 tr:hover {background-color: var(--card_bg_color);}
 
 
-.ht_master tr:nth-of-type(even) > td {
-  background-color: var(--table_hover_color);
-}
-.ht_master tr:hover {background-color: var(--card_bg_color);}
+
 
 .relative {
   padding-top: 0.2rem;

@@ -24,7 +24,7 @@ class MongoDriver:
         return [collection for collection in self.db.collection_names()]
  
     def table_exists(self,col_name)->bool:
-        return self.config[col_name] in self.all_tables()
+        return col_name in self.all_tables()
       
     def create_table(self,table_def=None):
         pass
