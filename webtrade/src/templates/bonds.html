@@ -3,35 +3,61 @@
 
 <div class="col-lg-12">
 	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Parameters</h6>
-		</div>
-		
 		<div class="card-body">
+		<button id="submit_mongo_params" type="submit"  name="submit_button" value="update_config" class="btn save_btn"><i class="fas fa-sync"></i></button>
+		Actual for: {{data.last_updated_date}}
+		<p></p>
+			<div class="tooltip-wrapper" data-title="Начало периода">
+				<input id="start_date" type="text"  maxlength="10" size="10"  />
+			</div>
+			
+			<div class="tooltip-wrapper" data-title="Конец периода">
+				<input id="end_date" type="text"  maxlength="10" size="10"   />
+			</div>
+			
+			<input type="checkbox" name="oferta_checkbox" id='oferta_checkbox' checked>
+				<label for="oferta_checkbox"> Ислючить оферту</label>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-<input id="demo" type="text" name="birthday" value="10/24/1984" />
-
-<script>
-$('#demo').daterangepicker({
-    "singleDatePicker": true,
-    "autoApply": true,
-    "startDate": "02/06/2020",
-    "endDate": "02/12/2020"
-}, function(start, end, label) {
-  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-});
-</script>
-</html>
 		<!-- End card-body -->	
 		</div>
 	<!-- End card-->	
 	</div>
 <!-- End c-->		
 </div>
+
+<div class="col-lg-12">
+	<div class="card shadow mb-4">
+		<div class="card-body">
+					
+			<div class="tab">
+			  <button class="tablinks" onclick="myFunction()">London</button>
+			  <button class="tablinks" onclick="myFunction()">Paris</button>
+			  <button class="tablinks" onclick="myFunction()">Tokyo</button>
+			</div>
+
+			<div id="London" class="tabcontent">
+			  <h3>London</h3>
+			  <p>London is the capital city of England.</p>
+			</div>
+
+			<div id="Paris" class="tabcontent">
+			  <h3>Paris</h3>
+			  <p>Paris is the capital of France.</p> 
+			</div>
+
+			<div id="Tokyo" class="tabcontent">
+			  <h3>Tokyo</h3>
+			  <p>Tokyo is the capital of Japan.</p>
+			</div>
+		<!-- End card-body -->	
+		</div>
+	<!-- End card-->	
+	</div>
+<!-- End c-->		
+</div>
+
+
+
+
 
 {% endblock %}

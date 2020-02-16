@@ -31,6 +31,29 @@ input{
 
 }
 
+
+
+/*-----tooltip-wrapper--------*/
+
+   
+.tooltip-wrapper {
+	display: inline-block; /* Строчно-блочный элемент */
+    position: relative; /* Относительное позиционирование */
+				}
+.tooltip-wrapper:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0; right: 0; top: 100%; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: var(--table_hover_color); /* Полупрозрачный цвет фона */
+    color: var(--body_text_color); /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    /* font-family: Arial, sans-serif;  Гарнитура шрифта 
+    font-size: 11px;  Размер текста подсказки 
+    padding: 5px 10px;  Поля */
+    border: 0.1rem solid var(--table_borders_color); /* Параметры рамки */
+   }
+   
 /*-----drop_down_filter--------*/
 .dropbtn {
   background-color: var(--card__header_text_color);
