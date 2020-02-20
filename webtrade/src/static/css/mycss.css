@@ -1,6 +1,8 @@
-
+:root {
+--success_color:#d4edda;
+--danger_color:#f8d7da;
 --main_color_black:#2f4050;
-
+}
 .card{
 
     max-width: 100%
@@ -26,13 +28,13 @@
 }
 .alert-success {
     color: #155724;
-    background-color: #d4edda;
+    background-color:var(--success_color); 
     border-color: #c3e6cb;
 }
 
 .alert-danger {
     color: #721c24;
-    background-color: #f8d7da;
+    background-color: var(--danger_color);
     border-color: #f5c6cb;
 }
 
@@ -87,6 +89,10 @@ background: none;
   border-top: none;
 }
    
+.highlight_success {
+	background-color:var(--success_color); 
+}
 
-
-
+.highlight_danger {
+	background-color:var(--danger_color); 
+}

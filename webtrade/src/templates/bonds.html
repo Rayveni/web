@@ -4,8 +4,15 @@
 <div class="col-lg-12">
 	<div class="card shadow mb-4">
 		<div class="card-body">
-		<button id="submit_mongo_params" type="submit"  name="submit_button" value="update_config" class="btn save_btn"><i class="fas fa-sync"></i></button>
-		Actual for: {{data.last_updated_date}}
+<form method="post" action="{{ url_for('upload_bp._run_job',params='job_sl_bonds',redirect_url=request.endpoint)}}">
+ 
+		
+				<button id="stard_smartlab_job"   
+                                type="submit"  name="submit_button" value="stard_smartlab_job" class="btn save_btn"><i class="fas fa-sync"></i>
+				</button>
+		
+		<span  class="highlight_{{data.last_updated_date_alert}}">Actual</span > for: {{data.last_updated_date}}  
+</form>
 		<p></p>
 			<div class="tooltip-wrapper" data-title="Начало периода">
 				<input id="start_date" type="text"  maxlength="10" size="10"  />
@@ -30,25 +37,13 @@
 		<div class="card-body">
 					
 			<div class="tab">
-			  <button class="tablinks" onclick="myFunction()">London</button>
-			  <button class="tablinks" onclick="myFunction()">Paris</button>
-			  <button class="tablinks" onclick="myFunction()">Tokyo</button>
+			  <button class="tablinks" onclick="draw_hs_table('ОФЗ')">ОФЗ</button>
+			  <button class="tablinks" onclick="draw_hs_table('Корпоративные')">Корпоративные</button>
+			  <button class="tablinks" onclick="draw_hs_table('Муниципальные')">Субфедеральные</button>
+			  <button class="tablinks" onclick="draw_hs_table('ЕВРО')">Еврооблигации</button>
 			</div>
 
-			<div id="London" class="tabcontent">
-			  <h3>London</h3>
-			  <p>London is the capital city of England.</p>
-			</div>
-
-			<div id="Paris" class="tabcontent">
-			  <h3>Paris</h3>
-			  <p>Paris is the capital of France.</p> 
-			</div>
-
-			<div id="Tokyo" class="tabcontent">
-			  <h3>Tokyo</h3>
-			  <p>Tokyo is the capital of Japan.</p>
-			</div>
+	       <div id="h_table_id" class="hs_container" ></div>
 		<!-- End card-body -->	
 		</div>
 	<!-- End card-->	

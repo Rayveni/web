@@ -35,9 +35,9 @@ def _upload_jobs():
                 _val['actual_date']=row['actual_date'].strftime("%d-%m-%Y %H:%M:%S")
                 _val['sys_updated']=row['sys_updated'].strftime("%d-%m-%Y %H:%M:%S")
             except:
-                _upload_contorls[_key]={'job':None,'actual_date':row['actual_date'],'sys_updated':row['sys_updated']}   
+                _upload_contorls[_key]={'job':'None','actual_date':row['actual_date'],'sys_updated':row['sys_updated']}   
     data['upload_controls']= _upload_contorls
-	
+
     return render_template('upload_jobs.html',data=data)	
 	
  
@@ -46,17 +46,19 @@ def __exec_job(job_name):
     _job=eval(job_name)
     return _job(db_mng)
 	
-@upload_bp.route("/run_job/<params>")  
+@upload_bp.route(r"/run_job/<params>", methods=['GET', 'POST'])  
 def _run_job(params):
+    _redirect_url=request.args.get('redirect_url')
 
-    if params is None:
-        flash_complex_result(False,(False,'None parameter passed'),'None parameter passed')
+    if params == 'None':
+        flash_complex_result((False,'None parameter passed'),None,None)  
     else:
  
         err,res=__exec_job(params)
-   	
         flash_complex_result(err,res,'Executed successfully')
+    if _redirect_url is not None:
 
+        return redirect(url_for(_redirect_url))
     return redirect(url_for('upload_bp._upload_jobs'))
 
 

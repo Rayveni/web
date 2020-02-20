@@ -106,6 +106,10 @@ def __convert_to_front(arr):
 
 @admin_bp.route('/query_data', methods=['GET', 'POST'])
 def query_data():
-    err,data_request=__get_table(request.args.get('table'))
+    _res_form=request.args.get('result')
+    if  _res_form is None:
+        err,data_request=__get_table(request.args.get('table'))
+    else:
+        err,data_request=__get_table(request.args.get('table'),_res_form)
     return dumps(__convert_to_front(data_request),ensure_ascii=False)
 

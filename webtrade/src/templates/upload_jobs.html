@@ -20,13 +20,10 @@
 					<td>{{value.actual_date}}</td>			
 					<td>{{value.sys_updated}}</td>
 					<td> <form id=  "upload_form_{{key}}"   action="{{ url_for('upload_bp._run_job',params=value.job) }}"   >
+								<input type="submit" value="Обновить!" name ="report_{{key}}" id= "button_upload_form_{{key}}" >
 			
-			<input type="submit" value="Обновить!" name ="report_{{key}}" id= "button_upload_form_{{key}}" >
-			
-			</form>
-					
-					
-					
+						</form>
+
 					</td>												
 					</tr>							
 				{% endfor %}					
