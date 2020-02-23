@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% block content %}
 
+
+
 <div class="col-lg-12">
 	<div class="card shadow mb-4">
 		<div class="card-body">
@@ -14,6 +16,8 @@
 		<span  class="highlight_{{data.last_updated_date_alert}}">Actual</span > for: {{data.last_updated_date}}  
 </form>
 		<p></p>
+		<div class="row">
+<div class="col-lg-8">
 			<div class="tooltip-wrapper" data-title="Начало периода">
 				<input id="start_date" type="text"  maxlength="10" size="10"  />
 			</div>
@@ -21,9 +25,18 @@
 			<div class="tooltip-wrapper" data-title="Конец периода">
 				<input id="end_date" type="text"  maxlength="10" size="10"   />
 			</div>
-			
-			<input type="checkbox" name="oferta_checkbox" id='oferta_checkbox' checked>
-				<label for="oferta_checkbox"> Ислючить оферту</label>
+
+			<input type="checkbox" onchange="ofertaCheckboxEvent()" name="oferta_checkbox" id='oferta_checkbox' checked>
+				<label for="oferta_checkbox"> Исключить оферту</label>
+				
+			<div class="tooltip-wrapper" data-title="max.profit(%)">
+				 <input type="number" id="max_profit_id" name="max_profit_input"  max="100" onchange="handleInputChange(this.value)">
+			</div>
+ 
+  
+</div>
+
+</div>
 
 		<!-- End card-body -->	
 		</div>
@@ -35,12 +48,14 @@
 <div class="col-lg-12">
 	<div class="card shadow mb-4">
 		<div class="card-body">
-					
+		<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>
+	
+				
 			<div class="tab">
-			  <button class="tablinks" onclick="draw_hs_table('ОФЗ')">ОФЗ</button>
-			  <button class="tablinks" onclick="draw_hs_table('Корпоративные')">Корпоративные</button>
-			  <button class="tablinks" onclick="draw_hs_table('Муниципальные')">Субфедеральные</button>
-			  <button class="tablinks" onclick="draw_hs_table('ЕВРО')">Еврооблигации</button>
+			  <button class="tablinks" onclick="draw_hs_table(event,'ОФЗ')">ОФЗ</button>
+			  <button class="tablinks" onclick="draw_hs_table(event,'Корпоративные')">Корпоративные</button>
+			  <button class="tablinks" onclick="draw_hs_table(event,'Муниципальные')">Субфедеральные</button>
+			  <button class="tablinks" onclick="draw_hs_table(event,'ЕВРО')">Еврооблигации</button>
 			</div>
 
 	       <div id="h_table_id" class="hs_container" ></div>

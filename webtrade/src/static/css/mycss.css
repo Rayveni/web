@@ -96,3 +96,11 @@ background: none;
 .highlight_danger {
 	background-color:var(--danger_color); 
 }
+
+.fa-file-excel {
+	color: green;
+}
+
+#max_profit_id {
+	width: 8rem;
+}

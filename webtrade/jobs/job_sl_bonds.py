@@ -118,7 +118,7 @@ def job_sl_bonds(db_manager)->tuple:
         if value[2]=='USD':
             insert_usd_data+=transform_usd_bonds(_columns,value[1],key)
         else:
-            if key=='Тип ОФЗ':
+            if key=='ОФЗ':
                 _columns=[el if el!='!' else 'Тип ОФЗ' for el in _columns]
             _columns=[el if el!='Объем, млн руб' else 'Объем,млн руб' for el in _columns]    
             insert_rur_data+=transform_rur_bonds(_columns,value[1],key)        
