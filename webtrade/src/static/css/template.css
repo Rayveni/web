@@ -30,9 +30,17 @@ input{
 	border-radius: 0.2rem; //закругление углов (общее)
 
 }
-
-
-
+/*-----default text button--------*/
+.text_btn{
+	border: 0.1rem solid var(--table_borders_color);
+	color:var(--body_text_color);
+	border-radius: 0.2rem;
+	background: var(--card_bg_color);
+}
+.text_btn:hover {
+  background-color: var(--main_color_black); 
+  color: var(--card_bg_color);
+}
 /*-----tooltip-wrapper--------*/
 
    

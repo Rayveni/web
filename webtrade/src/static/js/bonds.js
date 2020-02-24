@@ -6,53 +6,60 @@ hot2;
 
 document.getElementById("max_profit_id").value = max_profit_value;
 
-$('#start_date').daterangepicker({
-    "singleDatePicker": true,
-    "showWeekNumbers": true,
-    "autoApply": true,
-    "locale": {
-        "format": "YYYY-MM-DD"
-    },
-    "startDate": default_start,
+function draw_daterangepicker(element_id, default_date, start_date = true) {
+	
+        $('#'+element_id).daterangepicker({
+        "singleDatePicker": true,
+        "showWeekNumbers": true,
+        "autoApply": true,
+        "locale": {
+            "format": "YYYY-MM-DD"
+        },
+        "startDate": default_date,
 
-}, function (start, end, label) {
+    }, function (start, end, label) {
+	
+        if (start_date) {
+            default_start = end.format('YYYY-MM-DD');
+        } else {
+            default_end = end.format('YYYY-MM-DD');
+        }
+        if (current_tab != "")
+            draw_hs_table("", current_tab);
+    });
+};
 
-    default_start = end.format('YYYY-MM-DD');
-	if (current_tab!="" )draw_hs_table("",current_tab);
-});
+draw_daterangepicker('start_date',default_start);
+draw_daterangepicker('end_date',default_end,false);
 
-$('#end_date').daterangepicker({
-    "singleDatePicker": true,
-    "showWeekNumbers": true,
-    "autoApply": true,
+function increaseEndDate() {
+    const new_date = today(3, default_end);
+    draw_daterangepicker('end_date', new_date, false);
 
-    "locale": {
-        "format": "YYYY-MM-DD"
-    },
-    "startDate": default_end
+    default_end = new_date;
 
-}, function (start, end, label) {
-    default_end = end.format('YYYY-MM-DD');
-	if (current_tab!="" )draw_hs_table("",current_tab);
-});
-
-
+    if (current_tab != "")
+        draw_hs_table("", current_tab);
+};
 function ofertaCheckboxEvent(){
 	if (current_tab!="" )draw_hs_table("",current_tab);
 }
 function handleInputChange(val) {
-
     max_profit_value = parseInt(val);
 	if (current_tab!="" )draw_hs_table("",current_tab);
 };
 
 function crossfilter_coverter(table_name) {
     data_arr = get_data_to_js('/query_data?table=' + table_name)
-        const red_index = data_arr[0].indexOf('redemption')
+        const red_index = data_arr[0].indexOf('redemption'),
+		     sec_name_index=data_arr[0].indexOf('sec_name'),
+		     ticker_index=data_arr[0].indexOf('ticker');
         return {
         columns: data_arr[0],
         data: crossfilter(data_arr.slice(1).map(function (row) {
                 row[red_index] = row[red_index].substring(0, 10);
+				 row[sec_name_index] = "<a href='https://smart-lab.ru/q/bonds/" +row[ticker_index]+"/' target='_blank'>" +row[sec_name_index]+"</a>"
+				
                 return row
             })),
     };
@@ -97,7 +104,8 @@ function bonds_filter(bonds_cf, bond_category) {
 
 function add_data_type(el) {
     const d_dict = {
-        "redemption": ",type: 'date',correctFormat: false,dateFormat: 'YYYY-MM-DD'"
+        "redemption": ",type: 'date',correctFormat: false,dateFormat: 'YYYY-MM-DD'",
+		"sec_name":', renderer: "html"'
     }
     add_item = d_dict[el];
     if (add_item == undefined) {
