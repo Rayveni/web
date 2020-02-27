@@ -5,6 +5,7 @@ from . import advisor_bp
 #from .config_manager import config_manager
 from ..commons import flash_complex_result,exception,init_db_manager
 
+
 @exception
 def __last_updated_bonds()->tuple:
     _last_upd_date=init_db_manager().find_one('upload_info',
