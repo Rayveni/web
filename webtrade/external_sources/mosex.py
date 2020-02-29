@@ -1,9 +1,9 @@
 #http://iss.moex.com/iss/reference/
 #http://iss.moex.com/iss/securitygroups/stock_index/collections
 import requests
-import pandas as pd
-from multiprocessing.dummy import Pool
+from .thread_pool import thread_pool
 from functools import partial
+from time import sleep
 
 class mosex:
     __slots__ = ['base_url','references_dict','return_data_type','error']
@@ -33,48 +33,48 @@ class mosex:
         if params is not None:
             url=url.format(r=params)
         return url
-
-            
+           
     def query(self,reference,reference_params=None):
-
-        url=self.__url_construct(reference,params=reference_params)
-   
+        url=self.__url_construct(reference,params=reference_params) 
         return requests.get(url).json()
     
-    def __security_hist_worker(self,session,url,params,start):
-        params['start']=start  
+    def __security_hist_worker(self,session,url:str,params:dict,start:int)->tuple:
+        response=session.get(url , params = {'start' :start,**params})
+        if response.ok:
+            return True,response.json()['history']
+        return (False,start)
         
-        response=session.get(url , params = params)
-        self.__request_exeption(url,response.ok)  
-     
-        return self.__dataframe_template(response.json()['history'])
-        
-    def security_hist(self,security,engine,market,date_from='2016-01-01',n_threads=7):
+    def security_hist(self,security:str,engine:str,market:str,date_from:str='2016-01-01',n_threads:int=7)->tuple:
         url=self.__url_construct('security_history'
                                  ,params={'engine':engine
                                           ,'market':market
                                           ,'security':security}
                                  )
-        print(url)                                 
-        query_params={'start' :0,'from':date_from}
+                              
+        query_params={'from':date_from}
         s = requests.Session()
-        response=s.get(url , params = query_params)
-        return response       
-        self.__request_exeption(url,response.ok) 
+        response=s.get(url , params = {'start' :0,**query_params})
         start_cursor,end_cursor,step=response.json()['history.cursor']['data'][0]
-        
-        worker=partial(self.__security_hist_worker,s,url,query_params)
+     
+        worker=partial(self.__security_hist_worker,s,url,query_params)     
+        i=0
+        true_results_final=[]
+        worker_args=[i for i in range(start_cursor,end_cursor,step)]
+		
+        while i < 6:
+            true_results,false_results=thread_pool(worker,worker_args,n_threads=n_threads)
+            true_results_final=true_results+true_results_final
+            if len(false_results)==0:			
+                break    			
+            worker_args=false_results[1]
+            sleep(1)
+            i+=1
 
-        with Pool(n_threads) as trpool:
-            result=trpool.map(worker, [i for i in range(start_cursor,end_cursor,step)]) 
-            trpool.close()
-            trpool.join() 
-        res=pd.concat(result)
-        if res.shape[0]!=end_cursor:
-            print ('error in multiprocessing,reduce number of threads')
-            res=None
         s.close()
-        return res
+        if len(false_results)>0:
+            return (False,)
+        columns=true_results_final[0]['columns']
+        return True,{'columns':columns,'data':sum([el['data'] for el in true_results_final], [])}
     
     def industry_indices_list(self,img):
         start_point=(41,66)
@@ -99,3 +99,5 @@ class mosex:
 #iis.__url_construct('security_spec',{'security':'RTSog'})
 #r=iis.query('security_spec',{'security':'RTSog'})
 #r=iis.security_hist('RTSog','stock','index',n_threads=7)
+#iis.security_hist('RTSFN','stock','index',n_threads=7,date_from='2016-01-01')
+#iis.security_hist('GAZP','stock','shares',n_threads=7,date_from='2016-01-01')

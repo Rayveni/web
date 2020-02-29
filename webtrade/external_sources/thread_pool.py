@@ -10,7 +10,7 @@ def thread_pool(worker,arg_list:list,n_threads:int)->tuple:
    
     for el in results:
         if el[0]:
-            true_results.append([el[1],el[2]])
+            true_results.append(el[1])
         else:
-            false_results.append(el[0])
+            false_results.append(el[1])
     return (true_results,false_results)
