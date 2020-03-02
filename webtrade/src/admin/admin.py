@@ -45,7 +45,7 @@ def _params():
 @admin_bp.route("/admin/api_keys")
 def _api_keys():
     data={'title':'admin|api keys'}
-    tokens=['alphavantage']
+    tokens=['alphavantage','ff']
     
     err,_tokens=__current_tokens()
     if not err[0]:
