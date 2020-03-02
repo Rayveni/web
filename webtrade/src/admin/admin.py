@@ -10,9 +10,6 @@ from sys import path
 path.append("...")
 from db_drivers import mongo_manager
 
-
-
-
 cf_m=config_manager()
 err,config=cf_m.read_config()
 
@@ -20,6 +17,14 @@ err,config=cf_m.read_config()
 def __db_stats():
     mm=mongo_manager(config)
     return mm.dbstats()	 
+    
+@exception
+def __current_tokens()->dict:
+    mm=mongo_manager(config)
+    if mm.table_exists('api_tokens'):
+        return mm.get_table('api_tokens')
+    else:
+        return None
 
 @exception	
 def __drop_db():
@@ -36,6 +41,24 @@ def _params():
     data['params']={key:{**value,'value':file_config[key]} for key,value in cf_m.params.items()}
     data['optional_js_bottom']=['js/table_search_filter']
     return render_template('params.html',data=data)
+    
+@admin_bp.route("/admin/api_keys")
+def _api_keys():
+    data={'title':'admin|api keys'}
+    tokens=['alphavantage']
+    
+    err,_tokens=__current_tokens()
+    if not err[0]:
+        flash_complex_result(err,_tokens)
+        data['params']=None      
+    else:
+        if _tokens is None:
+            data['params']={el:'' for el in tokens}
+        else:
+            data['params']={ el:(_tokens[el] if el in _tokens.keys() else '') for el in tokens}
+
+    data['optional_js_bottom']=['js/table_search_filter']
+    return render_template('api_keys.html',data=data)      
 	
 @admin_bp.route("/admin/database")
 def _database():
@@ -47,8 +70,6 @@ def _database():
     else:
         data['db_stats']=db_stats     
     return render_template('database.html',data=data)
-	
-
 
 @exception
 def __get_table(table_name,result='matrix'):
@@ -92,7 +113,11 @@ def upload_mongo_form():
         err,res=__drop_db()
         flash_complex_result(err,res,'database dropped')
         return redirect(url_for('admin_bp._database'))
+        
+    elif submit_case=='update_tokens':
 
+        flash_complex_result((True,),(True,'ffff'),'database dropped')
+        return redirect(url_for('admin_bp._api_keys'))
 
 def __convert_to_front(arr):
     if len (arr)>0:
