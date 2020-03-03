@@ -15,6 +15,8 @@ from .smartlab_bonds_sectors import smartlab_bonds_sectors
 from .constants import constants
 from .avg_assets import avg_assets
 from .tokens import tokens
+from .sec_history_manager import sec_history_manager
+from .fond_index_history import fond_index_history
 __all__ = ['index_info',
            'index_value',
            'assets',
@@ -28,5 +30,7 @@ __all__ = ['index_info',
            'smartlab_bonds_sectors',
            'constants',
            'avg_assets',
+           'sec_history_manager',
+           'fond_index_history',           
            'tokens'
           ]
