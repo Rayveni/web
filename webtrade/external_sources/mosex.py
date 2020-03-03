@@ -1,11 +1,12 @@
 #http://iss.moex.com/iss/reference/
 #http://iss.moex.com/iss/securitygroups/stock_index/collections
-import requests
+
 from .thread_pool import thread_pool
 from functools import partial
 from time import sleep
+from .base_session import request_session
 
-class mosex:
+class mosex(request_session):
     __slots__ = ['base_url','references_dict','return_data_type','error']
 
     def __init__(self):
@@ -36,7 +37,10 @@ class mosex:
            
     def query(self,reference,reference_params=None):
         url=self.__url_construct(reference,params=reference_params) 
-        return requests.get(url).json()
+        s=self._init_session()
+        res=s.get(url).json()	
+        s.close()		
+        return res
     
     def __security_hist_worker(self,session,url:str,params:dict,start:int)->tuple:
         response=session.get(url , params = {'start' :start,**params})
@@ -52,7 +56,7 @@ class mosex:
                                  )
                               
         query_params={'from':date_from}
-        s = requests.Session()
+        s = self._init_session()
         response=s.get(url , params = {'start' :0,**query_params})
         start_cursor,end_cursor,step=response.json()['history.cursor']['data'][0]
      

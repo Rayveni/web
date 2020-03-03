@@ -28,7 +28,7 @@ class alphavantage:
         return (False,ticker)
 
 
-    def fond_index_history(self,tickers_list:list,full_reload:bool=True,token:str,n_threads:int=7)->tuple:
+    def fond_index_history(self,tickers_list:list,token:str,full_reload:bool=True,n_threads:int=7)->tuple:
         if full_reload:
             outputsize='full'
         else:
