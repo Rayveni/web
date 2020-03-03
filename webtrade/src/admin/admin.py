@@ -31,6 +31,15 @@ def __drop_db():
     mm=mongo_manager(config)
     return mm.drop_db()	 
 	
+@exception
+def __update_api_tokens(form_data,key_prefix,except_key):
+    data=[(key[len(key_prefix):],value[0]) for key,value in form_data.items() if key !=except_key]
+    from attributes import tokens
+    insert_data=[tokens(*el) for el in data]
+    db_manager=mongo_manager(config)
+    return db_manager.insert_into_table_from_attr('api_tokens',insert_data,bulk=True,rewrite=True)   
+    
+    
 @admin_bp.route("/admin/params")
 def _params():
     data={'title':'admin|params'}
@@ -45,7 +54,7 @@ def _params():
 @admin_bp.route("/admin/api_keys")
 def _api_keys():
     data={'title':'admin|api keys'}
-    tokens=['alphavantage','ff']
+    tokens=['alphavantage']
     
     err,_tokens=__current_tokens()
     if not err[0]:
@@ -55,8 +64,9 @@ def _api_keys():
         if _tokens is None:
             data['params']={el:'' for el in tokens}
         else:
+            _tokens={el['key']:el['value'] for el in _tokens} 
             data['params']={ el:(_tokens[el] if el in _tokens.keys() else '') for el in tokens}
-
+    print(data)
     data['optional_js_bottom']=['js/table_search_filter']
     return render_template('api_keys.html',data=data)      
 	
@@ -115,8 +125,8 @@ def upload_mongo_form():
         return redirect(url_for('admin_bp._database'))
         
     elif submit_case=='update_tokens':
-
-        flash_complex_result((True,),(True,'ffff'),'database dropped')
+        err,res=__update_api_tokens(form_data,'input_name_','submit_button')
+        flash_complex_result(err,res,'keys updated')
         return redirect(url_for('admin_bp._api_keys'))
 
 def __convert_to_front(arr):
