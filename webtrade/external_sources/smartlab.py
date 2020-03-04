@@ -1,11 +1,11 @@
-﻿from requests import get
+﻿from .base_session import request_session
 import lxml.html as lh
 from collections import Counter
 #import datetime
 #from lxml import etree
 #print(etree.tostring(tr_elements[-1][2], pretty_print=True))
-class smartlab:
-    __slots__='sources','link','http_headers'
+class smartlab(request_session):
+    __slots__='sources','link'
     def __init__(self):
         self.link:str=r'https://smart-lab.ru'
         self.sources:dict={'bonds':{'ОФЗ':{'link':r'/q/ofz/','currency':'RUR'},
@@ -16,13 +16,14 @@ class smartlab:
                            'bonds_query':r'/q/bonds/'
                            
                      }
-        self.http_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
     def __table_from_html(self,url:str,extra_fields_dict:dict=None)->tuple:
         mask="Unnamed: {}"
         """
         extra_fields_dict={field_text_val:[{'add_column_name':0,'xpath_text':"a/@href",'insert_position':0}]}
         """
-        page=get(url,headers=self.http_headers)
+        with self._init_session() as s:
+            page=s.get(url)
         doc = lh.fromstring(page.content)
         tr_elements = doc.xpath('//tr')
         header=[h.text_content() for h in tr_elements[0]]

@@ -1,14 +1,10 @@
 #http://iss.moex.com/iss/reference/
 #http://iss.moex.com/iss/securitygroups/stock_index/collections
-
-from .thread_pool import thread_pool
 from functools import partial
-from time import sleep
 from .base_session import request_session
 
 class mosex(request_session):
     __slots__ = ['base_url','references_dict','return_data_type','error']
-
     def __init__(self):
         self.base_url = r'http://iss.moex.com/iss/'
 
@@ -60,25 +56,14 @@ class mosex(request_session):
         response=s.get(url , params = {'start' :0,**query_params})
         start_cursor,end_cursor,step=response.json()['history.cursor']['data'][0]
      
-        worker=partial(self.__security_hist_worker,s,url,query_params)     
-        i=0
-        true_results_final=[]
-        worker_args=[i for i in range(start_cursor,end_cursor,step)]
-		
-        while i < 6:
-            true_results,false_results=thread_pool(worker,worker_args,n_threads=n_threads)
-            true_results_final=true_results+true_results_final
-            if len(false_results)==0:			
-                break    			
-            worker_args=false_results[1]
-            sleep(1)
-            i+=1
-
-        s.close()
-        if len(false_results)>0:
+        worker=partial(self.__security_hist_worker,s,url,query_params) 
+        worker_args=[i for i in range(start_cursor,end_cursor,step)]       
+        err,res=self._start_pool(s,worker,worker_args)        
+        
+        if not err:
             return (False,)
-        columns=true_results_final[0]['columns']
-        return True,{'columns':columns,'data':sum([el['data'] for el in true_results_final], [])}
+        columns=res[0]['columns']
+        return True,{'columns':columns,'data':sum([el['data'] for el in res], [])}
     
     def industry_indices_list(self,img):
         start_point=(41,66)
