@@ -25,7 +25,7 @@ class request_session:
 
     def _start_pool(self,session,_worker,_worker_args:list,n_threads:int=7,n_tries:int=6,sleep_interval:int=1)->tuple:
         true_results_final,i=[],0
-        while i < 6:
+        while i < n_tries:
             true_results,false_results=self._thread_pool(_worker,_worker_args,n_threads=n_threads)
             true_results_final=true_results+true_results_final
             if len(false_results)==0:

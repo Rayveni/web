@@ -1,4 +1,3 @@
-
 from pymongo import MongoClient,DESCENDING,ASCENDING
 from pandas import DataFrame
 from bson.son import SON
@@ -50,7 +49,6 @@ class MongoDriver:
         if group is None:
             group='all'
         grouper="${}".format(str(group))
-
         agg_pipe={"_id": grouper}
         
         for el in agg_functions_list:
@@ -68,8 +66,7 @@ class MongoDriver:
             pipeline=	pipeline+[{"$sort": SON([el for el in sort_by])}]
 
         return collection.aggregate(pipeline)
-		
-		
+			
     def merge_cursor(self,col_left,col_right,left_on,right_on,left_columns=None,right_columns=None,unwind=False,how='left',match_condition=None):
         col_l=self.db[col_left]
         filter_fields={"_join._id": 0,"_id":0}
@@ -104,8 +101,7 @@ class MongoDriver:
         if return_fields is not None:
             for field in return_fields:
                 condition[field]=1                
-        return col.find_one(query,condition)
-		
+        return col.find_one(query,condition)		
 
     def _collection_keys(self,table):
         col=self.db[table]  

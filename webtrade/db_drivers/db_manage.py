@@ -1,7 +1,6 @@
 from .mongo_driver import MongoDriver
 from datetime import datetime
 
-
 class mongo_manager(MongoDriver):
     def __convert_to_doc(self,obj,sys_date):
         res={key:getattr(obj, key) for key in obj.__slots__}
@@ -16,17 +15,24 @@ class mongo_manager(MongoDriver):
             data=self.__convert_to_doc(data_attr,sys_dt)
         return self.insert_into_table(table_name,data,bulk,update_criteria,rewrite),sys_dt
 
-    def __cursor_to_result(self,cursor,result='json'):
+    def __cursor_to_result(self,cursor,result='json',dict_key=None):
         if result=='matrix':
             res=[]
             for row in cursor:
                 res.append(list(row.values()))
             return [list(row.keys())]+res 
-                
-        return list(cursor) 
-    
-    def get_table(self,table_name,result='json'):
-        return list(self.__cursor_to_result(self.get_table_cursor(table_name),result))
+        elif result=='dict':
+            res_d={}
+            for row in cursor:          
+                value=row.pop(dict_key)
+                     
+                res_d[value]=row              
+            return res_d 
+             
+        return list(cursor)
+        
+    def get_table(self,table_name,result='json',dict_key=None):
+        return self.__cursor_to_result(self.get_table_cursor(table_name),result,dict_key)
 
 
     def __convert_size(self,size_bytes:float,round_ndigits:int=2)->str:
