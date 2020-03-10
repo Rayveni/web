@@ -20,3 +20,17 @@ function process_htable(obj, dropdown_id) {
     dropdown_show(dropdown_id);
 
 }
+
+function drop_db_table(obj, dropdown_id) {
+if (confirm("drop "+obj.text +"?")) {
+
+$.post( "/upload_mongo_form", {
+   'submit_button':'drop_table','table':obj.text
+}); 
+} ;
+
+
+dropdown_show(dropdown_id);
+
+
+}

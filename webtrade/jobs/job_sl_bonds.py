@@ -129,4 +129,4 @@ def job_sl_bonds(db_manager)->tuple:
     res3=db_manager.insert_into_table_from_attr('smartlabbondsusd',insert_usd_data,bulk=True,rewrite=True)
     res4=update_upload_table_info(db_manager,'smartlabbondsusd',res3[1])
  
-    return res,res2
+    return res,res3

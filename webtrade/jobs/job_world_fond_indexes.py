@@ -4,7 +4,7 @@ from attributes import sec_history_manager,fond_index_history
 from external_sources import alphavantage
 from time import sleep
 from datetime import datetime
-
+from .upload_info import update_upload_table_info
 
 def _process_data(_data)->tuple:
     meta_data=_data['Meta Data']
@@ -23,10 +23,11 @@ def _process_data(_data)->tuple:
     return _symbol,last_refreshed,res,min(date_list),max(date_list)
     
 def job_world_fond_indexes(db_manager):
+    refresh_years=3
     alphavantage_token=db_manager.find_one('api_tokens',
                                            query={ 'key': { '$eq': 'alphavantage' } },
                                            return_fields=['value'])['value']
-    history_manager=db_manager.get_table('sec_history_manager')                                          
+    history_manager=db_manager.get_table('sec_history_manager',result='dict',dict_key='ticker')                                           
     _indexes={'.INX':{'key':'S&P 500' ,'description':'индекс в который входят 500 крупнейших по капитализации компаний США.'},
              '.DJI' :{'key':'DJI','description':'промышленный индекс Доу-Джонса. Наверное самый популярный индекс в мире. В состав входит 30 крупнейших компаний США' },
              '^N225' :{'key':'Nikkei 225' , 'description':'японский индекс, куда входит 225 компаний. Ежегодно состав пересматривается. В него входят такие гиганты, как Honda, Panasonic, Mazda и прочие. С вероятностью 99,9% все японские бренды, которые вы знаете входят в NIKKEI 225.  Подобно S&P 500, довольно объективно отражает состояние экономики. Наиболее важный индекс в Азиатском регионе'}, 
@@ -44,7 +45,7 @@ def job_world_fond_indexes(db_manager):
         if len(_indexes_list)>i+chunk_len:
             sleep(60)
     
-    hist_upd,_sec_upd=[],[]        
+    hist_upd,sec_insert=[],[] 
     for  _el in res:
         _ticker,_last_refreshed,_data_arr,min_date_list,max_date_list=_process_data(_el)
         hist_upd.append(sec_history_manager(_ticker,
@@ -53,6 +54,21 @@ def job_world_fond_indexes(db_manager):
                                             start_date=min_date_list,
                                             end_date=max_date_list,
                                             actual_for=_last_refreshed))
-    res=db_manager.insert_into_table_from_attr('sec_history_manager',hist_upd,bulk=True,rewrite=True)
-    
+        for key,value in _data_arr.items():
+            if _ticker in history_manager.keys():
+                if key >history_manager[_ticker]['end_date'].year-refresh_years:
+                    db_manager.insert_into_table_from_attr('fond_index_history',
+                                                           fond_index_history(ticker=_ticker,
+                                                                              year=key,
+                                                                              history=value),
+                                                           bulk=False,rewrite=False,update_criteria={"ticker":_ticker,'year':key})
+            else:
+                sec_insert.append(fond_index_history(ticker=_ticker,year=key,history=value))
+			
+
+
+    if len(sec_insert)>0:
+        res3=db_manager.insert_into_table_from_attr('fond_index_history',sec_insert,bulk=True,rewrite=True)           
+    res=db_manager.insert_into_table_from_attr('sec_history_manager',hist_upd,bulk=True,rewrite=False)
+    res2=update_upload_table_info(db_manager,'job_world_fond_indexes',res[1])    
     return res

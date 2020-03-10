@@ -15,7 +15,11 @@ class MongoDriver:
 
     def drop_db(self):
         self.__client.drop_database(self.db.name)
-        return True,
+		
+    def drop_table(self,table):
+        self.db[table].drop()		
+
+		
     def _dbstats(self)->dict:
         return self.db.command("dbstats")
 		

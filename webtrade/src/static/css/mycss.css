@@ -105,3 +105,9 @@ background: none;
 	width: 8rem;
 }
 
+#outer
+
+.inner
+{
+    display: inline-block;
+}

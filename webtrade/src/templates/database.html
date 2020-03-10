@@ -8,15 +8,21 @@
 			</div>
 			
 			<div class="card-body">
+			<div id="outer">
+			  <div class="inner">
 			  <form action="{{ url_for('admin_bp.upload_mongo_form') }}" method="post">
 				<div class="form-group col-md-12">	
 					<button id="drop_db_btn" type="submit"  name="submit_button" value="drop_db" class="mt_btn">drop database</button>
 			
 				</div>
 					
-			  </form>			
-
-	
+			  </form>
+			</div>			  
+			<div class="inner">
+			  {% with drop_down_filter_params= data.db_drop_down_filter %}
+			  {% include 'drop_down_filter.html' %}
+			  {% endwith %}
+			</div>
 			<!-- End card-body -->	
 			</div>
 		<!-- End card-->	

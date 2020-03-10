@@ -29,8 +29,12 @@ def __current_tokens()->dict:
 @exception	
 def __drop_db():
     mm=mongo_manager(config)
-    return mm.drop_db()	 
-	
+    return True,mm.drop_db()	 
+
+@exception	
+def __drop_table(table):
+    mm=mongo_manager(config)
+    return True,mm.drop_table(table)		
 @exception
 def __update_api_tokens(form_data,key_prefix,except_key):
     data=[(key[len(key_prefix):],value[0]) for key,value in form_data.items() if key !=except_key]
@@ -66,7 +70,7 @@ def _api_keys():
         else:
             _tokens={el['key']:el['value'] for el in _tokens} 
             data['params']={ el:(_tokens[el] if el in _tokens.keys() else '') for el in tokens}
-    print(data)
+
     data['optional_js_bottom']=['js/table_search_filter']
     return render_template('api_keys.html',data=data)      
 	
@@ -78,7 +82,16 @@ def _database():
         flash_complex_result(err,db_stats)
         data['db_stats']={}
     else:
-        data['db_stats']=db_stats     
+        data['db_stats']=db_stats  
+
+    err,all_tables=__all_tables()
+    if not err[0]:
+        flash_complex_result(err,table_data)
+        all_tables_list=None
+    else:
+        all_tables_list=all_tables
+    data['optional_js_bottom']=['js/drop_down_filter','js/admin']		
+    data['db_drop_down_filter']={'placeholder':'drop table','id':1,'filter_vals':all_tables_list,'onclick':"drop_db_table(this,'dropdown_id_1')"}		
     return render_template('database.html',data=data)
 
 @exception
@@ -111,6 +124,7 @@ def upload_mongo_form():
     global config
 
     form_data=request.form.to_dict(flat=False) 
+
     submit_case=form_data['submit_button'][0]
 
     if submit_case=='update_config':
@@ -128,6 +142,16 @@ def upload_mongo_form():
         err,res=__update_api_tokens(form_data,'input_name_','submit_button')
         flash_complex_result(err,res,'keys updated')
         return redirect(url_for('admin_bp._api_keys'))
+		
+    elif submit_case=='drop_table':
+        _table=form_data['table'][0]	
+        err,res=__drop_table(_table)
+	
+        flash_complex_result(err,res,"dddd")
+			
+        return redirect(url_for('admin_bp._database'))		
+		
+		
 
 def __convert_to_front(arr):
     if len (arr)>0:
