@@ -212,6 +212,7 @@
 
     function brushed() {
       var ext = brush.extent();
+	 
       if (!brush.empty()) {
         x.domain(brush.empty() ? x2.domain() : brush.extent());
         y.domain([

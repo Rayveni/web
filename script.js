@@ -209,13 +209,16 @@ var data1=[{"Date": "14/01/2010", "Volume": 108223500, "Close": 28.33, "Average"
 
     function brushed() {
 		
-      var ext = brush.extent();
-	  var brush_event=d3.event.selection;
-	  var brush_empty=(brush_event===null)
+
+	  const brush_event=d3.event.selection;
+	
+	  const brush_empty=(brush_event===null);
+	  var ext = brush_event.map(x2.invert);
+
 
       if (!brush_empty) {
 	
-        x.domain(brush_empty ? x2.domain() : brush.extent());
+        x.domain(brush_empty ? x2.domain() : ext);
 		
         y.domain([
           d3.min(data.map(function(d) { return (d.date >= ext[0] && d.date <= ext[1]) ? d.price : max; })),
@@ -229,13 +232,13 @@ var data1=[{"Date": "14/01/2010", "Volume": 108223500, "Close": 28.33, "Average"
       //  var days = Math.ceil((ext[1] - ext[0]) / (24 * 3600 * 1000))
 		///
         //focusGraph.attr('width', (40 > days) ? (40 - days) * 5 / 6 : 5)
-		alert(1)
+	
       }
-
       priceChart.attr('d', priceLine);
       averageChart.attr('d', avgLine);
       focus.select('.x.axis').call(xAxis);
       focus.select('.y.axis').call(yAxis);
+
     }
 
     var dateRange = ['1w', '1m', '3m', '6m', '1y', '5y']
@@ -272,10 +275,11 @@ var data1=[{"Date": "14/01/2010", "Volume": 108223500, "Close": 28.33, "Average"
       if (range === '5y')
         ext.setFullYear(ext.getFullYear() - 5)
 
-      brush.extent([ext, today])
-	
+ 
+context.select('g.x.brush').call(brush.move, [ext, today].map(x2))
       brushed()
-      context.select('g.x.brush').call(brush.extent([ext, today]))
+alert(1)
+      //context.select('g.x.brush').call(brush.extent([[ext, height2], [today, height2]]))
     }
 	
 	  function type(d) {
