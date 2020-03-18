@@ -212,6 +212,7 @@
 
     function brushed() {
       var ext = brush.extent();
+alert (ext)
 	 
       if (!brush.empty()) {
         x.domain(brush.empty() ? x2.domain() : brush.extent());
@@ -221,7 +222,7 @@
         ]);
         range.text(legendFormat(new Date(ext[0])) + ' - ' + legendFormat(new Date(ext[1])))
         focusGraph.attr('x', function(d, i) { return x(d.date); });
-
+//alert(ext)
         var days = Math.ceil((ext[1] - ext[0]) / (24 * 3600 * 1000))
         focusGraph.attr('width', (40 > days) ? (40 - days) * 5 / 6 : 5)
       }
