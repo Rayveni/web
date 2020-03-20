@@ -37,7 +37,7 @@ size = {
 stock_price_chart(data1.map(type),'chart2',size,margin1,margin2,margin3);
 //stock_price_chart(data1.map(type),'chart',{width:700,height:400},margin,margin2,margin3);
 
-function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, size_low, 
+function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, size_context, 
 	legend_format = '%b %d, %Y', 
 	y_axis_margin = 12,
 	focus_cirle={color:'r',radius:2.5}
@@ -49,7 +49,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
     // set the dimensions and margins of the graph
     const width = fig_size.width - fig_size.left - fig_size.right,
 		  height = size_price.height ,
-		  height2 = size_low.height ,
+		  height2 = size_context.height ,
 		  volume_h = size_volume.height ;	
 		  
     var bisectDate = d3.bisector(function (d) {return d.date;}).left,
@@ -88,7 +88,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
     var svg = d3.select('#'+chart_id).append('svg')
         .attr('class', 'chart')
         .attr('width', fig_size.width )
-        .attr('height', volume_h+height+height2+fig_size.top+fig_size.bottom + size_price.top + size_price.bottom+ size_low.top + size_low.bottom+ size_volume.top + size_volume.bottom);
+        .attr('height', volume_h+height+height2+fig_size.top+fig_size.bottom + size_price.top + size_price.bottom+ size_context.top + size_context.bottom+ size_volume.top + size_volume.bottom);
 
     svg.append('defs').append('clipPath')
 		.attr('id', 'clip')
@@ -109,7 +109,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
         //.attr('clip-path', 'url(#clip)') 
         .attr('transform', trn_str(fig_size.left,_margin));
 		
-    _margin=_margin+volume_h+size_volume.bottom+size_low.top;
+    _margin=_margin+volume_h+size_volume.bottom+size_context.top;
     var context = svg.append('g')
         .attr('class', 'context')
         .attr('transform', trn_str(fig_size.left,_margin));
@@ -182,7 +182,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
         .attr('x', function (d, i) { return x(d.date);})
         .attr('y', function (d) { y3(d.volume);})
         .attr('width', 1)
-        .attr('height', function (d) {return y2(d.price);})
+        .attr('height', function (d) {return y3(d.volume);})
 		;
 ///////////////
     var helper = focus.append('g')
@@ -246,7 +246,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
         var d0 = data[i - 1];
         var d1 = data[i];
         var d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        helperText.text(legendFormat(new Date(d.date)) + ' - Price: ' + d.price + ' Avg: ' + d.average);
+        helperText.text(legendFormat(new Date(d.date)) + ' - Price: ' + d.price + ' Volume: ' + d.volume);
         priceTooltip.attr('transform', 'translate(' + x(d.date) + ',' + y(d.price) + ')');
         //averageTooltip.attr('transform', 'translate(' + x(d.date) + ',' + y(d.average) + ')');
     }
