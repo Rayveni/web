@@ -12,19 +12,22 @@ svg {
 .axis path,
 .axis line {
   fill: none;
-  stroke: red;
+  stroke: #e7eef4;
   shape-rendering: crispEdges;
 }
-
-/*цвет текста и оси X графика цен*/
-
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: 0.125;
+  shape-rendering: crispEdges;
+}
+/*New*/
 .chart text {
   fill: #7f8faf;
 }
 .chart__line {
   fill: none;
-  stroke-width: 11.2px;
-
+  stroke-width: 1.2px;
+  clip-path: url("#clip");
 }
 .chart__price--focus {
   stroke-width: 2px;
@@ -39,12 +42,14 @@ svg {
   opacity: 0;
   pointer-events: all;
 }
-/*
 .chart__tooltip--price {
   fill: none;
   stroke: #f00;
 }
-*/
+.chart__tooltip--average {
+  fill: none;
+  stroke: #f00;
+}
 .chart__bars {
   fill: #99c5df;
   opacity: 1;
