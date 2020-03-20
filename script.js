@@ -40,12 +40,9 @@ stock_price_chart(data1.map(type),'chart2',size,margin1,margin2,margin3);
 function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, size_low, 
 	legend_format = '%b %d, %Y', 
 	y_axis_margin = 12,
-	focus_cirle={color:'r',radius:2.5}
-	
-	) {
-	
+	focus_cirle={radius:3.5}
+	) {	
 	function trn_str(a,b) {return `translate(${a},${b})`;};
-
     // set the dimensions and margins of the graph
     const width = fig_size.width - fig_size.left - fig_size.right,
 		  height = size_price.height ,
@@ -77,6 +74,10 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
         .x(function (d) {return x(d.date);})
         .y(function (d) {return y(d.average);})
 		*/
+        volumeLine = d3.line()
+        .curve(d3.curveMonotoneX)
+        .x(function (d) {return x(d.date);})
+        .y(function (d) {return y(d.volume);})		
 		;
     var area2 = d3.area()
         .curve(d3.curveMonotoneX)
@@ -105,7 +106,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
 	
     _margin=_margin+height+size_price.bottom+size_volume.top;
     var barsGroup = svg.append('g')
-        .attr('class', 'volume')
+        .attr('class', 'barsGroup')
         //.attr('clip-path', 'url(#clip)') 
         .attr('transform', trn_str(fig_size.left,_margin));
 		
@@ -154,6 +155,13 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
 		.call(make_y_axis()
 			.tickSize(-width, 0, 0)
 			.tickFormat(''));
+			
+    barsGroup.append('g')
+		.attr('class', 'y chart__grid')
+		.call(make_y_axis()
+			.tickSize(-width, 0, 0)
+			.tickFormat(''));			
+			
 /*
     var averageChart = focus.append('path')
         .datum(data)
@@ -164,7 +172,12 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
         .datum(data)
         .attr('class', 'chart__line chart__price--focus line')
         .attr('d', priceLine);
-
+		
+    var barsGroupChart = barsGroup.append('path')
+        .datum(data)
+        .attr('class', 'chart__line chart__price--focus line')
+        .attr('d', priceLine);
+		
     focus.append('g')
 		.attr('class', 'x axis')
 		.attr('transform', trn_str(0,height) )
@@ -174,16 +187,12 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
 		.attr('class', 'y axis')
 		.attr('transform', trn_str(y_axis_margin,0))
 		.call(yAxis);
+		
+    barsGroup.append('g')
+		.attr('class', 'y axis')
+		.attr('transform', trn_str(y_axis_margin,0))
+		.call(yAxis);
 
-    var focusGraph = barsGroup.selectAll('rect')
-        .data(data)
-        .enter().append('rect')
-        .attr('class', 'chart__bars')
-        .attr('x', function (d, i) { return x(d.date);})
-        .attr('y', function (d) { y3(d.volume);})
-        .attr('width', 1)
-        .attr('height', function (d) {return y2(d.price);})
-		;
 ///////////////
     var helper = focus.append('g')
         .attr('class', 'chart__helper')
@@ -195,7 +204,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
 			.attr('class', 'chart__tooltip--price')
 			.append('circle')
 			.style('display', 'none')
-			.attr(focus_cirle.color, focus_cirle.radius);
+			.attr('r', focus_cirle.radius);
 /*
     var averageTooltip = focus.append('g')
         .attr('class', 'chart__tooltip--average')
@@ -271,7 +280,7 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
                 ]);
 
             range.text(legendFormat(new Date(ext[0])) + ' - ' + legendFormat(new Date(ext[1])))
-
+/*
             focusGraph.attr('x', function (d, i) {
                 return x(d.date);
             });
@@ -279,13 +288,17 @@ function stock_price_chart(data,chart_id, fig_size, size_price, size_volume, siz
             var days = Math.ceil((ext[1] - ext[0]) / (24 * 3600 * 1000))
                 ///
                 focusGraph.attr('width', (40 > days) ? (40 - days) * 5 / 6 : 5)
-
+*/
         }
 
         priceChart.attr('d', priceLine);
+		barsGroupChart.attr('d', priceLine);
         //averageChart.attr('d', avgLine);
         focus.select('.x.axis').call(xAxis);
         focus.select('.y.axis').call(yAxis);
+		
+	    barsGroup.select('.x.axis').call(xAxis);
+        barsGroup.select('.y.axis').call(yAxis);	
 
     }
 
