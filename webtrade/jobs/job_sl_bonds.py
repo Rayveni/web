@@ -10,6 +10,8 @@ from datetime import datetime
 
 
 def __str_to_date(_date:str,_format:str='%Y-%m-%d'):
+    if _date=='0000-00-00':
+        _date='2111-01-01'
     return datetime.strptime(_date,_format)
 
 def __optional_attr_id(_arr:list,_item:str)->tuple:
