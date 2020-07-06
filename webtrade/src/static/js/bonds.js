@@ -235,7 +235,7 @@ function draw_hs_table(evt,bond_category) {
 
 function function_export_csv_() {
 	    hot2.getPlugin("exportFile").downloadFile("csv", {
-        filename: "Handsontable CSV Export example",
+        filename: "table export",
         columnDelimiter: ';',
         columnHeaders: true
 

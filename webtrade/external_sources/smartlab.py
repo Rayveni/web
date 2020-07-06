@@ -8,14 +8,16 @@ class smartlab(request_session):
     __slots__='sources','link'
     def __init__(self):
         self.link:str=r'https://smart-lab.ru'
-        self.sources:dict={'bonds':{'ОФЗ':{'link':r'/q/ofz/','currency':'RUR'},
-                               'Муниципальные':{'link':r'/q/subfed/','currency':'RUR'},
-                               'Корпоративные':{'link':r'/q/bonds/','currency':'RUR'},
-                               'Еврооблигации':{'link':r'/q/eurobonds/','currency':'USD'}
+        self.sources:dict={'bonds':{'ОФЗ':{'link':r'/q/ofz/','currency':'RUR','paging':None},
+                               'Муниципальные':{'link':r'/q/subfed/','currency':'RUR','paging':None},
+                               'Корпоративные':{'link':r'/q/bonds/','currency':'RUR'
+                                                ,r'paging':'order_by_val_to_day/desc/page{}/'},
+                               'Еврооблигации':{'link':r'/q/eurobonds/','currency':'USD','paging':None}
                               },
                            'bonds_query':r'/q/bonds/'
                            
                      }
+        self.limit_pages=100
 
     def __table_from_html(self,url:str,extra_fields_dict:dict=None)->tuple:
         mask="Unnamed: {}"
@@ -44,59 +46,49 @@ class smartlab(request_session):
 
         res=[]
 
-        for row in tr_elements[1:]:
+        for row in tr_elements[1:]:           
             arr=[el.text_content() for el in row]
-            if extra_fields_dict:
-                for key,value in extra_fields_dict.items():
-                    xml_element=row[key]
-                    for condition in value:
-                        arr.insert(condition['insert_position'],xml_element.xpath(condition['xpath_text']))
+            if len(arr)>1:
+                if extra_fields_dict:
+                    for key,value in extra_fields_dict.items():
 
-            res.append(arr)
+                        xml_element=row[key]
+                        for condition in value:
+                            arr.insert(condition['insert_position'],xml_element.xpath(condition['xpath_text']))
+
+                res.append(arr)
         return header,res        
             
-    
+    def __extract_pages(self,url,paging,extra_fields_dict):
+        i = 1
+        res=[]
+        while i < self.limit_pages:      
+            page=self.__table_from_html(url+paging.format(i),extra_fields_dict={**extra_fields_dict})
+            _table=page[1]
+            if len(_table)==0:
+                break
+            else:
+                _header=page[0]
+                res+=_table
+            i+=1  
+        return _header,res
+        
+        
     def bonds_info(self)->dict:
         bonds_dict=self.sources['bonds']
-            
         res={}
-
         for bond_group in list(bonds_dict.keys()):
             info=bonds_dict[bond_group]
-            url,currency=self.link+info['link'],info['currency']
+            url,currency,paging=self.link+info['link'],info['currency'],info['paging']
             ticker='Тикер'
             extra_fields_dict={'Имя':[{'add_column_name':ticker
                                        ,'xpath_text':"a/@href"
                                        ,'insert_position':1
                                       } 
-                                     ]}   
-            res[bond_group]=(*self.__table_from_html(url,extra_fields_dict=extra_fields_dict),currency)
-        """
-            return  self.__table_from_html(url,extra_fields_dict=extra_fields_dict)
-            df=self.__table_from_html(url,extra_fields_dict=extra_fields_dict)
-            df.rename(columns={'Unnamed: 1': 'Время'},inplace=True)   
-            df[ticker]=df[ticker].apply(lambda t:t[0].split('/')[-2])
-            df.insert(0, 'bond_category', bond_group)
-            if bond_group=='ОФЗ':          
-                df.rename(columns={'!': 'Тип ОФЗ'},inplace=True)
-                
-            res[currency]+=[df]
+                                     ]}  
+            if paging is None:
+                res[bond_group]=(*self.__table_from_html(url,extra_fields_dict=extra_fields_dict),currency)
+            else:
+                 res[bond_group]=(*self.__extract_pages(url,paging,extra_fields_dict),currency)
 
-        res={ currency:pd.concat(res[currency],axis=0, sort=False) for currency in currency_set}
-        percents_str_to_float=lambda s:float(s.replace('%','').replace(' ',''))
-        str_to_date=lambda t:pd.to_datetime(t, format='%Y-%m-%d')#, errors='ignore')
-        
-        for currency in currency_set:
-            df=res[currency]
-            drop_columns= [column for column in df.columns if 'Unnamed' in column]
-            drop_columns.append('№')
-            df.drop(drop_columns,axis=1,inplace=True)
-            df['Доходн']=df['Доходн'].apply(lambda s:percents_str_to_float(s))
-            df['Погашение']=df['Погашение'].apply(lambda s:str_to_date(s))
-            df['Оферта']=df['Оферта'].apply(lambda s:str_to_date(s))			
-            try:
-                df['Тип ОФЗ'].fillna('',inplace=True)                
-            except:
-                pass
-        """
         return res
