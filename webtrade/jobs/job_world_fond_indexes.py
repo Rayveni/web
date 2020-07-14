@@ -7,6 +7,7 @@ from datetime import datetime
 from .upload_info import update_upload_table_info
 
 def _process_data(_data)->tuple:
+    print(_data)
     meta_data=_data['Meta Data']
     _symbol,last_refreshed=meta_data['2. Symbol'],meta_data['3. Last Refreshed']
     res,date_list={},[]

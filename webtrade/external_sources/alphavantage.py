@@ -9,6 +9,8 @@ class alphavantage(request_session):
                           }                    
       
     def __fond_index_history_worker(self,session,url:str,params:dict,ticker:str)->tuple:
+        print(ticker,url)	
+        print(params)
         response=session.get(url , params = {'symbol' :ticker,**params})
         if response.ok:
             return True,response.json()

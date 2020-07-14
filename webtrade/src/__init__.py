@@ -5,6 +5,7 @@ from .admin import admin_bp
 from .index import index_bp
 from .upload import upload_bp
 from .advisor import advisor_bp
+from .reports import reports_bp
 app = Flask(__name__)
 app.secret_key = 'random string'
 app.static_folder = 'static'
@@ -14,3 +15,4 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(index_bp)
 app.register_blueprint(upload_bp)
 app.register_blueprint(advisor_bp)
+app.register_blueprint(reports_bp)

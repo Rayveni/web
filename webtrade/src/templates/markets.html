@@ -1,0 +1,104 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div id="content-wrapper" class="d-flex flex-column">
+
+	<!-- Main Content -->
+	<div id="content" class="main_content">
+
+	
+		<div class="row">
+			<div id="h_calc" class="col-lg-12">
+				<div class="card shadow mb-4">
+					<div class="card-body">
+
+							
+						<div class="tab">
+						  <button class="tablinks" onclick="draw_hs_table(event,'ОФЗ')">ОФЗ</button>
+						  <button class="tablinks" onclick="draw_hs_table(event,'Корпоративные')">Корпоративные</button>
+						  <button class="tablinks" onclick="draw_hs_table(event,'Муниципальные')">Субфедеральные</button>
+						  <button class="tablinks" onclick="draw_hs_table(event,'ЕВРО')">Еврооблигации</button>
+						</div>
+					<!--<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>-->	
+							<form method="post" action="{{ url_for('upload_bp._run_job',params='job_sl_bonds',redirect_url=request.endpoint)}}">
+
+									<button id="stard_smartlab_job"   
+													type="submit"  name="submit_button" value="stard_smartlab_job" class="btn save_btn"><i class="fas fa-sync"></i>
+									</button>
+							
+							<span  class="highlight_{{data.last_updated_date_alert}}">Actual</span > for: {{data.last_updated_date}}  
+							</form>
+				
+					<!-- End card-body -->	
+					</div>
+				<!-- End card-->	
+				</div>
+			<!-- End c-->		
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<!-- Circle Buttons -->
+				<div id="width_calc"  class="card shadow mb-4">
+					<!--<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">Circle Buttons</h6>
+					</div>-->
+					<div id="first_card_body" class="card-body">
+						<div id="chart"></div>
+
+					</div>
+				</div>
+
+				<!-- Brand Buttons -->
+				<div class="card shadow mb-4">
+					
+					<div class="card-body">
+					<div id="chart2"></div>
+
+					</div>
+				</div>
+								<!-- Brand Buttons -->
+				<div class="card shadow mb-4">
+					
+					<div class="card-body">
+						<div id="chart3"></div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-6">
+
+				<div class="card shadow mb-4">
+			
+					<div class="card-body">
+							<div id="chart4"></div>
+					</div>
+				</div>
+				
+								<div class="card shadow mb-4">
+			
+					<div class="card-body">
+							<div id="chart5"></div>
+					</div>
+				</div>
+								<div class="card shadow mb-4">
+				
+					<div class="card-body">
+							<div id="chart6"></div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<!-- End of Main Content -->
+</div>
+
+
+
+
+{% endblock %}

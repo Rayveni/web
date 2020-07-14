@@ -21,7 +21,7 @@ def _upload_jobs():
     data={'title':'uploads'}
     _upload_contorls={'smartlabbondsrus':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
                       'smartlabbondsusd':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
-                      'job_world_fond_indexes':{'job':'job_world_fond_indexes','actual_date':None,'sys_updated':None},					  
+                      'job_world_fond_indexes':{'job':'job_yahoo','actual_date':None,'sys_updated':None},					  
                       'sec_sectors':{'job':'job_sectors','actual_date':None,'sys_updated':None}}
 
     err,_uploads=__get_uploads()

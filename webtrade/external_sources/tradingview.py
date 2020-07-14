@@ -21,7 +21,7 @@ class tradingview(request_session):
             table_body = doc.xpath('//tbody[@class="tv-data-table__tbody"]')[0]
             r=[]
             for row  in table_body.getchildren():
-                _list=row[0].text_content().split('\t')
+                _list=row[0].text_content().split('\t')[20:]
                 _extract=[]
                 for el in _list:
                     _el=self.__transform_str(el)
