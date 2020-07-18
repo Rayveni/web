@@ -95,9 +95,23 @@ def _database():
     return render_template('database.html',data=data)
 
 @exception
-def __get_table(table_name,result='matrix'):
+def __get_table(table_name,result='matrix',view_id=None):
     mm=mongo_manager(config)
-    return mm.get_table(table_name,result)
+    if view_id is not None:
+        return __get_view(mm,view_id,result)
+    else:	
+        return mm.get_table(table_name,result,query={})
+
+def __get_view(db_manager,view_id,result):
+    if view_id=="markets_index_data":
+        now=datetime.now()
+        start_date=now.replace(year=now.year - 5)
+        return db_manager.get_table('fond_index_history',
+                                    query={'date':{'$gte':start_date}},
+                                    columns=['index_id','close_price','date','volume'],
+                                    result=result
+                                   )
+
 
 @exception
 def __all_tables():
@@ -166,9 +180,12 @@ def __convert_to_front(arr):
 @admin_bp.route('/query_data', methods=['GET', 'POST'])
 def query_data():
     _res_form=request.args.get('result')
+    _table=request.args.get('table')	
+    _view_id=request.args.get('view_id')		
+
     if  _res_form is None:
-        err,data_request=__get_table(request.args.get('table'))
+        err,data_request=__get_table(_table,view_id=_view_id)
     else:
-        err,data_request=__get_table(request.args.get('table'),_res_form)
+        err,data_request=__get_table(_table,_res_form,view_id=_view_id)	
     return dumps(__convert_to_front(data_request),ensure_ascii=False)
 

@@ -31,8 +31,8 @@ class mongo_manager(MongoDriver):
              
         return list(cursor)
         
-    def get_table(self,table_name,result='json',dict_key=None):
-        return self.__cursor_to_result(self.get_table_cursor(table_name),result,dict_key)
+    def get_table(self,table_name,result='json',dict_key=None,query:dict={},columns:list=None):
+        return self.__cursor_to_result(self.get_table_cursor(table_name,query=query,columns=columns,condition={'_id': False}),result,dict_key)
 
 
     def __convert_size(self,size_bytes:float,round_ndigits:int=2)->str:

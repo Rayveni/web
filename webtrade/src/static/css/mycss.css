@@ -8,6 +8,16 @@
     max-width: 100%
 }
 
+.tiny_btn{
+	border: none;
+	  cursor: pointer;
+  text-decoration: underline;
+  background-color:white;
+  font: 10px sans-serif;
+}
+
+
+
 .fa-save {
 	color: var(--main_color_black);
 }
@@ -52,6 +62,11 @@ background: none;
 .show {display: block;}
 
 
+.my_pad:hover::after {
+
+	padding: 0.2rem 0.2rem;
+  
+   }
 /* Style the tab */
 .tab {
   overflow: hidden;

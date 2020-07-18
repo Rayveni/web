@@ -35,7 +35,7 @@ class MongoDriver:
     def get_table_cursor(self,table,condition:dict={'_id': False},query:dict={},columns:list=None):
         if columns is not None:
             for field in columns:
-                condition[field]=1
+                condition[field]=1				
         return self.db[table].find(query,condition)
 		
     def agg_cursor(self,table_name,group,agg_functions_list,sort_by=None):

@@ -55,7 +55,7 @@ def job_yahoo(db_manager)->tuple:
 
     if len(table_data)>0:
         res2=db_manager.insert_into_table_from_attr('fond_index_history',table_data,bulk=True,rewrite=True)           
-    res=db_manager.insert_into_table_from_attr('sec_history_manager',table_info,bulk=True,rewrite=False)
+    res=db_manager.insert_into_table_from_attr('sec_history_manager',table_info,bulk=True,rewrite=True)
     res2=update_upload_table_info(db_manager,'job_world_fond_indexes',res[1])  
 
     return res

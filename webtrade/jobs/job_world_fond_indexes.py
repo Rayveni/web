@@ -70,6 +70,6 @@ def job_world_fond_indexes(db_manager):
 
     if len(sec_insert)>0:
         res3=db_manager.insert_into_table_from_attr('fond_index_history',sec_insert,bulk=True,rewrite=True)           
-    res=db_manager.insert_into_table_from_attr('sec_history_manager',hist_upd,bulk=True,rewrite=False)
+    res=db_manager.insert_into_table_from_attr('sec_history_manager',hist_upd,bulk=True,rewrite=True)
     res2=update_upload_table_info(db_manager,'job_world_fond_indexes',res[1])    
     return res
