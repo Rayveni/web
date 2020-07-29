@@ -176,7 +176,10 @@ set_headers_info();
 //stock_price_chart(data1.map(type),'chart',{width:700,height:400},margin,margin2,margin3);
 
 
-
+function buld_mosex_sec_agg(){
+	alert(1234)
+	
+}
 
 
 

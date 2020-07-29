@@ -38,7 +38,7 @@ class MongoDriver:
                 condition[field]=1				
         return self.db[table].find(query,condition)
 		
-    def agg_cursor(self,table_name,group,agg_functions_list,sort_by=None):
+    def agg_cursor(self,table_name,agg_functions_list,group:list=None,sort_by=None):
         """ agg_functions_list=[(func,apply_column,agg_column_name)]
          from bson.son import SON
         >>> pipeline = [
@@ -51,8 +51,9 @@ class MongoDriver:
         collection=self.db[table_name]
         
         if group is None:
-            group='all'
-        grouper="${}".format(str(group))
+            group=['all']
+        group=list(map(str,group))
+        grouper={el:'$'+el for el in group}
         agg_pipe={"_id": grouper}
         
         for el in agg_functions_list:
@@ -65,7 +66,7 @@ class MongoDriver:
                 pass
 
         pipeline=[{"$group": agg_pipe}]
-
+        #print(pipeline)
         if sort_by:
             pipeline=	pipeline+[{"$sort": SON([el for el in sort_by])}]
 

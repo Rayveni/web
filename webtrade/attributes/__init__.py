@@ -17,6 +17,7 @@ from .avg_assets import avg_assets
 from .tokens import tokens
 from .sec_history_manager import sec_history_manager
 from .fond_index_history import fond_index_history
+from .securities_short import securities_short
 __all__ = ['index_info',
            'index_value',
            'assets',
@@ -32,5 +33,5 @@ __all__ = ['index_info',
            'avg_assets',
            'sec_history_manager',
            'fond_index_history',           
-           'tokens'
+           'tokens','securities_short'
           ]

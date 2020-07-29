@@ -14,13 +14,12 @@
 
 							
 						<div class="tab">
-						  <button class="tablinks" onclick="draw_hs_table(event,'ОФЗ')">ОФЗ</button>
-						  <button class="tablinks" onclick="draw_hs_table(event,'Корпоративные')">Корпоративные</button>
-						  <button class="tablinks" onclick="draw_hs_table(event,'Муниципальные')">Субфедеральные</button>
-						  <button class="tablinks" onclick="draw_hs_table(event,'ЕВРО')">Еврооблигации</button>
+						  <button class="tablinks active" onclick="window.location.href='/reports/markets'">Stock indices</button>
+						  <button class="tablinks" onclick="buld_mosex_sec_agg()">Mosex sec agg</button>
+
 						</div>
 					<!--<button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>-->	
-							<form method="post" action="{{ url_for('upload_bp._run_job',params='job_sl_bonds',redirect_url=request.endpoint)}}">
+							<form id="refresh_form" method="post" action="{{ url_for('upload_bp._run_job',params='job_yahoo',redirect_url=request.endpoint)}}">
 
 									<button id="stard_smartlab_job"   
 													type="submit"  name="submit_button" value="stard_smartlab_job" class="btn save_btn"><i class="fas fa-sync"></i>
@@ -28,7 +27,7 @@
 							
 							<span  class="highlight_{{data.last_updated_date_alert}}">Actual</span > for: {{data.last_updated_date}}  
 							</form>
-							
+	<div id="header_block">					
 <div class="btn-group">
   <button class="tiny_btn" onclick="select_chart_period(this)">1w</button>
   <button class="tiny_btn" onclick="select_chart_period(this)">1m</button>
@@ -38,7 +37,7 @@
   <button class="tiny_btn" onclick="select_chart_period(this)">5y</button>
     <button class="tiny_btn" onclick="select_chart_period(this)">x</button>
 </div>
-
+	</div>
 
 
 

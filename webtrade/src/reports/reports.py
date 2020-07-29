@@ -7,9 +7,9 @@ from ..commons import flash_complex_result,exception,init_db_manager
 
 
 @exception
-def __last_updated_bonds()->tuple:
+def __last_updated_indexes()->tuple:
     _last_upd_date=init_db_manager().find_one('upload_info',
-                                              {"sys_name": "smartlabbondsusd"},
+                                              {"sys_name": "job_world_fond_indexes"},
                                               return_fields=['sys_updated'])['sys_updated']
     d_diff=(datetime.now()-_last_upd_date).days
     return _last_upd_date.strftime("%Y-%m-%d %H:%M:%S"),d_diff>0
@@ -18,7 +18,7 @@ def __last_updated_bonds()->tuple:
 def _bonds():
     data={'title':'Reports|markets'}
 
-    err,last_updated_date_tuple=__last_updated_bonds()
+    err,last_updated_date_tuple=__last_updated_indexes()
     if not err[0]:
         flash_complex_result(err,last_updated_date_tuple,'')
         last_updated_date,last_updated_date_alert='error updated date','danger'
@@ -35,6 +35,6 @@ def _bonds():
     data['optional_js_bottom']=['vendor/d3/d3.v5.min',
                                 'js/ajax_get_data',
                                 'js/d3_chart',								
-                                'js/markets'] 
+                                'vendor/handsontable/handsontable.full.min','js/markets',] 
     return render_template('markets.html',data=data)
 	
