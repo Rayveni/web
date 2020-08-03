@@ -6,7 +6,13 @@
 
 			
 			<div class="card-body">
-			
+					<form id="refresh_form" method="post" action="{{ url_for('upload_bp._run_job',params='all') }}">
+
+							<button id="start_all_jobs"   
+											type="submit"  name="submit_button" value="start_all_jobs" class="btn save_btn"><i class="fas fa-sync"></i>
+							</button>
+									 
+					</form>			
 			<table id="job_run_table">
 				<tr class="header">
 					<th>Job</th>
