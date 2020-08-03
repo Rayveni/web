@@ -21,8 +21,10 @@ def _upload_jobs():
     data={'title':'uploads'}
     _upload_contorls={'smartlabbondsrus':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
                       'smartlabbondsusd':{'job':'job_sl_bonds','actual_date':None,'sys_updated':None},
-                      'job_world_fond_indexes':{'job':'job_yahoo','actual_date':None,'sys_updated':None},					  
-                      'sec_sectors':{'job':'job_sectors','actual_date':None,'sys_updated':None}}
+                      'job_world_fond_indexes':{'job':'job_yahoo','actual_date':None,'sys_updated':None}, 
+                      'sec_sectors':{'job':'job_sectors','actual_date':None,'sys_updated':None},
+                      'mosex_securities':{'job':'job_mosex_securities','actual_date':None,'sys_updated':None}
+                     }
 
     err,_uploads=__get_uploads()
     if not err[0]:
@@ -53,9 +55,19 @@ def _run_job(params):
 
     if params == 'None':
         flash_complex_result((False,'None parameter passed'),None,None)  
+    elif params == 'all':
+        break_flg=False
+        for _job in ['job_sectors','job_sl_bonds','job_yahoo','job_mosex_securities']:
+            err,res=__exec_job(_job)
+            if err[0] is False:
+                flash_complex_result(err,res,'Executed successfully')
+                break_flg=True
+                break
+        if break_flg is False:
+            flash_complex_result(err,res,'Executed successfully')        
     else:
  
-        err,res=__exec_job(params)
+        err,res=__exec_job(params)        
         flash_complex_result(err,res,'Executed successfully')
     if _redirect_url is not None:
 
