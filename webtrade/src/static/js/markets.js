@@ -177,10 +177,65 @@ set_headers_info();
 
 
 function buld_mosex_sec_agg(){
-	alert(1234)
+	alert(1123)
+	document.getElementById('header_block').innerHTML = "";
+	var main_block=document.getElementById('main_block');
+	    
+
+
+	main_block.innerHTML = "";
+	var tbl = document.createElement("table");
+	let thead = tbl.createTHead();
+	
+	
+	
+	 let row = table.insertRow();
+  //  for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+	  
+	  
+	  
+	  
+	  
+	  
+	main_block.appendChild(tbl);
+	//agg_data = get_data_to_js('/query_data?view_id=mosex_sec_agg');
 	
 }
 
+var table_data=[['aa','bbb'],[11,22]];
+
+function generate_table_from_array(table, data) {
+
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of data[0]) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+  
+  
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }  
+  
+  
+  
+}
+
+
+
+//let table = document.querySelector("table");
+//generate_table_from_array(table,table_data);
 
 
 
