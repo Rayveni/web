@@ -13,25 +13,24 @@ class tradingview(request_session):
         return text.replace('\t','').replace('\n','')
 
     def parse_sector(self,sector_url,session) :
-        try:
-            _sector_url=self.url+sector_url
-            page=session.get(_sector_url)   
 
-            doc = lh.fromstring(page.content)
-            table_body = doc.xpath('//tbody[@class="tv-data-table__tbody"]')[0]
-            r=[]
-            for row  in table_body.getchildren():
-                _list=row[0].text_content().split('\t')[20:]
-                _extract=[]
-                for el in _list:
-                    _el=self.__transform_str(el)
-                    if len(_el)>0:
-                        _extract.append(_el)
-                r.append([*_extract,row[4].text_content()])              
-        except:
-            (False,)
-                
-        return (True,(sector_url,r))
+        _sector_url=self.url+sector_url
+        page=session.get(_sector_url)   
+
+        doc = lh.fromstring(page.content)
+        table_body = doc.xpath('//tbody[@class="tv-data-table__tbody"]')[0]
+        r=[]
+        for row  in table_body.getchildren():
+            _list=row[0].text_content().split('\t')[20:]
+            _extract=[]
+            for el in _list:
+                _el=self.__transform_str(el)
+                if len(_el)>0:
+                    _extract.append(_el)
+            r.append([*_extract,row[4].text_content()])              
+
+            
+        return (sector_url,r)
             
     
     def rus_security_sector(self)->tuple:

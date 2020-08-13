@@ -176,68 +176,47 @@ set_headers_info();
 //stock_price_chart(data1.map(type),'chart',{width:700,height:400},margin,margin2,margin3);
 
 
-function buld_mosex_sec_agg(){
-	alert(1123)
+function buld_mosex_sec_agg(event){
+	
 	document.getElementById('header_block').innerHTML = "";
 	var main_block=document.getElementById('main_block');
 	    
 
 
 	main_block.innerHTML = "";
+	var newcolumn = document.createElement('div');
+    newcolumn.className = 'col-lg-12';
+	
+	new_card=document.createElement('div');
+	new_card.className="card shadow mb-4";
+	
+	new_card_body=document.createElement('div');
+	new_card_body.className = 'card-body';
+	
 	var tbl = document.createElement("table");
-	let thead = tbl.createTHead();
+	tbl.id="mosex_table_id"
+	let table_data = get_data_to_js('/query_data?view_id=mosex_sec_agg');
+	 generate_table_from_array(tbl, table_data);
+	 
+	 new_card_body.appendChild(tbl);
+	 new_card.appendChild(new_card_body);
+	 newcolumn.appendChild(new_card);
+	main_block.appendChild(newcolumn);
 	
-	
-	
-	 let row = table.insertRow();
-  //  for (key in element) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-	  
-	  
-	  
-	  
-	  
-	  
-	main_block.appendChild(tbl);
-	//agg_data = get_data_to_js('/query_data?view_id=mosex_sec_agg');
-	
-}
-
-var table_data=[['aa','bbb'],[11,22]];
-
-function generate_table_from_array(table, data) {
-
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  for (let key of data[0]) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-  
-  
-  for (let element of data) {
-    let row = table.insertRow();
-    for (key in element) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-    }
-  }  
-  
-  
-  
+	merge_table_rows(tbl,1);
+	merge_table_rows(tbl,0);
+	process_tabs(event);
 }
 
 
+function process_tabs(event){
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
 
-//let table = document.querySelector("table");
-//generate_table_from_array(table,table_data);
-
-
+event.currentTarget.className += " active";
+}
 
 
 

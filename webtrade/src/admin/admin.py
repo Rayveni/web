@@ -116,7 +116,7 @@ def __get_view(db_manager,view_id,result):
                             group=['list_section', 'supertype', 'instrument_type'],
                             agg_functions_list=[('count','instrument_id','count')],result='matrix'
                            )
-        header=data[0]
+        header=data.pop(0)
         list_section_id,supertype_id=header.index('list_section'),header.index('supertype')
         list_section_order=lambda s: 0 if s == 'Первый уровень'   else (1 if s == 'Второй уровень' else 2)
         supertype_order=lambda s: 0 if s == 'Акции' else (1 if s == 'Депозитарные расписки' else (2 if s == 'Облигации' else 3))

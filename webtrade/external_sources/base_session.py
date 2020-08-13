@@ -1,7 +1,7 @@
 ﻿from requests import Session
 from multiprocessing.dummy import Pool as ThreadPool
 from time import sleep
-
+from functools import partial
 class request_session:
     def _init_session(self):
         s = Session()
@@ -23,10 +23,18 @@ class request_session:
                 false_results.append(el[1])
         return (true_results,false_results)       
 
+    def __worker_wrapper(self,f,*args):
+        try:
+            res=f(*args)
+        except:
+            return (False,)
+        return (True,res)
+
+
     def _start_pool(self,session,_worker,_worker_args:list,n_threads:int=7,n_tries:int=6,sleep_interval:int=1)->tuple:
         true_results_final,i=[],0
         while i < n_tries:
-            true_results,false_results=self._thread_pool(_worker,_worker_args,n_threads=n_threads)
+            true_results,false_results=self._thread_pool(partial(self.__worker_wrapper,_worker),_worker_args,n_threads=n_threads)
             true_results_final=true_results+true_results_final
             if len(false_results)==0:
                 break

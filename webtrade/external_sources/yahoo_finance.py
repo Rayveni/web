@@ -13,9 +13,8 @@ class yahoo_finance(request_session):
         url=self.sources['history'].format(base_url=self._base_url,ticker=ticker)
 
         response=session.get(url , params = {**params})
-        if response.ok:
-            return True,response.json()
-        return (False,ticker)
+
+        return response.json()
 
     def ticker_history(self,tickers_list:list,n_threads:int=7)->tuple:
 

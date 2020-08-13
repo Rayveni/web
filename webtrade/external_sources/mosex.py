@@ -4,6 +4,7 @@ from functools import partial
 from .base_session import request_session
 from time import sleep
 from pandas import read_csv
+from functools import partial
 
 class mosex(request_session):
     __slots__ = ['base_url','references_dict','return_data_type','error','tries_limit','tries_pause','tries_in_seq','full_urls']
@@ -32,14 +33,38 @@ class mosex(request_session):
         if params is not None:
             url=url.format(r=params)
         return url
-
-
-
           
     def securities_list(self):	
         return read_csv(self.full_urls['securities_list'],sep=';',encoding='cp1251')   
 
+
+
+    def __security_hist_worker(self,session,url,params,start):
+        params['start']=start  
+        return session.get(url , params = params).json()['history']
 		
+    def security_hist(self,security,engine:str='stock',market:str='shares',date_from='2016-01-01',n_threads=7):
+        url=self.__url_construct('security_history'
+                                 ,params={'engine':engine
+                                          ,'market':market
+                                          ,'security':security}
+                                 )
+        query_params={'start' :0,'from':date_from}
+        s = self._init_session()
+        response=s.get(url , params = query_params)
+        
+
+        start_cursor,end_cursor,step=response.json()['history.cursor']['data'][0]
+        worker=partial(self.__security_hist_worker,s,url,query_params)
+        err,res=self._start_pool(s,
+                                 worker,
+                                 _worker_args=[i for i in range(start_cursor,end_cursor,step)],
+                                 n_threads=7,
+                                 n_tries=6,
+                                 sleep_interval=1)
+
+
+        return err,res		
 #iis.__url_construct('security_spec',{'security':'RTSog'})
 #r=iis.query('security_spec',{'security':'RTSog'})
 #r=iis.security_hist('RTSog','stock','index',n_threads=7)

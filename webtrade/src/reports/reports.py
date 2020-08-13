@@ -35,6 +35,6 @@ def _bonds():
     data['optional_js_bottom']=['vendor/d3/d3.v5.min',
                                 'js/ajax_get_data',
                                 'js/d3_chart',								
-                                'vendor/handsontable/handsontable.full.min','js/markets',] 
+                                'vendor/handsontable/handsontable.full.min','js/gen_table','js/markets'] 
     return render_template('markets.html',data=data)
 	
