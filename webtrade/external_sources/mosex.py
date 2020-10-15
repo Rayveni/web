@@ -6,6 +6,7 @@ from time import sleep
 from pandas import read_csv
 from functools import partial
 
+
 class mosex(request_session):
     __slots__ = ['base_url','references_dict','return_data_type','error','tries_limit','tries_pause','tries_in_seq','full_urls']
     def __init__(self):
@@ -40,22 +41,22 @@ class mosex(request_session):
 
 
     def __security_hist_worker(self,session,url,params,start):
-        params['start']=start  
-        return session.get(url , params = params).json()['history']
-		
+        return session.get(url , params = {**params,**{'start':start}}).json()['history']['data']
+
     def security_hist(self,security,engine:str='stock',market:str='shares',date_from='2016-01-01',n_threads=7):
         url=self.__url_construct('security_history'
                                  ,params={'engine':engine
                                           ,'market':market
                                           ,'security':security}
                                  )
-        query_params={'start' :0,'from':date_from}
+        query_params={'from':date_from}
         s = self._init_session()
-        response=s.get(url , params = query_params)
+        response=s.get(url , params = query_params).json()
         
-
-        start_cursor,end_cursor,step=response.json()['history.cursor']['data'][0]
+        columns=response['history']['columns']
+        start_cursor,end_cursor,step=response['history.cursor']['data'][0]
         worker=partial(self.__security_hist_worker,s,url,query_params)
+       		
         err,res=self._start_pool(s,
                                  worker,
                                  _worker_args=[i for i in range(start_cursor,end_cursor,step)],
@@ -64,7 +65,7 @@ class mosex(request_session):
                                  sleep_interval=1)
 
 
-        return err,res		
+        return err,(columns,res)		
 #iis.__url_construct('security_spec',{'security':'RTSog'})
 #r=iis.query('security_spec',{'security':'RTSog'})
 #r=iis.security_hist('RTSog','stock','index',n_threads=7)

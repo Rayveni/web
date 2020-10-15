@@ -20,15 +20,17 @@ class request_session:
             if el[0]:
                 true_results.append(el[1])
             else:
+		
                 false_results.append(el[1])
         return (true_results,false_results)       
 
     def __worker_wrapper(self,f,*args):
-        try:
-            res=f(*args)
+        try:	
+            res=f(*args)				
+            return (True,res)
         except:
-            return (False,)
-        return (True,res)
+            return (False,)			
+
 
 
     def _start_pool(self,session,_worker,_worker_args:list,n_threads:int=7,n_tries:int=6,sleep_interval:int=1)->tuple:

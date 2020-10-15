@@ -18,6 +18,8 @@ from .tokens import tokens
 from .sec_history_manager import sec_history_manager
 from .fond_index_history import fond_index_history
 from .securities_short import securities_short
+from .mosex_sec_history import mosex_sec_history
+from .sec_history_manager_mosex import sec_history_manager_mosex
 __all__ = ['index_info',
            'index_value',
            'assets',
@@ -33,5 +35,5 @@ __all__ = ['index_info',
            'avg_assets',
            'sec_history_manager',
            'fond_index_history',           
-           'tokens','securities_short'
+           'tokens','securities_short','mosex_sec_history','sec_history_manager_mosex'
           ]
