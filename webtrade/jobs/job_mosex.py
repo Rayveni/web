@@ -2,12 +2,12 @@ from sys import path
 path.append("...")
 
 #from db_drivers import mongo_manager
-from attributes import securities_short,mosex_sec_history,sec_history_manager_mosex
+from attributes import securities_short,mosex_sec_history,sec_history_manager_mosex,upload_mosex_sec
 from external_sources import mosex
 from .upload_info import update_upload_table_info
 from datetime import datetime
 #from pandas import DataFrame
-from .commons import exception
+#from .commons import exception
 from itertools import chain
 
 def job_mosex_securities(db_manager)->tuple:
@@ -21,9 +21,10 @@ def job_mosex_securities(db_manager)->tuple:
 
 
 def job_update_sec_hist(db_manager)->tuple:
+
     now_datetime=datetime.now()
 #r=db.find_one('sec_history_manager_mosex',{"secid":'GAZP111'})	 now.strftime("%m")
-    return __db_upload_sec_data(db_manager,'GAZP',now_datetime)
+    return __db_upload_sec_data(db_manager,'SBER',now_datetime)
 
 def __get_sec_data(security)->tuple:
     res,raw_data=mosex().security_hist(security)
@@ -33,7 +34,15 @@ def __get_sec_data(security)->tuple:
     raw_data=list(chain(*raw_data[1]))
     return columns,raw_data
 
+
 def __db_upload_sec_data(db_manager,security,start_job)->tuple:
+    
+    res=db_manager.insert_into_table_from_attr('upload_mosex_sec',
+                                               upload_mosex_sec(trade_code=security,last_updated=start_job),
+                                               rewrite=False,
+                                               update_criteria={"trade_code":security})    
+    
+    
     columns,raw_data=__get_sec_data(security)
     columns=list(map(lambda s:s.lower(),columns))
     boardid_ind=columns.index('boardid')
@@ -105,6 +114,11 @@ def __db_upload_sec_data(db_manager,security,start_job)->tuple:
     res2=db_manager.insert_into_table_from_attr('sec_history_manager_mosex',
                                                 upd_hist,
                                                 update_criteria={"secid":ticker})
+                                                
+    res3=db_manager.insert_into_table_from_attr('upload_mosex_sec',
+                                                upload_mosex_sec(trade_code=security,last_updated=start_job,success=True),
+                                                update_criteria={"trade_code":security})                                                
+                                                
     #res2=update_upload_table_info(db_manager,'job_world_fond_indexes',res[1])          
 
     return res,res2#columns,raw_data
