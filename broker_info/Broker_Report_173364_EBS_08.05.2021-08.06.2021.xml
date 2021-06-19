@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="https://account.open-broker.ru/common/report/broker_report_unified.xsl"?>
+<broker_report title="Отчет АО «Открытие Брокер» за период с 08.05.2021 по 08.06.2021" titledetail="по сделкам и операциям с финансовыми инструментами, валютой и драгоценными металлами" board_list="ФОНДОВЫЙ РЫНОК МОСКОВСКОЙ БИРЖИ, СРОЧНЫЙ РЫНОК FORTS, РТС СТАНДАРТ, ОАО &quot;Санкт-Петербургская биржа&quot;, МОСЭНЕРГОБИРЖА, ВАЛЮТНЫЙ РЫНОК И РЫНОК ДРАГОЦЕННЫХ МЕТАЛЛОВ МБ" date_from="2021-05-08T00:00:00" date_to="2021-06-08T00:00:00" client_code="173364" micex_trade_code="173364" client_short_name="Волочков Илья Сергеевич" agreement_number="173364-БФ" agreement_date="2018-11-30T00:00:00" account_count="1" is_trade_tariff_plan="False" is_new_tariff_plan="True" build_date="2021-06-08T17:34:18" is_same_commission="1" portfolio="Единый брокерский счёт " acc_client_code="173364" dgvr="Договор на брокерское обслуживание:" detail_level="F">
+<section_definition>
+<unified_account_totally_definition name="Сводная информация по единому счёту">
+<currency name="Валюта" />
+<row_name name="Основание" />
+<value name="Сумма" />
+<value_rub name="Оценка остатка по курсу ЦБ, руб" />
+</unified_account_totally_definition>
+<unified_guarantee_totally_definition name="Требования к ликвидности обеспечения">
+<active_go name="Активы, принимаемые в обеспечение" />
+<amount name="Остаток (факт)" />
+<amount_block name="Количество" />
+<amount_plan name="Позиция (факт+план)" />
+<collateral name="Оценка обеспечения в руб." />
+<course name="Цена/курс ЦК" />
+<highly_liquid name="Оценка высоколиквидного обеспечения, руб" />
+<is_go name="Коэффициент высоколиквидности" />
+</unified_guarantee_totally_definition>
+<liability_position_definition name="Задолженности/Обязательства клиента перед Брокером">
+<blocked_amount name="Из них заблокировано" />
+<charge_amount name="Начислено в валюте" />
+<charge_date name="Дата" />
+<client_code name="Счет клиента" />
+<currency name="Валюта" />
+<ground name="Основание" />
+<rest_amount name="Остаток в валюте" />
+<rest_amount_cb name="Остаток по курсу ЦБ, руб" />
+<total name="ИТОГО" />
+<total_section name="Итого, по группе" />
+</liability_position_definition>
+<spot_client_assets_definition name="Активы клиента (ценные бумаги и денежные средства) - Итоговое закрытие дня">
+<blocked_for_out name="Заблокировано от вывода" />
+<change_asset name="Изменение за период" />
+<closing_asset name="Активы на конец периода" />
+<closing_position_fact name="Остаток (факт)" />
+<closing_position_plan name="Позиция (факт+план)" />
+<currency_code name="Код валюты" />
+<currency_course name="Курс ЦБ к руб. на конец периода" />
+<currency_rating name="Курс ЦБ к руб. на конец периода" />
+<money name="Денежные средства" />
+<money_settlement_fact name="Оценка Остатка (факт) по курсу ЦБ, руб" />
+<money_settlement_plan name="Оценка Позиции (факт+план), по курсу ЦБ, руб" />
+<nkd name="НКД на конец периода, руб" />
+<opening_asset name="Активы на начало периода" />
+<opening_position_fact name="Остаток (факт)" />
+<opening_position_plan name="Позиция (факт+план)" />
+<period_change_position_fact name="Остаток (факт)" />
+<period_change_position_plan name="Позиция (факт+план)" />
+<position_weight name="Вес Позиции в портфеле, %" />
+<price_currency name="Валюта цены (номинала для облигаций)" />
+<security name="Инструмент" />
+<security_gos_reg_number name="Гос. рег. номер" />
+<security_settlement_fact name="Оценка Остатка (факт) по цене последней сделки, руб" />
+<security_settlement_plan name="Оценка Позиции (факт+план) по цене последней сделки, руб" />
+<settlement_price name="Цена последней сделки в валюте цены (% для облигаций)" />
+<total name="ИТОГО" />
+<total_funds_value name="ИТОГО Оценка ДС, руб" />
+<total_securities_value name="ИТОГО Оценка ЦБ, руб" />
+</spot_client_assets_definition>
+<unified_preclosing_assets_definition name="Активы клиента - Предварительное закрытие дня">
+<closing_asset name="Активы на конец периода" />
+<closing_position_fact name="Остаток (факт)" />
+<closing_position_plan name="Позиция (факт+план)" />
+<currency_code name="Код валюты" />
+<currency_course name="Центральный Курс к руб. на конец периода" />
+<money name="Денежные средства" />
+<money_settlement_fact name="Оценка остатка (факт) по Центральному курсу, руб." />
+<money_settlement_plan name="Оценка позиции (факт+план) по Центральному курсу, руб." />
+<nkd name="НКД на конец периода, руб. (по Центральному курсу)" />
+<precious_metals name="Драгоценные металлы" />
+<precious_metals_code name="Код" />
+<price_currency name="Валюта цены (номинала для облигаций)" />
+<security name="Инструмент" />
+<security_gos_reg_number name="Гос. рег. номер" />
+<security_settlement_fact name="Оценка остатка (факт) по цене последней сделки, руб. (по Центральному курсу)" />
+<security_settlement_plan name="Оценка позиции (факт+план) по цене последней сделки, руб. (по Центральному курсу)" />
+<settlement_price name="Цена последней сделки в валюте цены (% для облигаций)" />
+<total name="ИТОГО" />
+<total_funds_value name="ИТОГО Оценка ДС, руб." />
+<total_precious_metals_value name="ИТОГО Оценка ДМ, руб." />
+<total_securities_value name="ИТОГО Оценка ЦБ, руб." />
+</unified_preclosing_assets_definition>
+<unified_closing_assets_definition name="Активы клиента - Итоговое закрытие дня">
+<blocked_for_out name="Заблокировано от вывода" />
+<change_asset name="Изменение за период" />
+<closing_asset name="Активы на конец периода" />
+<closing_position_fact name="Остаток (факт)" />
+<closing_position_plan name="Позиция (факт+план)" />
+<currency_code name="Код валюты" />
+<currency_course_cb name="Курс ЦБ к руб. на конец периода" />
+<currency_course_ck name="Центральный Курс к руб. на конец периода" />
+<money name="Денежные средства" />
+<money_settlement_fact_cb name="Оценка остатка (факт) по курсу ЦБ, руб." />
+<money_settlement_fact_ck name="Оценка остатка (факт) по Центральному курсу, руб." />
+<money_settlement_plan_cb name="Оценка Позиции (факт+план), по курсу ЦБ, руб." />
+<money_settlement_plan_ck name="Оценка позиции (факт+план) по Центральному курсу, руб." />
+<nkd_cb name="НКД на конец периода, руб (по курсу ЦБ)" />
+<nkd_ck name="НКД на конец периода, руб. (по Центральному курсу)" />
+<opening_asset name="Активы на начало периода" />
+<opening_position_fact name="Остаток (факт)" />
+<opening_position_plan name="Позиция (факт+план)" />
+<period_change_position_fact name="Остаток (факт)" />
+<period_change_position_plan name="Позиция (факт+план)" />
+<position_weight_cb name="Вес позиции в портфеле (по курсу ЦБ), %" />
+<position_weight_ck name="Вес позиции в портфеле (по Центральному курсу), %" />
+<precious_metals name="Драгоценные металлы" />
+<precious_metals_code name="Код" />
+<price_currency name="Валюта цены (номинала для облигаций)" />
+<security name="Инструмент" />
+<security_gos_reg_number name="Гос. рег. номер" />
+<security_settlement_fact_cb name="Оценка Остатка (факт) по цене последней сделки, руб. (по курсу ЦБ)" />
+<security_settlement_fact_ck name="Оценка остатка (факт) по цене последней сделки, руб. (по Центральному курсу)" />
+<security_settlement_plan_cb name="Оценка Позиции (факт+план) по цене последней сделки, руб. (по курсу ЦБ)" />
+<security_settlement_plan_ck name="Оценка позиции (факт+план)по цене последней сделки, руб. (по Центральному курсу)" />
+<settlement_price name="Цена последней сделки в валюте цены (% для облигаций)" />
+<total name="ИТОГО" />
+<total_funds_value name="ИТОГО Оценка ДС, руб." />
+<total_precious_metals_value name="ИТОГО Оценка ДМ, руб." />
+<total_securities_value name="ИТОГО Оценка ЦБ, руб." />
+</unified_closing_assets_definition>
+<portfolio_position_definition name="Открытые позиции">
+<board_name name="Организатор торговли" />
+<deal_date name="Открыта" />
+<deal_sign />
+<end_evaluation name="Текущая стоимость" />
+<end_price />
+<position_calc name="Позиция, лоты/шт." />
+<price />
+<quantity />
+<quoted_calc name="Котировка" />
+<round_price_calc name="Цена" />
+<security_code name="Код контракта" />
+<security_name name="Контракт" />
+<strike_price name="Цена исп-я(опционы)" />
+</portfolio_position_definition>
+<spot_obligation_requirement_definition name="Нетто обязательства и требования по незавершенным сделкам">
+<asset_code name="Инструмент" />
+<deals name="Расчеты по сделкам" />
+<face_account name="Лицевой счет" />
+<gp_kv name="Возврат ГП/КВ, руб" />
+<gp_obligation name="Обязательства клиента" />
+<gp_requirement name="Требования клиента" />
+<obligation name="Обязательства клиента" />
+<obligation_date_begin name="Дата возникновения" />
+<obligation_date_end name="Плановая дата исполнения" />
+<requirement name="Требования клиента" />
+</spot_obligation_requirement_definition>
+<unified_demands_and_liabilities_definition name="Обязательства и требования по сделкам с валютой и драгоценными металлами">
+<cocurrency name="Сопряженная валюта" />
+<cocurrency_code name="код" />
+<comment name="Комментарий" />
+<currency name="Валюта лота (актив)" />
+<currency_code name="код" />
+<deal_date name="Дата возникновения" />
+<deal_number name="Номер сделки" />
+<exec_date name="Плановая дата исполнения" />
+<quantity name="объем" />
+<volume name="объем" />
+</unified_demands_and_liabilities_definition>
+<spot_main_deals_conclusion_definition name="Заключенные в отчетном периоде сделки купли/продажи с ценными бумагами">
+<accounting_currency_code name="Валюта расчетов" />
+<board_name name="Место заключения сделки" />
+<broker_commission name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<broker_commission_currency_code name="Валюта комиссии Брокера" />
+<broker_ref name="Примечание" />
+<buy_qnty name="Куплено, шт" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<conclusion_time name="Время заключения" />
+<deal_no name="Номер сделки" />
+<execution_date name="Плановая дата исполнения" />
+<nkd name="НКД по сделке в валюте расчетов" />
+<partner_name name="Контрагент" />
+<price name="Цена сделки (% для облигаций)" />
+<price_currency_code name="Валюта цены (номинала для облигаций)" />
+<request_no name="Номер заявки" />
+<security_grn_code name="Гос. рег. номер" />
+<security_name name="Инструмент" />
+<sell_qnty name="Продано, шт" />
+<total name="ИТОГО" />
+<total_commission_currency name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<total_instrument name="Итого по инструменту" />
+<volume_currency name="Объем сделки в валюте расчетов" />
+<volume_rur name="Объем сделки по курсу ЦБ, руб" />
+</spot_main_deals_conclusion_definition>
+<spot_repo_deals_conclusion_definition name="Заключенные в отчетном периоде сделки РЕПО">
+<accounting_currency_code name="Валюта расчетов" />
+<amortization_dept name="Сумма погашения части основного долга" />
+<board_name name="Место заключения сделки" />
+<broker_commission name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<broker_commission_currency_code name="Валюта комиссии Брокера" />
+<broker_ref name="Примечание" />
+<buy_qnty name="Куплено, шт" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<conclusion_time name="Время заключения" />
+<deal_no name="Номер сделки" />
+<execution_date name="Плановая дата исполнения" />
+<nkd name="НКД по сделке в валюте расчетов" />
+<partner_name name="Контрагент" />
+<paying_off_nkd name="Сумма погашения НКД" />
+<price name="Цена сделки (% для облигаций)" />
+<price_currency_code name="Валюта цены (номинала для облигаций)" />
+<repo_rate name="Cтавка РЕПО, %" />
+<request_no name="Номер заявки" />
+<security_grn_code name="Гос. рег. номер " />
+<security_name name="Инструмент" />
+<sell_qnty name="Продано, шт" />
+<total name="ИТОГО" />
+<total_commission_currency name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<volume name="Объем сделки в валюте расчетов" />
+</spot_repo_deals_conclusion_definition>
+<spot_loan_deals_conclusion_definition name="Заключенные/измененные в отчетном периоде сделки займа ЦБ">
+<aci name="НКД, руб." />
+<annual_rate name="Ставка, % годовых" value_prefix="базовая" />
+<conclusion_date name="Дата заключения" />
+<conclusion_number name="№" />
+<deal_block name="Сделка займа" />
+<execution_date name="План. дата исполнения" />
+<instrument name="Инструмент" />
+<loan_delivery_qty name="Привлечение" />
+<loan_return_qty name="Размещение" />
+<market_value name="Рыночная стоимость инструмента, руб" />
+<operation_block name="Операция по сделке займа" />
+<operation_date name="Дата совершения" />
+<operation_number name="№" />
+<operation_time name="Время совершения" />
+<qty_block name="Кол-во ЦБ по сделке, шт" />
+<state_reg_number name="Гос. рег. номер" />
+<total name="ИТОГО незавершено" />
+<transaction_place name="Место заключения сделки" />
+<value name="Объем сделки, руб" />
+</spot_loan_deals_conclusion_definition>
+<unified_conversion_deal_definition name="Заключенные в отчётном периоде биржевые конверсионные сделки, сделки с драгоценными металлами">
+<broker_comm name="Ком. Брокера/Доп Ком. Брокера «Сборы ТС»" />
+<broker_comm_currency_code name="Валюта комиссии Брокера" />
+<change name="изменение" />
+<comment name="Комментарий" />
+<contract_code name="Инструмент" />
+<currency_code name="Сопряженная валюта" />
+<deal_date name="Дата заключения" />
+<deal_number name="Номер сделки" />
+<deal_time name="Время заключения" />
+<exec_date name="Дата исполнения" />
+<exec_symbol name="Направление (B/S)" />
+<instrument_total name="По инструменту" />
+<order_number name="Номер заявки" />
+<price_fact name="Цена (факт)/Курс , пункты" />
+<price_plan name="Цена (план)/Курс сделки, пункты" />
+<price_point_size name="Размер пункта, в единицах сопряженной  валюты" />
+<quantity name="Кол-во,лоты" />
+<special_conditions name="Режим" />
+<stock_comm name="Комиссия биржи, руб." />
+<total name="ИТОГО" />
+<total_comm_currency name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<turnover name="оборот" />
+<volume name="Объем в сопряженной валюте" />
+</unified_conversion_deal_definition>
+<unified_conversion_deal_definition name="Заключенные в отчётном периоде биржевые конверсионные сделки, сделки с драгоценными металлами">
+<broker_comm name="Ком. Брокера/Доп Ком. Брокера «Сборы ТС»" />
+<broker_comm_currency_code name="Валюта комиссии Брокера" />
+<change name="изменение" />
+<comment name="Комментарий" />
+<contract_code name="Инструмент" />
+<currency_code name="Сопряженная валюта" />
+<deal_date name="Дата заключения" />
+<deal_number name="Номер сделки" />
+<deal_time name="Время заключения" />
+<exec_date name="Дата исполнения" />
+<exec_symbol name="Направление (B/S)" />
+<instrument_total name="По инструменту" />
+<order_number name="Номер заявки" />
+<price_fact name="Цена (факт)/Курс , пункты" />
+<price_plan name="Цена (план)/Курс сделки, пункты" />
+<price_point_size name="Размер пункта, в единицах сопряженной  валюты" />
+<quantity name="Кол-во,лоты" />
+<special_conditions name="Режим" />
+<stock_comm name="Комиссия биржи, руб." />
+<total name="ИТОГО" />
+<total_comm_currency name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<turnover name="оборот" />
+<volume name="Объем в сопряженной валюте" />
+</unified_conversion_deal_definition>
+<spot_nonstock_conversion_deals_conclusion_definition name="Заключённые в отчётном периоде внебиржевые сделки конвертации">
+<brokers_fee name="Комиссия Брокера" />
+<brokers_fee_currency name="Валюта комиссии Брокера" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<conclusion_time name="Время заключения" />
+<counterparty_name name="Контрагент" />
+<currency_1 name="Актив 1" />
+<currency_2 name="Актив 2" />
+<deal_type name="Тип сделки" />
+<direction name="Направление (B/S)" />
+<execution_date_fact name="Дата расчетов, факт" />
+<execution_date_plan name="Дата расчетов, план" />
+<price name="Курс сделки" />
+<request name="Номер поручения/заявки" />
+<sum_1 name="Сумма актива 1" />
+<sum_2 name="Сумма актива 2" />
+<trade_n name="Номер сделки" />
+</spot_nonstock_conversion_deals_conclusion_definition>
+<unified_swap_deal_definition name="Заключенные в отчетном периоде биржевые сделки СВОП">
+<broker_comm name="Ком. Брокера/Доп Ком. Брокера «Сборы ТС»" />
+<broker_comm_currency_code name="Валюта комиссии Брокера" />
+<change name="изменение" />
+<comment name="Комментарий" />
+<contract_code name="Инструмент" />
+<currency_code name="Сопряженная валюта" />
+<deal_date name="Дата заключения" />
+<deal_number name="Номер сделки" />
+<deal_time name="Время заключения" />
+<exec_date1 name="Дата исполнения 1 части" />
+<exec_date2 name="Дата исполнения 2 части" />
+<exec_symbol name="Направление 1 части(B/S)" />
+<instrument_total name="По инструменту" />
+<order_number name="Номер заявки" />
+<price name="Цена сделки, пункты" />
+<price_point_size name="Размер пункта, в единицах сопряженной  валюты" />
+<quantity name="Кол-во,лоты" />
+<special_conditions name="Режим" />
+<stock_comm name="Комиссия биржи, руб." />
+<total name="ИТОГО" />
+<total_comm_currency name="Комиссия Брокера/Доп. комиссия Брокера &quot;Сборы ТС&quot;" />
+<turnover name="оборот" />
+<volume name="Объем в сопряженной валюте 1 части" />
+</unified_swap_deal_definition>
+<spot_main_deals_executed_definition name="Завершённые в отчётном периоде сделки купли/продажи с ценными бумагами">
+<accounting_currency_code name="Валюта расчетов" />
+<board_name name="Место заключения сделки" />
+<broker_ref name="Примечание" />
+<buy_qnty name="Куплено, шт" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<deal_no name="Номер сделки" />
+<face_account name="Лицевой счет" />
+<fact_execution_date name="Дата исполнения, факт" />
+<nkd name="НКД по сделке в валюте расчетов" />
+<plan_execution_date name="Дата исполнения, план" />
+<price name="Цена сделки (% для облигаций)" />
+<price_currency_code name="Валюта цены (номинала для облигаций)" />
+<price_currency_rate name="Курс для расчетов" />
+<request_no name="Номер заявки" />
+<security_grn_code name="Гос. рег. номер" />
+<security_name name="Инструмент" />
+<sell_qnty name="Продано, шт" />
+<total name="ИТОГО" />
+<total_instrument name="Итого по инструменту" />
+<volume name="Объем сделки в валюте расчетов" />
+</spot_main_deals_executed_definition>
+<spot_repo_deals_executed_definition name="Завершенные в отчетном периоде сделки РЕПО">
+<accounting_currency_code name="Валюта расчетов" />
+<amortization_dept name="Сумма погашения части основного долга" />
+<board_name name="Место заключения сделки" />
+<broker_ref name="Примечание" />
+<buy_qnty name="Куплено, шт" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<deal_no name="Номер сделки" />
+<face_account name="Лицевой счет" />
+<fact_execution_date name="Дата исполнения, факт" />
+<nkd name="НКД по сделке в валюте расчетов" />
+<paying_off_nkd name="Сумма погашения НКД" />
+<plan_execution_date name="Дата исполнения, план" />
+<price name="Цена сделки (% для облигаций)" />
+<price_currency_code name="Валюта цены (номинала для облигаций)" />
+<price_currency_rate name="Курс для расчетов" />
+<request_no name="Номер заявки" />
+<security_grn_code name="Гос. рег. номер" />
+<security_name name="Инструмент" />
+<sell_qnty name="Продано, шт" />
+<total name="ИТОГО" />
+<volume name="Объем сделки в валюте расчетов" />
+</spot_repo_deals_executed_definition>
+<spot_nonstock_conversion_deals_executed_definition name="Завершенные в отчётном периоде внебиржевые сделки конвертации">
+<brokers_fee name="Комиссия Брокера" />
+<brokers_fee_currency name="Валюта комиссии Брокера" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<conclusion_time name="Время заключения" />
+<counterparty_name name="Контрагент" />
+<currency_1 name="Актив 1" />
+<currency_2 name="Актив 2" />
+<deal_type name="Тип сделки" />
+<direction name="Направление (B/S)" />
+<execution_date_fact name="Дата расчетов, факт" />
+<execution_date_plan name="Дата расчетов, план" />
+<price name="Курс сделки" />
+<request name="Номер поручения/заявки" />
+<sum_1 name="Сумма актива 1" />
+<sum_2 name="Сумма актива 2" />
+<trade_n name="Номер сделки" />
+</spot_nonstock_conversion_deals_executed_definition>
+<unified_settlements_conversion_deal_definition name="Расчёты по конверсионным сделкам, сделкам с драгоценными металлами">
+<cocurrency name="Сопряженная валюта" />
+<cocurrency_code name="код" />
+<currency name="Валюта лота (актив)" />
+<currency_code name="код" />
+<deal_date name="Дата заключения" />
+<deal_number name="Номер сделки" />
+<deal_symbol name="Направление (B/S)" />
+<exec_date name="Дата исполнения" />
+<price name="Цена (факт)/Курс, пункты" />
+<price_point_size name="Размер пункта в сопряженной валюте" />
+<quantity name="объем" />
+<volume name="объем" />
+</unified_settlements_conversion_deal_definition>
+<spot_loan_deals_executed_definition name="Расчеты по сделкам займа ЦБ">
+<brokers_fee name="Комиссия Брокера, руб" />
+<calculation_block name="Расчеты по ЦБ, шт" />
+<conclusion_date name="Дата совершения" />
+<currency name="Валюта расчетов" />
+<instrument name="Инструмент" />
+<issuance name="Выдача" />
+<issuance_calculation_block name="Возникновение/изменение обязательств" />
+<issuance_renewal name="Первоначальный срок" />
+<loan_delivery_qty name="Привлечение" />
+<loan_return_qty name="Размещение" />
+<market_value name="Рыночная стоимость ЦБ, руб" />
+<money_block name="Расчеты по ДС" />
+<operation_block name="Операция по сделке займа" />
+<operation_date name="Дата расчетов по сделкам (факт)" />
+<operation_number name="№" />
+<personal_account name="Лицевой счет" />
+<profit name="Доход по сделке" />
+<qty_block name="Кол-во ЦБ по сделке, шт" />
+<repayment name="Возврат" />
+<repayment_calculation_block name="Прекращение/изменение обязательств" />
+<repayment_renewal name="Первоначальный срок" />
+<state_reg_number name="Гос. рег. номер" />
+<total name="ИТОГО" />
+</spot_loan_deals_executed_definition>
+<spot_deals_not_executed_definition name="Незавершённые сделки с ценными бумагами с прошлых периодов">
+<accounting_currency_code name="Валюта расчётов" />
+<aci name="НКД по сделке в валюте расчетов" />
+<amortization_dept name="Сумма погашения части основного долга" />
+<bid_number name="Номер заявки" />
+<bought_qty name="Куплено, шт" />
+<broker_ref name="Примечание" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<counterparty name="Контрагент" />
+<execution_date name="Дата исполнения, план" />
+<instrument name="Инструмент" />
+<paying_off_nkd name="Сумма погашения НКД" />
+<place name="Место заключения сделки" />
+<price name="Цена сделки (% для облигаций)" />
+<price_currency_code name="Валюта цены (номинала для облигаций)" />
+<repo_rate name="% ставка для РЕПО" />
+<sold_qty name="Продано, шт" />
+<state_reg_number name="Гос. рег. номер" />
+<total name="ИТОГО" />
+<tran_number name="Номер сделки" />
+<volume name="Объем сделки в валюте расчетов" />
+</spot_deals_not_executed_definition>
+<spot_loan_deals_not_executed_definition name="Незавершенные сделки займа ЦБ заключенные/измененные в прошлых периодах">
+<aci name="НКД, руб" />
+<annual_rate name="Ставка, % годовых" value_prefix="базовая" />
+<conclusion_date name="Дата заключения" />
+<conclusion_number name="№" />
+<deal_block name="Сделка займа" />
+<execution_date name="План. дата исполнения" />
+<instrument name="Инструмент" />
+<loan_delivery_qty name="Привлечение" />
+<loan_return_qty name="Размещение" />
+<market_value name="Рыночная стоимость инструмента, руб" />
+<operation_block name="Операция по сделке займа" />
+<operation_date name="Дата совершения" />
+<operation_number name="№" />
+<operation_time name="Время совершения" />
+<qty_block name="Кол-во ЦБ по сделке, шт" />
+<state_reg_number name="Гос. рег. номер" />
+<total name="ИТОГО незавершено" />
+<transaction_place name="Место заключения сделки" />
+<value name="Объем сделки, руб" />
+</spot_loan_deals_not_executed_definition>
+<common_deal_definition name="Срочные сделки с производными финансовыми инструментами">
+<board_name name="Организатор торговли" />
+<close_price name="Котировка" />
+<comm_stock name="Комиссия биржи, руб." />
+<comm_trade name="Комиссия брокера, руб." />
+<comment name="Комментарий" />
+<deal_date name="Дата" />
+<deal_number name="Идентификатор /Номер сделки" />
+<deal_sign />
+<deal_time name="Время" />
+<order_number name="№ заявки" />
+<price name="Цена/премия, пункты" />
+<price_rur name="Цена/премия, руб." />
+<quantity />
+<quantity_buy name="Куплено, лоты" />
+<quantity_sell name="Продано, лоты" />
+<security_code name="Код контракта" />
+<security_name name="Контракт" />
+<security_type name="Вид" />
+<var_marg name="Вар. маржа" />
+</common_deal_definition>
+<spot_nonstock_conversion_deals_not_executed_definition name="Незавершенные в отчётном периоде внебиржевые сделки конвертации прошлых периодов">
+<brokers_fee name="Комиссия Брокера" />
+<brokers_fee_currency name="Валюта комиссии Брокера" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата заключения" />
+<conclusion_time name="Время заключения" />
+<counterparty_name name="Контрагент" />
+<currency_1 name="Актив 1" />
+<currency_2 name="Актив 2" />
+<deal_type name="Тип сделки" />
+<direction name="Направление (B/S)" />
+<execution_date_fact name="Дата расчетов, факт" />
+<execution_date_plan name="Дата расчетов, план" />
+<price name="Курс сделки" />
+<request name="Номер поручения/заявки" />
+<sum_1 name="Сумма актива 1" />
+<sum_2 name="Сумма актива 2" />
+<trade_n name="Номер сделки" />
+</spot_nonstock_conversion_deals_not_executed_definition>
+<option_execution_definition name="Исполнение опционов">
+<board_name name="Организатор торговли" />
+<deal_text name="Операция" />
+<oper_sign />
+<price name="Цена" />
+<quantity />
+<quantity_buy name="Куплено, шт." />
+<quantity_sell name="Продано,шт." />
+<security_code name="Код контракта" />
+<security_name name="Контракт" />
+</option_execution_definition>
+<repsys_contract_autocall />
+<futures_execution_definition name="Исполнение">
+<board_name name="Организатор торговли" />
+<close_price name="Цена" />
+<last_price name="Последняя цена" />
+<oper_sign />
+<quantity />
+<quantity_buy name="Куплено, шт." />
+<quantity_sell name="Продано,шт." />
+<security_code name="Код контракта" />
+<security_name name="Контракт" />
+</futures_execution_definition>
+<spot_non_trade_money_operations_definition name="Прочие зачисления/списания денежных средств">
+<amount name="Сумма" />
+<comment name="Описание" />
+<currency_code name="Валюта" />
+<operation_date name="Дата" />
+</spot_non_trade_money_operations_definition>
+<spot_non_trade_security_operation_definition name="Прочие зачисления/списания ценных бумаг">
+<board_name name="Портфель" />
+<comment name="Описание" />
+<grn_code name="Гос. рег. номер" />
+<operation_date name="Дата" />
+<quantity name="Количество" />
+<security_name name="Инструмент" />
+</spot_non_trade_security_operation_definition>
+<spot_orders_conversation_definition name="Поручения на конвертацию">
+<amount name="Валюта - предмет сделки, объем" />
+<amount_convert name="Сопряженная валюта, объем" />
+<comment name="Комментарий" />
+<conclusion_date name="Дата совершения" />
+<currency name="Валюта - предмет сделки, код" />
+<currency_convert name="Сопряженная валюта, код" />
+<execution_date_fact name="Дата расчетов, факт" />
+<execution_date_plan name="Дата расчетов, план" />
+</spot_orders_conversation_definition>
+<spot_portfolio_security_params_definition name="Справочник финансовых инструментов">
+<board_name name="Организатор торговли" />
+<isin name="ISIN" />
+<issuer_name name="Эмитент" />
+<lot_size name="Размер лота" />
+<market_price name="Рыночная цена, руб. (% для обл.)" />
+<nkd name="НКД на одну ЦБ в рублях" />
+<nkd_face_curr name="НКД на одну ЦБ в валюте номинала" />
+<nominal name="Номинал" />
+<nominal_curr name="Валюта номинала" />
+<security_grn_code name="Гос. рег. номер" />
+<security_name name="Инструмент" />
+<security_type name="Тип" />
+<securyty_type_add name="Прив" />
+<ticker name="Тикер" />
+</spot_portfolio_security_params_definition>
+<spot_share_blocked_definition name="Операции блокировки ЦБ">
+<amount name="Кол-во, шт." />
+<blockdate name="Дата блокировки" />
+<comment name="Комментарий" />
+<deblockdate name="Дата разблокировки" />
+<sharename name="Наименование ЦБ" />
+<type name="Тип" />
+</spot_share_blocked_definition>
+<spot_money_blocked_definition name="Детализация сумм обязательств Клиента по возврату доходов">
+<amount name="Сумма" />
+<currency name="Валюта" />
+<date name="Дата фиксации реестра" />
+<issuer name="Эмитент" />
+<total name="ИТОГО" />
+</spot_money_blocked_definition>
+<common_money_blocked_depo_definition name="Детализация сумм обязательств по возмещению услуг Депозитария">
+<amount name="Кол-во ЦБ" />
+<currency name="Валюта" />
+<operation_date name="Дата операции" />
+<operation_number name="Номер операции" />
+<operation_type name="Тип операции" />
+<security name="ЦБ" />
+<sum name="Сумма" />
+</common_money_blocked_depo_definition>
+</section_definition>
+<unified_account_totally>
+<item row_name="Входящий остаток (факт)" value="23775.26" currency="RUB" />
+<item row_name="Входящий остаток (факт)" value="346.08" currency="USD" value_rub="25239.41" />
+<item row_name="Движение средств" value="47057.06" currency="RUB" />
+<item row_name="Исходящий остаток (факт)" value="70832.32" currency="RUB" />
+<item row_name="Исходящий остаток (факт)" value="346.08" currency="USD" value_rub="25239.41" />
+<item row_name="Оценка активов, по курсу ЦБ (факт)" value="2890397.63" currency="RUB" />
+<item row_name="Оценка активов, по курсу ЦБ (факт+план) (с учётом нерассчитанных сделок по ценным бумагам)" value="2890397.63" currency="RUB" />
+<item row_name="Оценка активов, по Центральному курсу (факт) (Предварительное закрытие дня)" value="2890374.30" currency="RUB" />
+<item row_name="Оценка активов, по Центральному курсу (факт+план) (с учётом нерассчитанных сделок по ценным бумагам)  (Предварительное закрытие дня)" value="2890374.30" currency="RUB" />
+<item row_name="Оценка активов, по Центральному курсу (факт) (Итоговое закрытие дня)" value="2890374.30" currency="RUB" />
+<item row_name="Оценка активов, по Центральному курсу (факт+план) (с учётом нерассчитанных сделок по ценным бумагам)  (Итоговое закрытие дня)" value="2890374.30" currency="RUB" />
+</unified_account_totally>
+<unified_guarantee_totally>
+<item active_go="Доллар США" is_go="0" amount="346.08" amount_plan="346.08" course="72.862000" collateral="25216.08" highly_liquid="0.00" />
+<item active_go="FIVE-гдр  " is_go="0" amount="10.00" amount_plan="10.00" course="2257.500000" collateral="22575.00" highly_liquid="0.00" />
+<item active_go="АЛРОСА ао " is_go="0" amount="500.00" amount_plan="500.00" course="127.940000" collateral="63970.00" highly_liquid="0.00" />
+<item active_go="Башнефт ап" is_go="0" amount="90.00" amount_plan="90.00" course="1175.000000" collateral="105750.00" highly_liquid="0.00" />
+<item active_go="ГАЗПРОМ ао" is_go="0" amount="1160.00" amount_plan="1160.00" course="274.430000" collateral="318338.80" highly_liquid="0.00" />
+<item active_go="ГМКНорНик " is_go="0" amount="13.00" amount_plan="13.00" course="26034.000000" collateral="338442.00" highly_liquid="0.00" />
+<item active_go="ДетскийМир" is_go="0" amount="500.00" amount_plan="500.00" course="152.120000" collateral="76060.00" highly_liquid="0.00" />
+<item active_go="ЛУКОЙЛ    " is_go="0" amount="14.00" amount_plan="14.00" course="6499.000000" collateral="90986.00" highly_liquid="0.00" />
+<item active_go="Магнит ао " is_go="0" amount="14.00" amount_plan="14.00" course="5363.500000" collateral="75089.00" highly_liquid="0.00" />
+<item active_go="МосБиржа  " is_go="0" amount="1980.00" amount_plan="1980.00" course="175.400000" collateral="347292.00" highly_liquid="0.00" />
+<item active_go="МТС-ао    " is_go="0" amount="90.00" amount_plan="90.00" course="342.150000" collateral="30793.50" highly_liquid="0.00" />
+<item active_go="РусГидро  " is_go="0" amount="105000.00" amount_plan="105000.00" course="0.840600" collateral="88263.00" highly_liquid="0.00" />
+<item active_go="Сбербанк  " is_go="0" amount="330.00" amount_plan="330.00" course="314.600000" collateral="103818.00" highly_liquid="0.00" />
+<item active_go="Сбербанк-п" is_go="0" amount="660.00" amount_plan="660.00" course="294.110000" collateral="194112.60" highly_liquid="0.00" />
+<item active_go="СевСт-ао  " is_go="0" amount="30.00" amount_plan="30.00" course="1648.200000" collateral="49446.00" highly_liquid="0.00" />
+<item active_go="Система ао" is_go="0" amount="2700.00" amount_plan="2700.00" course="32.645000" collateral="88141.50" highly_liquid="0.00" />
+<item active_go="ФосАгро ао" is_go="0" amount="20.00" amount_plan="20.00" course="4956.000000" collateral="99120.00" highly_liquid="0.00" />
+<item active_go="ФСК ЕЭС ао" is_go="0" amount="950000.00" amount_plan="950000.00" course="0.223380" collateral="212211.00" highly_liquid="0.00" />
+<item active_go="Юнипро ао " is_go="0" amount="17000.00" amount_plan="17000.00" course="2.927000" collateral="49759.00" highly_liquid="0.00" />
+<item active_go="ИТОГО" collateral="2379383.48" highly_liquid="0.00" />
+<item active_go="Требуется" collateral="0.00" highly_liquid="0.00" />
+<item active_go="Свободно/недостаточно" collateral="2379383.48" highly_liquid="0.00" />
+</unified_guarantee_totally>
+<unified_preclosing_assets>
+<item asset_id="16162" asset_type_id="1" asset_type="ADR" asset_name="iQIWI     " asset_code="" closing_position_fact="30.00000000" closing_position_plan="30.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="799.500000" currency_course="1.000000" settlement_fact="23985.00000000" settlement_plan="23985.00000000" />
+<item asset_id="16833" asset_type_id="1" asset_type="GDR" asset_name="AGRO-гдр  " asset_code="" closing_position_fact="183.00000000" closing_position_plan="183.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="977.000000" currency_course="1.000000" settlement_fact="178791.00000000" settlement_plan="178791.00000000" />
+<item asset_id="16403" asset_type_id="1" asset_type="GDR" asset_name="FIVE-гдр  " asset_code="" closing_position_fact="10.00000000" closing_position_plan="10.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="2257.500000" currency_course="1.000000" settlement_fact="22575.00000000" settlement_plan="22575.00000000" />
+<item asset_id="12073" asset_type_id="1" asset_type="Акции" asset_name="АЛРОСА ао " asset_code="1-03-40046-N" closing_position_fact="500.00000000" closing_position_plan="500.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="127.940000" currency_course="1.000000" settlement_fact="63970.00000000" settlement_plan="63970.00000000" />
+<item asset_id="9963" asset_type_id="1" asset_type="Акции" asset_name="Башнефт ап" asset_code="2-01-00013-A" closing_position_fact="90.00000000" closing_position_plan="90.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="1175.000000" currency_course="1.000000" settlement_fact="105750.00000000" settlement_plan="105750.00000000" />
+<item asset_id="5348" asset_type_id="1" asset_type="Акции" asset_name="ГАЗПРОМ ао" asset_code="1-02-00028-A" closing_position_fact="1160.00000000" closing_position_plan="1160.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="274.430000" currency_course="1.000000" settlement_fact="318338.80000000" settlement_plan="318338.80000000" />
+<item asset_id="6029" asset_type_id="1" asset_type="Акции" asset_name="ГМКНорНик " asset_code="1-01-40155-F" closing_position_fact="13.00000000" closing_position_plan="13.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="26034.000000" currency_course="1.000000" settlement_fact="338442.00000000" settlement_plan="338442.00000000" />
+<item asset_id="19383" asset_type_id="1" asset_type="Акции" asset_name="ДетскийМир" asset_code="1-02-00844-A" closing_position_fact="500.00000000" closing_position_plan="500.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="152.120000" currency_course="1.000000" settlement_fact="76060.00000000" settlement_plan="76060.00000000" />
+<item asset_id="563" asset_type_id="1" asset_type="Акции" asset_name="ЛУКОЙЛ    " asset_code="1-01-00077-A" closing_position_fact="14.00000000" closing_position_plan="14.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="6499.000000" currency_course="1.000000" settlement_fact="90986.00000000" settlement_plan="90986.00000000" />
+<item asset_id="5527" asset_type_id="1" asset_type="Акции" asset_name="Магнит ао " asset_code="1-01-60525-P" closing_position_fact="14.00000000" closing_position_plan="14.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="5363.500000" currency_course="1.000000" settlement_fact="75089.00000000" settlement_plan="75089.00000000" />
+<item asset_id="12436" asset_type_id="1" asset_type="Акции" asset_name="МосБиржа  " asset_code="1-05-08443-H" closing_position_fact="1980.00000000" closing_position_plan="1980.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="175.400000" currency_course="1.000000" settlement_fact="347292.00000000" settlement_plan="347292.00000000" />
+<item asset_id="4080" asset_type_id="1" asset_type="Акции" asset_name="МТС-ао    " asset_code="1-01-04715-A" closing_position_fact="90.00000000" closing_position_plan="90.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="342.150000" currency_course="1.000000" settlement_fact="30793.50000000" settlement_plan="30793.50000000" />
+<item asset_id="7705" asset_type_id="1" asset_type="Акции" asset_name="НКНХ ао   " asset_code="1-02-00096-A" closing_position_fact="1200.00000000" closing_position_plan="1200.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="95.400000" currency_course="1.000000" settlement_fact="114480.00000000" settlement_plan="114480.00000000" />
+<item asset_id="7706" asset_type_id="1" asset_type="Акции" asset_name="НКНХ ап   " asset_code="2-02-00096-A" closing_position_fact="300.00000000" closing_position_plan="300.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="77.120000" currency_course="1.000000" settlement_fact="23136.00000000" settlement_plan="23136.00000000" />
+<item asset_id="535" asset_type_id="1" asset_type="Акции" asset_name="РСетиЛЭ   " asset_code="1-01-00073-A" closing_position_fact="5100.00000000" closing_position_plan="5100.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="6.490000" currency_course="1.000000" settlement_fact="33099.00000000" settlement_plan="33099.00000000" />
+<item asset_id="536" asset_type_id="1" asset_type="Акции" asset_name="РСетиЛЭ-п " asset_code="2-01-00073-A" closing_position_fact="390.00000000" closing_position_plan="390.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="170.150000" currency_course="1.000000" settlement_fact="66358.50000000" settlement_plan="66358.50000000" />
+<item asset_id="7846" asset_type_id="1" asset_type="Акции" asset_name="РусГидро  " asset_code="1-01-55038-E" closing_position_fact="105000.00000000" closing_position_plan="105000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="0.840600" currency_course="1.000000" settlement_fact="88263.00000000" settlement_plan="88263.00000000" />
+<item asset_id="7148" asset_type_id="1" asset_type="Акции" asset_name="Сбербанк  " asset_code="10301481B" closing_position_fact="330.00000000" closing_position_plan="330.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="314.600000" currency_course="1.000000" settlement_fact="103818.00000000" settlement_plan="103818.00000000" />
+<item asset_id="7149" asset_type_id="1" asset_type="Акции" asset_name="Сбербанк-п" asset_code="20301481B" closing_position_fact="660.00000000" closing_position_plan="660.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="294.110000" currency_course="1.000000" settlement_fact="194112.60000000" settlement_plan="194112.60000000" />
+<item asset_id="4811" asset_type_id="1" asset_type="Акции" asset_name="СевСт-ао  " asset_code="1-02-00143-A" closing_position_fact="30.00000000" closing_position_plan="30.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="1648.200000" currency_course="1.000000" settlement_fact="49446.00000000" settlement_plan="49446.00000000" />
+<item asset_id="7488" asset_type_id="1" asset_type="Акции" asset_name="Система ао" asset_code="1-05-01669-A" closing_position_fact="2700.00000000" closing_position_plan="2700.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="32.645000" currency_course="1.000000" settlement_fact="88141.50000000" settlement_plan="88141.50000000" />
+<item asset_id="12284" asset_type_id="1" asset_type="Акции" asset_name="ФосАгро ао" asset_code="1-02-06556-A" closing_position_fact="20.00000000" closing_position_plan="20.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="4956.000000" currency_course="1.000000" settlement_fact="99120.00000000" settlement_plan="99120.00000000" />
+<item asset_id="7959" asset_type_id="1" asset_type="Акции" asset_name="ФСК ЕЭС ао" asset_code="1-01-65018-D" closing_position_fact="950000.00000000" closing_position_plan="950000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="0.223380" currency_course="1.000000" settlement_fact="212211.00000000" settlement_plan="212211.00000000" />
+<item asset_id="7024" asset_type_id="1" asset_type="Акции" asset_name="Юнипро ао " asset_code="1-02-65104-D" closing_position_fact="17000.00000000" closing_position_plan="17000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="2.927000" currency_course="1.000000" settlement_fact="49759.00000000" settlement_plan="49759.00000000" />
+<item asset_id="840" asset_type_id="2" asset_type="Денежные средства" asset_name="Доллар США" asset_code="USD" closing_position_fact="346.08000000" closing_position_plan="346.08000000" blocked_for_out="0.00000000" currency_course="72.862000" settlement_fact="25216.08096000" settlement_plan="25216.08096000" />
+<item asset_id="810" asset_type_id="2" asset_type="Денежные средства" asset_name="Рубль РФ" asset_code="RUB" closing_position_fact="70832.32000000" closing_position_plan="70832.32000000" blocked_for_out="0.00000000" currency_course="1.000000" settlement_fact="70832.32000000" settlement_plan="70832.32000000" />
+</unified_preclosing_assets>
+<unified_closing_assets>
+<item asset_id="16162" asset_type_id="1" asset_type="ADR" asset_name="iQIWI     " asset_code="" opening_position_fact="30.00000000" opening_position_plan="30.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="30.00000000" closing_position_plan="30.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="799.500000" currency_course_cb="1.000000" settlement_fact_cb="23985.00000000" settlement_plan_cb="23985.00000000" currency_course_ck="1.000000" settlement_fact_ck="23985.00000000" settlement_plan_ck="23985.00000000" position_weight_cb="0.829816620000000000" position_weight_ck="0.829823320000000000" />
+<item asset_id="16833" asset_type_id="1" asset_type="GDR" asset_name="AGRO-гдр  " asset_code="" opening_position_fact="183.00000000" opening_position_plan="183.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="183.00000000" closing_position_plan="183.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="977.000000" currency_course_cb="1.000000" settlement_fact_cb="178791.00000000" settlement_plan_cb="178791.00000000" currency_course_ck="1.000000" settlement_fact_ck="178791.00000000" settlement_plan_ck="178791.00000000" position_weight_cb="6.185688720000000000" position_weight_ck="6.185738640000000000" />
+<item asset_id="16403" asset_type_id="1" asset_type="GDR" asset_name="FIVE-гдр  " asset_code="" opening_position_fact="10.00000000" opening_position_plan="10.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="10.00000000" closing_position_plan="10.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="2259.500000" currency_course_cb="1.000000" settlement_fact_cb="22595.00000000" settlement_plan_cb="22595.00000000" currency_course_ck="1.000000" settlement_fact_ck="22595.00000000" settlement_plan_ck="22595.00000000" position_weight_cb="0.781726350000000000" position_weight_ck="0.781732660000000000" />
+<item asset_id="12073" asset_type_id="1" asset_type="Акции" asset_name="АЛРОСА ао " asset_code="1-03-40046-N" opening_position_fact="500.00000000" opening_position_plan="500.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="500.00000000" closing_position_plan="500.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="127.930000" currency_course_cb="1.000000" settlement_fact_cb="63965.00000000" settlement_plan_cb="63965.00000000" currency_course_ck="1.000000" settlement_fact_ck="63965.00000000" settlement_plan_ck="63965.00000000" position_weight_cb="2.213017320000000000" position_weight_ck="2.213035180000000000" />
+<item asset_id="9963" asset_type_id="1" asset_type="Акции" asset_name="Башнефт ап" asset_code="2-01-00013-A" opening_position_fact="90.00000000" opening_position_plan="90.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="90.00000000" closing_position_plan="90.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="1175.000000" currency_course_cb="1.000000" settlement_fact_cb="105750.00000000" settlement_plan_cb="105750.00000000" currency_course_ck="1.000000" settlement_fact_ck="105750.00000000" settlement_plan_ck="105750.00000000" position_weight_cb="3.658666160000000000" position_weight_ck="3.658695690000000000" />
+<item asset_id="5348" asset_type_id="1" asset_type="Акции" asset_name="ГАЗПРОМ ао" asset_code="1-02-00028-A" opening_position_fact="1160.00000000" opening_position_plan="1160.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="1160.00000000" closing_position_plan="1160.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="274.390000" currency_course_cb="1.000000" settlement_fact_cb="318292.40000000" settlement_plan_cb="318292.40000000" currency_course_ck="1.000000" settlement_fact_ck="318292.40000000" settlement_plan_ck="318292.40000000" position_weight_cb="11.012062740000000000" position_weight_ck="11.012151610000000000" />
+<item asset_id="6029" asset_type_id="1" asset_type="Акции" asset_name="ГМКНорНик " asset_code="1-01-40155-F" opening_position_fact="13.00000000" opening_position_plan="13.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="13.00000000" closing_position_plan="13.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="26044.000000" currency_course_cb="1.000000" settlement_fact_cb="338572.00000000" settlement_plan_cb="338572.00000000" currency_course_ck="1.000000" settlement_fact_ck="338572.00000000" settlement_plan_ck="338572.00000000" position_weight_cb="11.713682470000000000" position_weight_ck="11.713777000000000000" />
+<item asset_id="19383" asset_type_id="1" asset_type="Акции" asset_name="ДетскийМир" asset_code="1-02-00844-A" opening_position_fact="500.00000000" opening_position_plan="500.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="500.00000000" closing_position_plan="500.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="152.120000" currency_course_cb="1.000000" settlement_fact_cb="76060.00000000" settlement_plan_cb="76060.00000000" currency_course_ck="1.000000" settlement_fact_ck="76060.00000000" settlement_plan_ck="76060.00000000" position_weight_cb="2.631471850000000000" position_weight_ck="2.631493090000000000" />
+<item asset_id="563" asset_type_id="1" asset_type="Акции" asset_name="ЛУКОЙЛ    " asset_code="1-01-00077-A" opening_position_fact="14.00000000" opening_position_plan="14.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="14.00000000" closing_position_plan="14.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="6499.000000" currency_course_cb="1.000000" settlement_fact_cb="90986.00000000" settlement_plan_cb="90986.00000000" currency_course_ck="1.000000" settlement_fact_ck="90986.00000000" settlement_plan_ck="90986.00000000" position_weight_cb="3.147871390000000000" position_weight_ck="3.147896800000000000" />
+<item asset_id="5527" asset_type_id="1" asset_type="Акции" asset_name="Магнит ао " asset_code="1-01-60525-P" opening_position_fact="14.00000000" opening_position_plan="14.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="14.00000000" closing_position_plan="14.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="5366.000000" currency_course_cb="1.000000" settlement_fact_cb="75124.00000000" settlement_plan_cb="75124.00000000" currency_course_ck="1.000000" settlement_fact_ck="75124.00000000" settlement_plan_ck="75124.00000000" position_weight_cb="2.599088770000000000" position_weight_ck="2.599109740000000000" />
+<item asset_id="12436" asset_type_id="1" asset_type="Акции" asset_name="МосБиржа  " asset_code="1-05-08443-H" opening_position_fact="1980.00000000" opening_position_plan="1980.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="1980.00000000" closing_position_plan="1980.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="175.390000" currency_course_cb="1.000000" settlement_fact_cb="347272.20000000" settlement_plan_cb="347272.20000000" currency_course_ck="1.000000" settlement_fact_ck="347272.20000000" settlement_plan_ck="347272.20000000" position_weight_cb="12.014686030000000000" position_weight_ck="12.014782990000000000" />
+<item asset_id="4080" asset_type_id="1" asset_type="Акции" asset_name="МТС-ао    " asset_code="1-01-04715-A" opening_position_fact="90.00000000" opening_position_plan="90.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="90.00000000" closing_position_plan="90.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="342.200000" currency_course_cb="1.000000" settlement_fact_cb="30798.00000000" settlement_plan_cb="30798.00000000" currency_course_ck="1.000000" settlement_fact_ck="30798.00000000" settlement_plan_ck="30798.00000000" position_weight_cb="1.065528140000000000" position_weight_ck="1.065536740000000000" />
+<item asset_id="7705" asset_type_id="1" asset_type="Акции" asset_name="НКНХ ао   " asset_code="1-02-00096-A" opening_position_fact="1200.00000000" opening_position_plan="1200.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="1200.00000000" closing_position_plan="1200.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="95.400000" currency_course_cb="1.000000" settlement_fact_cb="114480.00000000" settlement_plan_cb="114480.00000000" currency_course_ck="1.000000" settlement_fact_ck="114480.00000000" settlement_plan_ck="114480.00000000" position_weight_cb="3.960700730000000000" position_weight_ck="3.960732700000000000" />
+<item asset_id="7706" asset_type_id="1" asset_type="Акции" asset_name="НКНХ ап   " asset_code="2-02-00096-A" opening_position_fact="300.00000000" opening_position_plan="300.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="300.00000000" closing_position_plan="300.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="77.120000" currency_course_cb="1.000000" settlement_fact_cb="23136.00000000" settlement_plan_cb="23136.00000000" currency_course_ck="1.000000" settlement_fact_ck="23136.00000000" settlement_plan_ck="23136.00000000" position_weight_cb="0.800443500000000000" position_weight_ck="0.800449960000000000" />
+<item asset_id="535" asset_type_id="1" asset_type="Акции" asset_name="РСетиЛЭ   " asset_code="1-01-00073-A" opening_position_fact="5100.00000000" opening_position_plan="5100.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="5100.00000000" closing_position_plan="5100.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="6.490000" currency_course_cb="1.000000" settlement_fact_cb="33099.00000000" settlement_plan_cb="33099.00000000" currency_course_ck="1.000000" settlement_fact_ck="33099.00000000" settlement_plan_ck="33099.00000000" position_weight_cb="1.145136560000000000" position_weight_ck="1.145145800000000000" />
+<item asset_id="536" asset_type_id="1" asset_type="Акции" asset_name="РСетиЛЭ-п " asset_code="2-01-00073-A" opening_position_fact="390.00000000" opening_position_plan="390.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="390.00000000" closing_position_plan="390.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="170.000000" currency_course_cb="1.000000" settlement_fact_cb="66300.00000000" settlement_plan_cb="66300.00000000" currency_course_ck="1.000000" settlement_fact_ck="66300.00000000" settlement_plan_ck="66300.00000000" position_weight_cb="2.293802050000000000" position_weight_ck="2.293820560000000000" />
+<item asset_id="7846" asset_type_id="1" asset_type="Акции" asset_name="РусГидро  " asset_code="1-01-55038-E" opening_position_fact="105000.00000000" opening_position_plan="105000.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="105000.00000000" closing_position_plan="105000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="0.840900" currency_course_cb="1.000000" settlement_fact_cb="88294.50000000" settlement_plan_cb="88294.50000000" currency_course_ck="1.000000" settlement_fact_ck="88294.50000000" settlement_plan_ck="88294.50000000" position_weight_cb="3.054752720000000000" position_weight_ck="3.054777370000000000" />
+<item asset_id="7148" asset_type_id="1" asset_type="Акции" asset_name="Сбербанк  " asset_code="10301481B" opening_position_fact="330.00000000" opening_position_plan="330.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="330.00000000" closing_position_plan="330.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="314.620000" currency_course_cb="1.000000" settlement_fact_cb="103824.60000000" settlement_plan_cb="103824.60000000" currency_course_ck="1.000000" settlement_fact_ck="103824.60000000" settlement_plan_ck="103824.60000000" position_weight_cb="3.592052490000000000" position_weight_ck="3.592081480000000000" />
+<item asset_id="7149" asset_type_id="1" asset_type="Акции" asset_name="Сбербанк-п" asset_code="20301481B" opening_position_fact="660.00000000" opening_position_plan="660.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="660.00000000" closing_position_plan="660.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="294.190000" currency_course_cb="1.000000" settlement_fact_cb="194165.40000000" settlement_plan_cb="194165.40000000" currency_course_ck="1.000000" settlement_fact_ck="194165.40000000" settlement_plan_ck="194165.40000000" position_weight_cb="6.717601700000000000" position_weight_ck="6.717655910000000000" />
+<item asset_id="4811" asset_type_id="1" asset_type="Акции" asset_name="СевСт-ао  " asset_code="1-02-00143-A" opening_position_fact="30.00000000" opening_position_plan="30.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="30.00000000" closing_position_plan="30.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="1648.800000" currency_course_cb="1.000000" settlement_fact_cb="49464.00000000" settlement_plan_cb="49464.00000000" currency_course_ck="1.000000" settlement_fact_ck="49464.00000000" settlement_plan_ck="49464.00000000" position_weight_cb="1.711321640000000000" position_weight_ck="1.711335450000000000" />
+<item asset_id="7488" asset_type_id="1" asset_type="Акции" asset_name="Система ао" asset_code="1-05-01669-A" opening_position_fact="2700.00000000" opening_position_plan="2700.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="2700.00000000" closing_position_plan="2700.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="32.654000" currency_course_cb="1.000000" settlement_fact_cb="88165.80000000" settlement_plan_cb="88165.80000000" currency_course_ck="1.000000" settlement_fact_ck="88165.80000000" settlement_plan_ck="88165.80000000" position_weight_cb="3.050300040000000000" position_weight_ck="3.050324660000000000" />
+<item asset_id="12284" asset_type_id="1" asset_type="Акции" asset_name="ФосАгро ао" asset_code="1-02-06556-A" opening_position_fact="20.00000000" opening_position_plan="20.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="20.00000000" closing_position_plan="20.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="4958.000000" currency_course_cb="1.000000" settlement_fact_cb="99160.00000000" settlement_plan_cb="99160.00000000" currency_course_ck="1.000000" settlement_fact_ck="99160.00000000" settlement_plan_ck="99160.00000000" position_weight_cb="3.430669850000000000" position_weight_ck="3.430697540000000000" />
+<item asset_id="7959" asset_type_id="1" asset_type="Акции" asset_name="ФСК ЕЭС ао" asset_code="1-01-65018-D" opening_position_fact="950000.00000000" opening_position_plan="950000.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="950000.00000000" closing_position_plan="950000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="0.223460" currency_course_cb="1.000000" settlement_fact_cb="212287.00000000" settlement_plan_cb="212287.00000000" currency_course_ck="1.000000" settlement_fact_ck="212287.00000000" settlement_plan_ck="212287.00000000" position_weight_cb="7.344560420000000000" position_weight_ck="7.344619690000000000" />
+<item asset_id="7024" asset_type_id="1" asset_type="Акции" asset_name="Юнипро ао " asset_code="1-02-65104-D" opening_position_fact="17000.00000000" opening_position_plan="17000.00000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="17000.00000000" closing_position_plan="17000.00000000" blocked_for_out="0.00000000" price_currency="RUB" settlement_price="2.927000" currency_course_cb="1.000000" settlement_fact_cb="49759.00000000" settlement_plan_cb="49759.00000000" currency_course_ck="1.000000" settlement_fact_ck="49759.00000000" settlement_plan_ck="49759.00000000" position_weight_cb="1.721527850000000000" position_weight_ck="1.721541740000000000" />
+<item asset_id="840" asset_type_id="2" asset_type="Денежные средства" asset_name="Доллар США" asset_code="USD" opening_position_fact="346.08000000" opening_position_plan="346.08000000" period_change_position_fact="0.00000000" period_change_position_plan="0.00000000" closing_position_fact="346.08000000" closing_position_plan="346.08000000" blocked_for_out="0.00000000" currency_course_cb="72.929400" settlement_fact_cb="25239.40675200" settlement_plan_cb="25239.40675200" currency_course_ck="72.862000" settlement_fact_ck="25216.08096000" settlement_plan_ck="25216.08096000" position_weight_cb="0.873215730000000000" position_weight_ck="0.872415760000000000" />
+<item asset_id="810" asset_type_id="2" asset_type="Денежные средства" asset_name="Рубль РФ" asset_code="RUB" opening_position_fact="23775.26000000" opening_position_plan="23775.26000000" period_change_position_fact="47057.06000000" period_change_position_plan="47057.06000000" closing_position_fact="70832.32000000" closing_position_plan="70832.32000000" blocked_for_out="0.00000000" currency_course_cb="1.000000" settlement_fact_cb="70832.32000000" settlement_plan_cb="70832.32000000" currency_course_ck="1.000000" settlement_fact_ck="70832.32000000" settlement_plan_ck="70832.32000000" position_weight_cb="2.450608160000000000" position_weight_ck="2.450627930000000000" />
+</unified_closing_assets>
+<unified_non_trade_money_operations>
+<item operation_date="2021-05-12T00:00:00" currency_code="RUB" amount="-114.00" comment="Удержан налог на доход  по дивидендам Нижнекамскнефтехим-аоо с клиента 173364" />
+<item operation_date="2021-05-12T00:00:00" currency_code="RUB" amount="-28.00" comment="Удержан налог на доход  по дивидендам Нижнекамскнефтехим-апо с клиента 173364" />
+<item operation_date="2021-05-12T00:00:00" currency_code="RUB" amount="219.00" comment="Выплата дохода клиент 173364 дивиденды Нижнекамскнефтехим-апо налог к удержанию 28.00 рублей" />
+<item operation_date="2021-05-12T00:00:00" currency_code="RUB" amount="876.00" comment="Выплата дохода клиент 173364 дивиденды Нижнекамскнефтехим-аоо налог к удержанию 114.00 рублей" />
+<item operation_date="2021-05-27T00:00:00" currency_code="RUB" amount="-1604.00" comment="Удержан налог на доход  по дивидендам Сбербанк-ап-3 с клиента 173364" />
+<item operation_date="2021-05-27T00:00:00" currency_code="RUB" amount="-802.00" comment="Удержан налог на доход  по дивидендам Сбербанк-ао-3 с клиента 173364" />
+<item operation_date="2021-05-27T00:00:00" currency_code="RUB" amount="6171.00" comment="Выплата дохода клиент 173364 дивиденды Сбербанк-ао-3 налог к удержанию 802.00 рублей" />
+<item operation_date="2021-05-27T00:00:00" currency_code="RUB" amount="12342.00" comment="Выплата дохода клиент 173364 дивиденды Сбербанк-ап-3 налог к удержанию 1604.00 рублей" />
+<item operation_date="2021-05-28T00:00:00" currency_code="RUB" amount="-2432.00" comment="Удержан налог на доход  по дивидендам Московская Биржа ММВБ-РТС-ао с клиента 173364" />
+<item operation_date="2021-05-28T00:00:00" currency_code="RUB" amount="18711.00" comment="Выплата дохода клиент 173364 дивиденды Московская Биржа ММВБ-РТС-ао налог к удержанию 2432.00 рублей" />
+<item operation_date="2021-06-04T00:00:00" currency_code="RUB" amount="-1726.00" comment="Удержан налог на доход  по дивидендам ГМКННик-аоо с клиента 173364" />
+<item operation_date="2021-06-04T00:00:00" currency_code="RUB" amount="13275.86" comment="Выплата дохода клиент 173364 дивиденды ГМКННик-аоо налог к удержанию 1726.00 рублей" />
+<item operation_date="2021-06-07T00:00:00" currency_code="RUB" amount="-182.00" comment="Удержан налог на доход  по дивидендам Северсталь-ао-2 с клиента 173364" />
+<item operation_date="2021-06-07T00:00:00" currency_code="RUB" amount="-141.00" comment="Удержан налог на доход  по дивидендам Северсталь-ао-2 с клиента 173364" />
+<item operation_date="2021-06-07T00:00:00" currency_code="RUB" amount="1088.10" comment="Выплата дохода клиент 173364 дивиденды Северсталь-ао-2 налог к удержанию 141.00 рублей" />
+<item operation_date="2021-06-07T00:00:00" currency_code="RUB" amount="1403.10" comment="Выплата дохода клиент 173364 дивиденды Северсталь-ао-2 налог к удержанию 182.00 рублей" />
+</unified_non_trade_money_operations>
+<spot_portfolio_security_params>
+<item security_name="AGRO-гдр  " security_grn_code="" board_name="ПАО Московская биржа" issuer_name="BNY Mellon" isin="US7496552057" security_type="GDR" securyty_type_add="GD " nominal="0.000000" nominal_curr="USD" lot_size="1" ticker="AGRO" market_price="0.000000" />
+<item security_name="FIVE-гдр  " security_grn_code="" board_name="ПАО Московская биржа" issuer_name="BNY Mellon" isin="US98387E2054" security_type="GDR" securyty_type_add="GD " nominal="0.000000" nominal_curr="USD" lot_size="1" ticker="FIVE" market_price="0.000000" />
+<item security_name="iQIWI     " security_grn_code="" board_name="ПАО Московская биржа" issuer_name="BNY Mellon" isin="US74735M1080" security_type="ADR" securyty_type_add="AD " nominal="0.000000" lot_size="1" ticker="QIWI" market_price="0.000000" />
+<item security_name="АЛРОСА ао " security_grn_code="1-03-40046-N" board_name="ПАО Московская биржа" issuer_name="АК &quot;АЛРОСА&quot; (ПАО)" isin="RU0007252813" security_type="Акции" securyty_type_add="АО " nominal="0.500000" nominal_curr="RUB" lot_size="10" ticker="ALRS" market_price="0.000000" />
+<item security_name="Башнефт ап" security_grn_code="2-01-00013-A" board_name="ПАО Московская биржа" issuer_name="ПАО АНК &quot;Башнефть&quot;" isin="RU0007976965" security_type="Акции" securyty_type_add="АП " nominal="1.000000" nominal_curr="RUB" lot_size="1" ticker="BANEP" market_price="0.000000" />
+<item security_name="ГАЗПРОМ ао" security_grn_code="1-02-00028-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Газпром&quot;" isin="RU0007661625" security_type="Акции" securyty_type_add="АО " nominal="5.000000" nominal_curr="RUB" lot_size="10" ticker="GAZP" market_price="0.000000" />
+<item security_name="ГМКНорНик " security_grn_code="1-01-40155-F" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;ГМК &quot;Норильский никель&quot;" isin="RU0007288411" security_type="Акции" securyty_type_add="АО " nominal="1.000000" nominal_curr="RUB" lot_size="1" ticker="GMKN" market_price="0.000000" />
+<item security_name="ДетскийМир" security_grn_code="1-02-00844-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Детский мир&quot;" isin="RU000A0JSQ90" security_type="Акции" securyty_type_add="АО " nominal="0.000400" nominal_curr="RUB" lot_size="10" ticker="DSKY" market_price="0.000000" />
+<item security_name="ЛУКОЙЛ    " security_grn_code="1-01-00077-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;ЛУКОЙЛ&quot;" isin="RU0009024277" security_type="Акции" securyty_type_add="АО " nominal="0.025000" nominal_curr="RUB" lot_size="1" ticker="LKOH" market_price="0.000000" />
+<item security_name="Магнит ао " security_grn_code="1-01-60525-P" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Магнит&quot;" isin="RU000A0JKQU8" security_type="Акции" securyty_type_add="АО " nominal="0.010000" nominal_curr="RUB" lot_size="1" ticker="MGNT" market_price="0.000000" />
+<item security_name="МосБиржа  " security_grn_code="1-05-08443-H" board_name="ПАО Московская биржа" issuer_name="ПАО Московская Биржа" isin="RU000A0JR4A1" security_type="Акции" securyty_type_add="АО " nominal="1.000000" nominal_curr="RUB" lot_size="10" ticker="MOEX" market_price="0.000000" />
+<item security_name="МТС-ао    " security_grn_code="1-01-04715-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;МТС&quot;" isin="RU0007775219" security_type="Акции" securyty_type_add="АО " nominal="0.100000" nominal_curr="RUB" lot_size="10" ticker="MTSS" market_price="0.000000" />
+<item security_name="НКНХ ао   " security_grn_code="1-02-00096-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Нижнекамскнефтехим&quot;" isin="RU0009100507" security_type="Акции" securyty_type_add="АО " nominal="1.000000" nominal_curr="RUB" lot_size="10" ticker="NKNC" market_price="0.000000" />
+<item security_name="НКНХ ап   " security_grn_code="2-02-00096-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Нижнекамскнефтехим&quot;" isin="RU0006765096" security_type="Акции" securyty_type_add="АП " nominal="1.000000" nominal_curr="RUB" lot_size="10" ticker="NKNCP" market_price="0.000000" />
+<item security_name="РСетиЛЭ   " security_grn_code="1-01-00073-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Россети Ленэнерго&quot;" isin="RU0009034490" security_type="Акции" securyty_type_add="АО " nominal="1.000000" nominal_curr="RUB" lot_size="100" ticker="LSNG" market_price="0.000000" />
+<item security_name="РСетиЛЭ-п " security_grn_code="2-01-00073-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Россети Ленэнерго&quot;" isin="RU0009092134" security_type="Акции" securyty_type_add="АП " nominal="1.000000" nominal_curr="RUB" lot_size="10" ticker="LSNGP" market_price="0.000000" />
+<item security_name="РусГидро  " security_grn_code="1-01-55038-E" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;РусГидро&quot;" isin="RU000A0JPKH7" security_type="Акции" securyty_type_add="АО " nominal="1.000000" nominal_curr="RUB" lot_size="1000" ticker="HYDR" market_price="0.000000" />
+<item security_name="Сбербанк  " security_grn_code="10301481B" board_name="ПАО Московская биржа" issuer_name="ПАО Сбербанк" isin="RU0009029540" security_type="Акции" securyty_type_add="АО " nominal="3.000000" nominal_curr="RUB" lot_size="10" ticker="SBER" market_price="0.000000" />
+<item security_name="Сбербанк-п" security_grn_code="20301481B" board_name="ПАО Московская биржа" issuer_name="ПАО Сбербанк" isin="RU0009029557" security_type="Акции" securyty_type_add="АП " nominal="3.000000" nominal_curr="RUB" lot_size="10" ticker="SBERP" market_price="0.000000" />
+<item security_name="СевСт-ао  " security_grn_code="1-02-00143-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Северсталь&quot;" isin="RU0009046510" security_type="Акции" securyty_type_add="АО " nominal="0.010000" nominal_curr="RUB" lot_size="1" ticker="CHMF" market_price="0.000000" />
+<item security_name="Система ао" security_grn_code="1-05-01669-A" board_name="ПАО Московская биржа" issuer_name="ПАО АФК &quot;Система&quot;" isin="RU000A0DQZE3" security_type="Акции" securyty_type_add="АО " nominal="0.090000" nominal_curr="RUB" lot_size="100" ticker="AFKS" market_price="0.000000" />
+<item security_name="ФосАгро ао" security_grn_code="1-02-06556-A" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;ФосАгро&quot;" isin="RU000A0JRKT8" security_type="Акции" securyty_type_add="АО " nominal="2.500000" nominal_curr="RUB" lot_size="1" ticker="PHOR" market_price="0.000000" />
+<item security_name="ФСК ЕЭС ао" security_grn_code="1-01-65018-D" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;ФСК ЕЭС&quot;" isin="RU000A0JPNN9" security_type="Акции" securyty_type_add="АО " nominal="0.500000" nominal_curr="RUB" lot_size="10000" ticker="FEES" market_price="0.000000" />
+<item security_name="Юнипро ао " security_grn_code="1-02-65104-D" board_name="ПАО Московская биржа" issuer_name="ПАО &quot;Юнипро&quot;" isin="RU000A0JNGA5" security_type="Акции" securyty_type_add="АО " nominal="0.400000" nominal_curr="RUB" lot_size="1000" ticker="UPRO" market_price="0.000000" />
+</spot_portfolio_security_params>
+</broker_report>
