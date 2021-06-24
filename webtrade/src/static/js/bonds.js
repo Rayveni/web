@@ -204,10 +204,12 @@ function draw_hs_table(evt,bond_category) {
             "nkd_usd",
             "bond_date",
             "frequency_in_year"];
-        process_htable({
+        process_htable(
+		bonds_filter(eurbonds, "Еврооблигации")
+		/*{
             columns: eurbonds.columns,
-            data: eurbonds.data.all()
-        }, exclude_list);
+            data:  eurbonds.data.all()
+        }*/, exclude_list);
     } else {
         var exclude_list = ['bond_category',
             "last_deal",

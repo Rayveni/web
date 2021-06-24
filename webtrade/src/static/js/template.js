@@ -1,3 +1,15 @@
+function currency_print(currency_value,currency,locale='ru') {
+    let formatter = new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+        });
+
+    return formatter.format(currency_value);
+}
 
 
 function today(add_month=0,str_today="") {

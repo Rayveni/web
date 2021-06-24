@@ -250,7 +250,15 @@ select {
   width: 100%;
   padding-right: var(--left_right_pagging_grid);
   padding-left: var(--left_right_pagging_grid);
-}.col-lg-6 {
+}
+.col-lg-4 {
+    flex: 0 0 33%;
+    max-width: 33%;
+  }
+
+
+
+.col-lg-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }.collapse:not(.show) {

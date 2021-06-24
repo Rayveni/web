@@ -4,7 +4,7 @@ from json import dumps
 from . import admin_bp
 
 #from .config_manager import config_manager
-from ..commons import flash_complex_result,exception,config_manager
+from ..commons import flash_complex_result,exception,config_manager,open_broker_report
 
 from sys import path
 path.append("...")
@@ -95,14 +95,14 @@ def _database():
     return render_template('database.html',data=data)
 
 @exception
-def __get_table(table_name,result='matrix',view_id=None):
+def __get_table(table_name,result='matrix',view_id=None,params=None):
     mm=mongo_manager(config)
     if view_id is not None:
-        return __get_view(mm,view_id,result)
+        return __get_view(mm,view_id,result,params=params)
     else:	
         return mm.get_table(table_name,result,query={})
 
-def __get_view(db_manager,view_id,result):
+def __get_view(db_manager,view_id,result,params):
     if view_id=="markets_index_data":
         now=datetime.now()
         start_date=now.replace(year=now.year - 5)
@@ -111,6 +111,9 @@ def __get_view(db_manager,view_id,result):
                                     columns=['index_id','close_price','date','volume'],
                                     result=result
                                    )
+    if view_id=="open_broker_report":
+        return open_broker_report(config["open_broker_report"],params).json_report()
+								   
     elif view_id=="mosex_sec_agg":
         data=db_manager.agg('mosex_securities',
                             group=['list_section', 'supertype', 'instrument_type'],
@@ -191,12 +194,19 @@ def __convert_to_front(arr):
 @admin_bp.route('/query_data', methods=['GET', 'POST'])
 def query_data():
     _res_form=request.args.get('result')
-    _table=request.args.get('table')	
-    _view_id=request.args.get('view_id')		
+    _table=request.args.get('table')
+    _view_id=request.args.get('view_id')
+    _params=request.args.get('params')
 
     if  _res_form is None:
-        err,data_request=__get_table(_table,view_id=_view_id)
+        err,data_request=__get_table(_table,view_id=_view_id,params=_params)
     else:
-        err,data_request=__get_table(_table,_res_form,view_id=_view_id)	
-    return dumps(__convert_to_front(data_request),ensure_ascii=False)
+        err,data_request=__get_table(_table,_res_form,view_id=_view_id,params=_params)
+        
+    
+    if _view_id=='open_broker_report':
+        pass
+    else:
+        data_request=__convert_to_front(data_request)  
+    return dumps(data_request,ensure_ascii=False)
 

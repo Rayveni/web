@@ -1,1 +1,1 @@
-{"driver": "mongo", "db_name": "trade", "host": "localhost", "port": 27017, "user": "", "user_pswd": "", "mongo_data": "C:\\Users\\DB"}
+{"driver": "mongo", "db_name": "trade", "host": "localhost", "port": 27017, "user": "", "user_pswd": "", "mongo_data": "C:\\Users\\DB","open_broker_report":"C:\\Users\\Kart\\jupyter_projects\\web\\broker_info"}
