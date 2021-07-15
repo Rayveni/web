@@ -95,12 +95,15 @@ def _database():
     return render_template('database.html',data=data)
 
 @exception
-def __get_table(table_name,result='matrix',view_id=None,params=None):
+def __get_table(table_name,result='matrix',view_id=None,params=None,post_data={},query:dict={},dict_key=None,columns=None):
+    kvargs={'result':result,'query':query,"dict_key":dict_key,'columns':columns}
+    for k,v in post_data.items():
+        kvargs[k]=v
     mm=mongo_manager(config)
     if view_id is not None:
-        return __get_view(mm,view_id,result,params=params)
-    else:	
-        return mm.get_table(table_name,result,query={})
+        return __get_view(mm,view_id,result,params=params,)
+    else:
+        return mm.get_table(table_name,**kvargs)
 
 def __get_view(db_manager,view_id,result,params):
     if view_id=="markets_index_data":
@@ -197,14 +200,15 @@ def query_data():
     _table=request.args.get('table')
     _view_id=request.args.get('view_id')
     _params=request.args.get('params')
-
+    _noconvert=request.args.get('noconvert')    
+    post_data=request.json
     if  _res_form is None:
-        err,data_request=__get_table(_table,view_id=_view_id,params=_params)
+        err,data_request=__get_table(_table,view_id=_view_id,params=_params,post_data=post_data)
     else:
-        err,data_request=__get_table(_table,_res_form,view_id=_view_id,params=_params)
+        err,data_request=__get_table(_table,_res_form,view_id=_view_id,params=_params,post_data=post_data)
         
     
-    if _view_id=='open_broker_report':
+    if _view_id=='open_broker_report' or _noconvert is not None:
         pass
     else:
         data_request=__convert_to_front(data_request)  

@@ -4,7 +4,7 @@ from bson.son import SON
 
 class MongoDriver:
     __slots__ ='config','__client','db'
-    def __init__(self,config: dict):
+    def __init__(self,config: dict):   
         self.config={key:value for key,value in config.items() if key in ['host','port','db_name']}
         for el in ['host','port']:
             if self.config[el]=='':

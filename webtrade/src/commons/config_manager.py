@@ -12,7 +12,7 @@ class config_manager:
                      "port": {"type":'int','len':10,'default':None},
                      "user": {"type":'str','len':32,'default':None},
                      "user_pswd": {"type":'str','len':32,'default':None},
-                     "mongo_data": {"type":'str','len':64,'default':None}
+                     "mongo_data": {"type":'str','len':64,'default':None},"open_broker_report":{"type":'str','len':64,'default':None}
                     }
         self.config_path='config.json'
         

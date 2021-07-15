@@ -66,7 +66,7 @@ class open_broker_report:
         
         return res
     
-    def json_report(self):
+    def __json_report(self,report=False):
         res={}
         res['title_info']=self._extract_title_info()
         res['section_definition']=self._extract_section_definition(True,True) 
@@ -91,6 +91,57 @@ class open_broker_report:
         res['spot_non_trade_security_operations']=self._extract_unified_spot_non_trade_security_operations()
 
         return res
+    
+    def json_report(self,full_report:bool=False):
+        report=self.__json_report()
+        if not full_report:
+            non_trade_currency={}
+            for _item in report['non_trade_money_operations']:
+                if 'Поставлены на торги средства клиента' in _item['comment']:
+                    _currency,_amount=_item['currency_code'],_item['amount']
+                    try:
+                        non_trade_currency[_currency]=non_trade_currency[_currency]+_amount
+                    except:
+                        non_trade_currency[_currency]=_amount
+           
+
+            cl_assets={}
+            _filter_list=['asset_type',
+                          'asset_name',
+                          'closing_position_fact',
+                          'period_change_position_fact',
+                          'settlement_price',
+                          'price_currency',
+                          'settlement_fact_cb',
+                          'asset_type_id','position_weight','settlement_fact',
+                          'position_weight_cb']
+            _sec_dict=report['spot_portfolio_security_params']
+            flg1,flg2=False,False
+            for key,_items in report['closing_assets'].items():
+                f_d=dict(filter(lambda r: r[0] in _filter_list, _items.items()))
+                if flg1==False and flg2==False:
+                    if 'position_weight' in f_d.keys():
+                        flg2=True
+                    flg1=True
+                if flg2:    
+                    f_d['position_weight_cb'] = f_d.pop('position_weight')
+                    f_d['settlement_fact_cb'] = f_d.pop('settlement_fact')
+                try:
+                    _info=_sec_dict[key]
+                    f_d['isin']=_info['isin']
+                    f_d['asset_name']=key
+                    cl_assets[_info['ticker']]=f_d
+                except:
+                    cl_assets[key]=f_d
+                    
+            small_report={'period':report['title_info']['period'],
+                          'assets_cb_value':report["account_totally"]["assets_cb_value_fact"],
+                          'non_trade_currency':non_trade_currency ,
+                          'assets':cl_assets
+                            }                
+    
+            return small_report                  
+        return report
             
     def _extract_title_info(self,print_raw:bool=False)->dict:
         title_dict=dict(self.root.items())
@@ -292,12 +343,12 @@ class open_broker_report:
                  'Погашение ЦБ':'repayment_cb',
                  'Сальдо расчетов':'securities_deals_saldo',
                  'Исходящий остаток (факт)':'outcome_balance_fact',
-                 'Оценка активов, по курсу ЦБ (факт)':'assets_cb_value_fact',
+                 #'Оценка активов, по курсу ЦБ (факт)':'assets_cb_value_fact',
                  'Оценка активов, по курсу ЦБ (факт+план) (с учётом нерассчитанных сделок по ценным бумагам)':'assets_cb_value_fact_plan',
                  'Оценка активов, по курсу ЦБ (факт) - Предварительное закрытие дня':'assets_cb_value_fact_precloseday',
                  'Оценка активов, по курсу ЦБ (факт+план) (с учётом не рассчитанных сделок) - Предварительное закрытие дня':'assets_cb_value_fact_plan_precloseday',
                  'Оценка активов, по курсу ЦБ (факт+план) (с учётом не рассчитанных сделок) - Итоговое закрытие дня':'assets_cb_value_fact_plan_finalfcloseday',
-                 'Оценка активов, по курсу ЦБ (факт) - Итоговое закрытие дня':'assets_cb_value_fact_finalcloseday',
+                 'Оценка активов, по курсу ЦБ (факт) - Итоговое закрытие дня':'assets_cb_value_fact',
                  'Комиссия Брокера за заключение Специальных сделок РЕПО':'broker_repo_comission',
                  'Комиссия за сделки займа ЦБ на условиях Примерных условий сделок займа ценных бумаг':'broker_loan_securities_comission',
                  'Проценты по предоставленным займам ЦБ':'percents_cb_loans',
@@ -367,7 +418,7 @@ class open_broker_report:
         if print_raw:
             float_keys=[]
         else:
-            float_keys=['quantity']
+            float_keys=['quantity','amount']
         _d=self.__children_to_dict('spot_non_trade_money_operations',float_keys=float_keys,d_keys=None)
         if print_raw:
             return _d
