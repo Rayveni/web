@@ -55,11 +55,11 @@
 
             	
             				
-            			<div class="tab">
-            			  <button class="tablinks" onclick="draw_hs_table(event,'ОФЗ')">ОФЗ</button>
-            			  <button class="tablinks" onclick="draw_hs_table(event,'Корпоративные')">Корпоративные</button>
-            			  <button class="tablinks" onclick="draw_hs_table(event,'Муниципальные')">Субфедеральные</button>
-            			  <button class="tablinks" onclick="draw_hs_table(event,'ЕВРО')">Еврооблигации</button>
+            			<div class="tab" id=tab_1>
+            			  <button class="tablinks" onclick="change_report(event,'Assets')">Assets</button>
+            			  <button class="tablinks" onclick="change_report(event,'Sector')">Sector</button>						  
+            			  <button class="tablinks" onclick="change_report(event,'Industry')">Industry</button>
+            	
             			</div>
              			<div class="tab" id=tab_2>
             		       <button id="export-csv" onclick="function_export_csv_()" class="btn save_btn"><i class="far fa-file-excel"></i></button>						

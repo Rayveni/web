@@ -143,7 +143,6 @@ function rename_columns(columns) {
         //"bond_rur",
         // "bond_date"
     }
-
     columns.forEach(function (item) {
         add_item = r_dict[item]
             if (add_item == undefined) {
@@ -190,7 +189,6 @@ function process_htable(table_data, exclude_list) {
 
     handsome_container.innerHTML = ""
         hot2 = new Handsontable(handsome_container, settings1);
-
 };
 
 function draw_hs_table(evt,bond_category) {
@@ -233,7 +231,6 @@ function draw_hs_table(evt,bond_category) {
 	    current_tab = bond_category;
 	}
 };
-
 
 function function_export_csv_() {
 	    hot2.getPlugin("exportFile").downloadFile("csv", {

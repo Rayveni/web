@@ -1,11 +1,53 @@
 var url_base='/query_data?view_id=open_broker_report&params=',
-	handsome_container = document.getElementById('h_table_id');
+	handsome_container = document.getElementById('h_table_id'),
+	assets_data,
+	report_state=["Assets",0];
+	sectors_data=[],
+	tab_panel1=document.getElementById("tab_1"),
+	tab_panel2=document.getElementById("tab_2");
+
 const agreement_ids = ['_173364_','_173364i_'],
 	  gradient_colour1='#33CCCC',
 	  gradient_colour2="white";
 
 function main() {
     set_total_account_html(prepare_data_account_total());
+	get_assets();
+	process_htable(assets_data[0], gradient_cols = [2]);
+	create_tabs();
+	agg_assets();
+	set_active_panel(tab_panel2,"total");
+	set_active_panel(tab_panel1,"Assets");
+}
+function set_active_panel(panel,value){
+	let tablinks = panel.getElementsByClassName("tablinks");
+	    tablinks.forEach((tablink) => {
+        tablink.className =tablink.className.replace(" active", "");
+		if (tablink.textContent==value){
+			tablink.className += " active";
+			
+		}
+		
+        })
+}
+
+function agg_assets() {
+    sectors_data.push(calc_sector_industry_view("industry", 4));
+    sectors_data.push(calc_sector_industry_view("sector", 5));
+
+}
+function calc_sector_industry_view(grouper_name, col_id) {
+
+    return assets_data.map(function (_dataset) {
+        let header = [[grouper_name, "amount"]],
+        temp;
+        temp = groupby_sum(_dataset.slice(1), col_id, 2);
+        for ([_key, _val]of Object.entries(temp)) {
+            header.push([_key, _val])
+        }
+        return header
+    });
+
 }
 
 function get_assets() {
@@ -56,8 +98,8 @@ function get_assets() {
 
     sec_sectors = get_sec_sectors(temp_data[1]);
     temp_data = [temp_data[0]].concat(_arr);
-
-    return add_info_assets(temp_data, sec_sectors);
+    assets_data=add_info_assets(temp_data, sec_sectors);
+    //return add_info_assets(temp_data, sec_sectors);
 }
 
 function add_info_assets(assets_arr, sectors_dict) {
@@ -272,10 +314,38 @@ function create_tabs() {
 
 }
 function tabOnclick() {
-    let _t = this.value;
-    process_htable(get_assets()[_t], gradient_cols = [2]);;
+    let _t = this.value,
+	     rep_type=report_state[0];	
+		 process_state(rep_type,_t);		 
+	set_active_panel(tab_panel2,this.textContent);
+	report_state[1]=_t;
     return false;
 }
+
+function change_report(evt,report_type) {
+    let rep_state=report_state[1];
+
+	     process_state(report_type,rep_state);
+		set_active_panel(tab_panel1,report_type);
+		report_state[0]=report_type;
+}
+
+function process_state(report_type,rep_state)
+{
+		if (report_type=="Assets"){
+	 process_htable(assets_data[rep_state], gradient_cols = [2]);
+	}
+	else if (report_type=="Sector"){
+		process_htable(sectors_data[1][rep_state], gradient_cols = [1]);
+		
+	}
+	else {
+	process_htable(sectors_data[0][rep_state], gradient_cols = [1]);	
+		
+	};
+}
+
+
 function function_export_csv_() {
 	    hot2.getPlugin("exportFile").downloadFile("csv", {
         filename: "table export",
@@ -284,6 +354,22 @@ function function_export_csv_() {
 
     });
 };
+
+function groupby_sum(matrix, group_col_id, agg_col_id) {
+    let result = matrix.reduce(function (res, value) {
+        if (!res[value[group_col_id]]) {
+            res[value[group_col_id]] = 0;
+        }
+        res[value[group_col_id]] += value[agg_col_id];
+        return res;
+    }, {});
+    return result;
+}
+
 main();
-process_htable(get_assets()[0], gradient_cols = [2]);
-create_tabs();
+
+
+
+
+
+

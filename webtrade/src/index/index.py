@@ -7,11 +7,13 @@ from . import index_bp
 @index_bp.route("/")
 def index():
     data={'title':'index'}
-    data['optional_css_top']=['d3_chart','handsontable.full.min']
-    data['optional_js_bottom']=['vendor/d3/d3.v5.min',
+    data['optional_css_top']=[#'d3_chart',
+                              'handsontable.full.min']
+    data['optional_js_bottom']=[#'vendor/d3/d3.v5.min',
                                 'js/ajax_get_data',
+                                #'vendor/crossfilter/crossfilter.min',
                                 'vendor/handsontable/handsontable.full.min',
                                 'js/gen_table',
-                                'js/index'] 	
-	
+                                'js/index']
+
     return render_template('index.html',data=data)	
