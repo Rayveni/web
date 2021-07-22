@@ -1,7 +1,27 @@
 var  hot2;
 
 function process_htable(obj, dropdown_id) {
-    var table_data = get_data_to_js('/query_data?table='.concat(obj.text));
+    let _checked=document.getElementById("auto_csv").checked,
+        selected_table=obj.text,
+        query_string='/query_data?table=';
+    query_string=query_string.concat(selected_table);
+
+
+
+
+    if(_checked){dropdown_show(dropdown_id);
+query_string=query_string.concat('&csv=1');
+
+let  x=new XMLHttpRequest();
+x.open( "GET", query_string , true);
+x.responseType="blob";
+x.onload= function(e){download(e.target.response, selected_table+".csv", "text/csv");};
+x.send();
+
+
+  ; return 1}
+
+    let table_data = get_data_to_js(query_string);
     var settings1 = {
         data: table_data.slice(1),
         colHeaders: table_data[0],

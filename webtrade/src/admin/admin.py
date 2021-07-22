@@ -1,7 +1,8 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,Response
 from datetime import datetime
 from json import dumps
 from . import admin_bp
+
 
 #from .config_manager import config_manager
 from ..commons import flash_complex_result,exception,config_manager,open_broker_report
@@ -144,9 +145,17 @@ def _tables():
         all_tables_list=None
     else:
         all_tables_list=all_tables
-    data['optional_js_bottom']=['js/drop_down_filter','js/admin','vendor/handsontable/handsontable.full.min','js/ajax_get_data'] 
+    data['optional_js_bottom']=['js/drop_down_filter',
+                                'js/admin',
+                                'vendor/handsontable/handsontable.full.min',
+                                'vendor/download',
+                                'js/ajax_get_data'
+                               ] 
     data['optional_css_top']=['handsontable.full.min']
-    data['db_drop_down_filter']={'placeholder':'Select database table','id':1,'filter_vals':all_tables_list,'onclick':"process_htable(this,'dropdown_id_1')"}
+    data['db_drop_down_filter']={'placeholder':'Select database table',
+                                 'id':1,
+                                 'filter_vals':all_tables_list,
+                                 'onclick':"process_htable(this,'dropdown_id_1')"}
     return render_template('tables.html',data=data)
 	
 
@@ -201,7 +210,10 @@ def query_data():
     _view_id=request.args.get('view_id')
     _params=request.args.get('params')
     _noconvert=request.args.get('noconvert')    
+    _csv=request.args.get('csv')
     post_data=request.json
+    if post_data is None:
+        post_data={}
     if  _res_form is None:
         err,data_request=__get_table(_table,view_id=_view_id,params=_params,post_data=post_data)
     else:
@@ -211,6 +223,21 @@ def query_data():
     if _view_id=='open_broker_report' or _noconvert is not None:
         pass
     else:
-        data_request=__convert_to_front(data_request)  
+        data_request=__convert_to_front(data_request) 
+
+    if  _csv is not None:
+        return Response(prepare_csv(data_request).encode('cp1251'),
+                        mimetype="Content-Type: text/csv; charset=windows-1251",
+                        headers={"Content-disposition":"attachment; filename={}.csv".format(_table)})
+ 
     return dumps(data_request,ensure_ascii=False)
 
+def prepare_csv(data,delimiter:str=';'):
+    res=[delimiter.join(map(__prepare_csv_f, row)) for row in data]
+    return '\n'.join(res)
+
+def __prepare_csv_f(s):
+    s=str(s)
+    if s=='nan':
+        s=""
+    return s

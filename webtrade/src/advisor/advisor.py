@@ -16,7 +16,7 @@ def __last_updated_bonds()->tuple:
 
 @advisor_bp.route("/bonds")
 def _bonds():
-    data={'title':'admin|params'}
+    data={'title':'Advisor|bonds'}
 
     err,last_updated_date_tuple=__last_updated_bonds()
     if not err[0]:
@@ -39,4 +39,30 @@ def _bonds():
                                 'js/ajax_get_data',
                                 'js/bonds'] 
     return render_template('bonds.html',data=data)
+	
+@advisor_bp.route("/stocks")
+def _bonds3():
+    data={'title':'Advisor|stocks'}
+
+    err,last_updated_date_tuple=__last_updated_bonds()
+    if not err[0]:
+        flash_complex_result(err,last_updated_date_tuple,'')
+        last_updated_date,last_updated_date_alert='error updated date','danger'
+    else:
+        last_updated_date=last_updated_date_tuple[0]
+        if last_updated_date_tuple[1]:
+            last_updated_date_alert='danger'
+        else:
+            last_updated_date_alert='success'
+
+    data['optional_css_top']=['handsontable.full.min','daterangepicker']
+    data['last_updated_date']=last_updated_date	
+    data['last_updated_date_alert']=last_updated_date_alert		
+    data['optional_js_bottom']=['vendor/daterangepicker/moment.min',
+                                'vendor/crossfilter/crossfilter.min',
+                                'vendor/daterangepicker/daterangepicker.min',
+                                'vendor/handsontable/handsontable.full.min',
+                                'js/ajax_get_data',
+                                'js/bonds'] 
+    return render_template('stocks.html',data=data)
 	

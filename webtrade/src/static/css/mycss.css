@@ -142,3 +142,33 @@ background: none;
   background: red;
   color: white;
 }
+
+.button1:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.button1 {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+   
+  
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button_size1{
+ font-size: 16px;
+    padding: 16px 32px;
+  margin: 4px 2px;
+
+}
+.button1:active {
+  background-color: white;
+  transform: translateY(4px);
+}
