@@ -1,0 +1,202 @@
+ body {
+  background: #313c4e; 
+}
+
+.main_container{
+	background:white;
+	width: 210mm;
+    height: 175mm;
+	margin-left: 50mm;
+	margin-top: 30mm;
+	padding-left:5%;
+	padding-right:5%;
+	}
+
+
+
+.full_name_contrainer{	
+	
+    max-width: 100%!important;
+
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-variant: normal;
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    position: relative;
+
+    font-size: 46px!important;
+    min-height: 46px;
+    line-height: 48px!important;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Ubuntu'!important;
+    margin-left: 5%;
+    padding-top: 5%;	
+    color: #313c4e;
+	}
+
+.menu {	
+    font-size: 18px!important;
+    -webkit-text-size-adjust: 100%;
+    font-family: sans-serif;
+    text-rendering: optimizeLegibility;
+    line-height: 1!important;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    height: auto;
+    position: relative;
+    background-color: #313c4e;
+    border-radius: 10px;
+    padding: 0 24px;
+    margin-bottom: 0;
+	margin-top: 5%;
+    padding-left: 32px;
+	
+ display: flex;
+   align-items:center;
+   text-align:center;
+   padding-left:14%;
+      }
+
+.delimiter{
+    font-size: 9px!important;
+	box-sizing: border-box;
+    display:flex;
+	flex-direction: row;  
+    max-width: 100%!important;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    position: relative;
+	margin-top:1%;
+	margin-bottom:2%;	
+      }
+.mid-line{	  
+    z-index: 2;
+    width: 35%;
+    left: 33.5%;
+	background:#449399;
+	height: 8px;
+	border-radius: 10px; 
+	position:absolute;
+      }
+.left-line{	  
+    z-index: 1;
+    width: 44%;
+    left: -1%;
+	background:#313c4e;;
+	height: 8px;	
+	border-radius: 10px;
+ 	position:absolute;
+      }
+.right-line{	  
+    z-index: 3;
+    width: 33%;
+    right: -1%;
+	background:rgba(68, 147, 153, 0.5);
+	height: 8px;	
+	border-radius: 10px;
+	position:absolute; 
+      }	  
+.contact{	  
+	vertical-align: text-top;	
+      }	 	  
+	  
+.sender_row{  
+
+    font-style: italic;
+    color: #7c7c7c;
+    font-family: 'Ubuntu'!important;
+    font-size: 24px!important;
+
+	
+      }	 	
+	  
+input[name="sender_input"] {
+    border: none;
+    background: transparent;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-variant: normal;
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    font-weight: 400;
+    font-style: italic;
+    color: #7c7c7c;
+    margin-top: 20px;
+    font-family: 'Ubuntu'!important;
+    font-size: 24px!important;
+      }	 
+	  
+.text_area{
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    color: #000;
+    -webkit-user-modify: read-write;
+    -webkit-line-break: after-white-space;
+    direction: ltr;
+    unicode-bidi: isolate;
+    word-wrap: break-word;
+    font-weight: 400;
+    font-style: normal;
+    height: auto!important;
+    font-family: 'Ubuntu'!important;
+    outline: 0!important;
+    border: 1px solid #9b9b9b;
+    border-radius: 7px;
+    padding: 8px;
+    left: -8px;
+    position: relative;
+    width: calc(100% + 18px);
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    -webkit-appearance: none!important;
+    font-size: 18px!important;
+    min-height: 18px;
+    line-height: 22px!important;
+   
+	overflow:hidden;
+	resize: none;
+	display: block;
+}
+
+.sign_text{
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    color: #000;
+    -webkit-user-modify: read-write;
+    -webkit-line-break: after-white-space;
+    direction: ltr;
+    unicode-bidi: isolate;
+    word-wrap: break-word;
+    font-weight: 400;
+    font-style: normal;
+    height: auto!important;
+    font-family: 'Ubuntu'!important;
+    outline: 0!important;
+
+ 
+    left: -8px;
+    position: relative;
+    width: calc(100% + 18px);
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    -webkit-appearance: none!important;
+    font-size: 18px!important;
+    min-height: 18px;
+    line-height: 22px!important;
+    padding: 0;
+  
+      }	 	
+.sign_container{
+    margin-top: 5%;	
+      }	 
